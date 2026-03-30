@@ -1,0 +1,313 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="760" viewBox="0 0 960 760">
+  <defs>
+    <!-- Interior warm glow gradients -->
+    <linearGradient id="interior-warm" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%"   stop-color="#e07010" stop-opacity="1"/>
+      <stop offset="25%"  stop-color="#f0a030" stop-opacity="0.95"/>
+      <stop offset="55%"  stop-color="#f8c060" stop-opacity="0.85"/>
+      <stop offset="80%"  stop-color="#e89040" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#c87030" stop-opacity="0.75"/>
+    </linearGradient>
+    <linearGradient id="interior-warm-B" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%"   stop-color="#d06010" stop-opacity="1"/>
+      <stop offset="30%"  stop-color="#e89030" stop-opacity="0.95"/>
+      <stop offset="60%"  stop-color="#f0a840" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#c87030" stop-opacity="0.75"/>
+    </linearGradient>
+    <linearGradient id="interior-natural" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%"   stop-color="#c87828" stop-opacity="1"/>
+      <stop offset="30%"  stop-color="#e09840" stop-opacity="0.9"/>
+      <stop offset="65%"  stop-color="#f0b858" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#d89040" stop-opacity="0.7"/>
+    </linearGradient>
+    <!-- Glass reflections -->
+    <linearGradient id="glass-reflect" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="white" stop-opacity="0.18"/>
+      <stop offset="30%"  stop-color="white" stop-opacity="0.04"/>
+      <stop offset="70%"  stop-color="white" stop-opacity="0"/>
+      <stop offset="100%" stop-color="white" stop-opacity="0.10"/>
+    </linearGradient>
+    <!-- Exterior gradients -->
+    <linearGradient id="ext-black" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#111"/>
+      <stop offset="50%"  stop-color="#1e1e1e"/>
+      <stop offset="100%" stop-color="#111"/>
+    </linearGradient>
+    <linearGradient id="ext-charcoal" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#2a2a2a"/>
+      <stop offset="50%"  stop-color="#3d3d3d"/>
+      <stop offset="100%" stop-color="#2a2a2a"/>
+    </linearGradient>
+    <linearGradient id="ext-natural" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#9a7040"/>
+      <stop offset="30%"  stop-color="#b88a52"/>
+      <stop offset="70%"  stop-color="#a87848"/>
+      <stop offset="100%" stop-color="#9a7040"/>
+    </linearGradient>
+    <!-- Drop shadow filter -->
+    <filter id="shadow" x="-10%" y="-5%" width="130%" height="125%">
+      <feDropShadow dx="4" dy="8" stdDeviation="8" flood-color="#00000040"/>
+    </filter>
+    <!-- LED glow filter -->
+    <filter id="led-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="960" height="760" fill="#1a1a1a"/>
+
+  <!-- Title -->
+  <text x="480" y="52" text-anchor="middle" font-family="'Helvetica Neue',Arial,sans-serif" font-size="20" font-weight="bold" letter-spacing="2" fill="white">JapanSauna 新ライン ｜ 外観デザイン コンセプト</text>
+  <text x="480" y="75" text-anchor="middle" font-family="'Helvetica Neue',Arial,sans-serif" font-size="11" fill="#888">競合との差別化を意識した 3 パターン提案 ／ 2026-03-27</text>
+  <line x1="80" y1="90" x2="880" y2="90" stroke="#333" stroke-width="1"/>
+
+  <!-- ================================================================ -->
+  <!-- CONCEPT A: ブラック × ヒノキ -->
+  <!-- ================================================================ -->
+  <g transform="translate(68, 125)">
+
+    <!-- Concept label -->
+    <rect x="0" y="0" width="240" height="28" fill="#111" rx="4"/>
+    <text x="120" y="19" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#888" letter-spacing="1">CONCEPT  A</text>
+
+    <!-- Cabin body (W240 × H320, scale ~1:5) -->
+    <g transform="translate(20, 40)" filter="url(#shadow)">
+
+      <!-- Main body: black -->
+      <rect x="0" y="0" width="200" height="295" fill="url(#ext-black)" rx="3"/>
+
+      <!-- Top cap (slightly lighter) -->
+      <rect x="0" y="0" width="200" height="14" fill="#282828" rx="3"/>
+      <rect x="0" y="7" width="200" height="7" fill="#282828"/>
+
+      <!-- Side walls visible (left & right, 14px each) -->
+      <!-- Left frame detail -->
+      <rect x="0" y="0" width="16" height="295" fill="#161616"/>
+      <!-- Right frame detail -->
+      <rect x="184" y="0" width="16" height="295" fill="#161616"/>
+
+      <!-- GLASS PANEL (center, 168px × 267px) -->
+      <!-- Interior visible through glass -->
+      <rect x="16" y="14" width="168" height="267" fill="url(#interior-warm)" rx="1"/>
+
+      <!-- Hinoki wood planks visible inside (horizontal lines) -->
+      <line x1="16" y1="50"  x2="184" y2="50"  stroke="#c07828" stroke-width="1.5" opacity="0.4"/>
+      <line x1="16" y1="72"  x2="184" y2="72"  stroke="#c07828" stroke-width="1.5" opacity="0.4"/>
+      <line x1="16" y1="94"  x2="184" y2="94"  stroke="#c07828" stroke-width="1.5" opacity="0.4"/>
+      <line x1="16" y1="116" x2="184" y2="116" stroke="#c07828" stroke-width="1.5" opacity="0.4"/>
+      <line x1="16" y1="138" x2="184" y2="138" stroke="#c07828" stroke-width="1.5" opacity="0.4"/>
+      <line x1="16" y1="160" x2="184" y2="160" stroke="#c07828" stroke-width="1.5" opacity="0.35"/>
+
+      <!-- Upper bench silhouette -->
+      <rect x="16" y="165" width="168" height="8"  fill="#1a0800" opacity="0.5"/>
+      <!-- Lower bench silhouette -->
+      <rect x="16" y="225" width="110" height="6"  fill="#1a0800" opacity="0.4"/>
+
+      <!-- LED glow under upper bench -->
+      <rect x="16" y="173" width="168" height="6"  fill="#ffaa00" opacity="0.35" filter="url(#led-glow)"/>
+      <!-- LED glow under lower bench -->
+      <rect x="16" y="231" width="110" height="5"  fill="#ffaa00" opacity="0.25" filter="url(#led-glow)"/>
+
+      <!-- Stove silhouette (lower right) -->
+      <rect x="140" y="243" width="38" height="38" fill="#0d0d0d" opacity="0.7" rx="2"/>
+
+      <!-- Glass door line (center vertical) -->
+      <line x1="100" y1="14" x2="100" y2="281" stroke="#0a0a0a" stroke-width="2" opacity="0.8"/>
+
+      <!-- Glass reflection overlay -->
+      <rect x="16" y="14" width="168" height="267" fill="url(#glass-reflect)" rx="1"/>
+
+      <!-- Glass edge highlight -->
+      <rect x="16" y="14" width="1" height="267" fill="white" opacity="0.12"/>
+      <rect x="16" y="14" width="168" height="1" fill="white" opacity="0.1"/>
+
+      <!-- Door handle (right panel) -->
+      <rect x="108" y="145" width="4" height="22" fill="#333" rx="2"/>
+      <!-- Door handle (left panel) -->
+      <rect x="88" y="145" width="4" height="22" fill="#333" rx="2"/>
+
+      <!-- Base / feet -->
+      <rect x="20" y="290" width="160" height="5" fill="#0d0d0d" rx="2"/>
+      <rect x="30" y="293" width="20" height="6" fill="#0d0d0d" rx="1"/>
+      <rect x="150" y="293" width="20" height="6" fill="#0d0d0d" rx="1"/>
+
+    </g>
+
+    <!-- Description -->
+    <text x="120" y="368" text-anchor="middle" font-family="'Helvetica Neue',Arial,sans-serif" font-size="14" font-weight="bold" fill="white">ブラック × ヒノキ</text>
+    <text x="120" y="386" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#aaa">漆黒の外装 × ヒノキの温もり</text>
+    <text x="120" y="403" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#777">ホテル・ヴィラ・ショールーム向け</text>
+    <text x="120" y="419" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#777">高級感・SNS映え・存在感◎</text>
+  </g>
+
+  <!-- ================================================================ -->
+  <!-- CONCEPT B: チャコール × ヒノキ（推奨）-->
+  <!-- ================================================================ -->
+  <g transform="translate(358, 125)">
+
+    <!-- Concept label + 推奨バッジ -->
+    <rect x="0" y="0" width="240" height="28" fill="#c05000" rx="4"/>
+    <text x="100" y="19" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="white" letter-spacing="1">CONCEPT  B</text>
+    <rect x="152" y="4" width="80" height="20" fill="white" rx="3"/>
+    <text x="192" y="18" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#c05000">★ 推奨</text>
+
+    <g transform="translate(20, 40)" filter="url(#shadow)">
+
+      <!-- Main body: charcoal -->
+      <rect x="0" y="0" width="200" height="295" fill="url(#ext-charcoal)" rx="3"/>
+      <rect x="0" y="0" width="200" height="14" fill="#353535" rx="3"/>
+      <rect x="0" y="7" width="200" height="7" fill="#353535"/>
+
+      <!-- Side frames -->
+      <rect x="0"   y="0" width="16" height="295" fill="#222"/>
+      <rect x="184" y="0" width="16" height="295" fill="#222"/>
+
+      <!-- GLASS PANEL -->
+      <rect x="16" y="14" width="168" height="267" fill="url(#interior-warm-B)" rx="1"/>
+
+      <!-- Hinoki planks -->
+      <line x1="16" y1="50"  x2="184" y2="50"  stroke="#b87020" stroke-width="1.5" opacity="0.45"/>
+      <line x1="16" y1="72"  x2="184" y2="72"  stroke="#b87020" stroke-width="1.5" opacity="0.45"/>
+      <line x1="16" y1="94"  x2="184" y2="94"  stroke="#b87020" stroke-width="1.5" opacity="0.45"/>
+      <line x1="16" y1="116" x2="184" y2="116" stroke="#b87020" stroke-width="1.5" opacity="0.45"/>
+      <line x1="16" y1="138" x2="184" y2="138" stroke="#b87020" stroke-width="1.5" opacity="0.40"/>
+      <line x1="16" y1="160" x2="184" y2="160" stroke="#b87020" stroke-width="1.5" opacity="0.35"/>
+
+      <!-- Benches -->
+      <rect x="16" y="165" width="168" height="8" fill="#180800" opacity="0.5"/>
+      <rect x="16" y="225" width="110" height="6" fill="#180800" opacity="0.4"/>
+
+      <!-- LED glow -->
+      <rect x="16" y="173" width="168" height="7" fill="#ffaa00" opacity="0.40" filter="url(#led-glow)"/>
+      <rect x="16" y="231" width="110" height="5" fill="#ffaa00" opacity="0.28" filter="url(#led-glow)"/>
+
+      <!-- Stove -->
+      <rect x="140" y="243" width="38" height="38" fill="#0f0f0f" opacity="0.65" rx="2"/>
+
+      <!-- Door line -->
+      <line x1="100" y1="14" x2="100" y2="281" stroke="#1a1a1a" stroke-width="2" opacity="0.7"/>
+
+      <!-- Glass reflection -->
+      <rect x="16" y="14" width="168" height="267" fill="url(#glass-reflect)" rx="1"/>
+      <rect x="16" y="14" width="1"   height="267" fill="white" opacity="0.14"/>
+      <rect x="16" y="14" width="168" height="1"   fill="white" opacity="0.12"/>
+
+      <!-- Handles -->
+      <rect x="108" y="145" width="4" height="22" fill="#555" rx="2"/>
+      <rect x="88"  y="145" width="4" height="22" fill="#555" rx="2"/>
+
+      <!-- Base -->
+      <rect x="20" y="290" width="160" height="5" fill="#1a1a1a" rx="2"/>
+      <rect x="30" y="293" width="20"  height="6" fill="#1a1a1a" rx="1"/>
+      <rect x="150" y="293" width="20" height="6" fill="#1a1a1a" rx="1"/>
+
+    </g>
+
+    <text x="120" y="368" text-anchor="middle" font-family="'Helvetica Neue',Arial,sans-serif" font-size="14" font-weight="bold" fill="white">チャコール × ヒノキ</text>
+    <text x="120" y="386" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#aaa">上質なグレー × ヒノキの温かさ</text>
+    <text x="120" y="403" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#ffaa00">30代男性 新築戸建に最適</text>
+    <text x="120" y="419" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#ffaa00">BtoC・BtoB 両対応 / 万能型</text>
+  </g>
+
+  <!-- ================================================================ -->
+  <!-- CONCEPT C: ナチュラルモダン -->
+  <!-- ================================================================ -->
+  <g transform="translate(648, 125)">
+
+    <rect x="0" y="0" width="240" height="28" fill="#333" rx="4"/>
+    <text x="120" y="19" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#888" letter-spacing="1">CONCEPT  C</text>
+
+    <g transform="translate(20, 40)" filter="url(#shadow)">
+
+      <!-- Main body: natural wood grain -->
+      <rect x="0" y="0" width="200" height="295" fill="url(#ext-natural)" rx="3"/>
+
+      <!-- Wood grain texture lines -->
+      <line x1="0"   y1="45"  x2="16"  y2="45"  stroke="#8a6030" stroke-width="0.8" opacity="0.5"/>
+      <line x1="0"   y1="80"  x2="16"  y2="80"  stroke="#8a6030" stroke-width="0.8" opacity="0.4"/>
+      <line x1="0"   y1="120" x2="16"  y2="120" stroke="#8a6030" stroke-width="0.8" opacity="0.5"/>
+      <line x1="0"   y1="155" x2="16"  y2="155" stroke="#8a6030" stroke-width="0.8" opacity="0.4"/>
+      <line x1="0"   y1="200" x2="16"  y2="200" stroke="#8a6030" stroke-width="0.8" opacity="0.5"/>
+      <line x1="0"   y1="240" x2="16"  y2="240" stroke="#8a6030" stroke-width="0.8" opacity="0.4"/>
+      <line x1="184" y1="45"  x2="200" y2="45"  stroke="#8a6030" stroke-width="0.8" opacity="0.5"/>
+      <line x1="184" y1="100" x2="200" y2="100" stroke="#8a6030" stroke-width="0.8" opacity="0.4"/>
+      <line x1="184" y1="150" x2="200" y2="150" stroke="#8a6030" stroke-width="0.8" opacity="0.5"/>
+      <line x1="184" y1="200" x2="200" y2="200" stroke="#8a6030" stroke-width="0.8" opacity="0.4"/>
+      <line x1="184" y1="250" x2="200" y2="250" stroke="#8a6030" stroke-width="0.8" opacity="0.5"/>
+
+      <!-- Top cap -->
+      <rect x="0" y="0" width="200" height="14" fill="#c09060" rx="3"/>
+      <rect x="0" y="7" width="200" height="7"  fill="#c09060"/>
+
+      <!-- Side frames -->
+      <rect x="0"   y="0" width="16" height="295" fill="#9a7040"/>
+      <rect x="184" y="0" width="16" height="295" fill="#9a7040"/>
+
+      <!-- GLASS PANEL -->
+      <rect x="16" y="14" width="168" height="267" fill="url(#interior-natural)" rx="1"/>
+
+      <!-- Hinoki planks -->
+      <line x1="16" y1="50"  x2="184" y2="50"  stroke="#a87028" stroke-width="1.5" opacity="0.4"/>
+      <line x1="16" y1="72"  x2="184" y2="72"  stroke="#a87028" stroke-width="1.5" opacity="0.4"/>
+      <line x1="16" y1="94"  x2="184" y2="94"  stroke="#a87028" stroke-width="1.5" opacity="0.4"/>
+      <line x1="16" y1="116" x2="184" y2="116" stroke="#a87028" stroke-width="1.5" opacity="0.4"/>
+      <line x1="16" y1="138" x2="184" y2="138" stroke="#a87028" stroke-width="1.5" opacity="0.35"/>
+      <line x1="16" y1="160" x2="184" y2="160" stroke="#a87028" stroke-width="1.5" opacity="0.30"/>
+
+      <!-- Benches -->
+      <rect x="16" y="165" width="168" height="8" fill="#401800" opacity="0.35"/>
+      <rect x="16" y="225" width="110" height="6" fill="#401800" opacity="0.30"/>
+
+      <!-- LED glow -->
+      <rect x="16" y="173" width="168" height="6" fill="#ffcc44" opacity="0.30" filter="url(#led-glow)"/>
+      <rect x="16" y="231" width="110" height="5" fill="#ffcc44" opacity="0.22" filter="url(#led-glow)"/>
+
+      <!-- Stove -->
+      <rect x="140" y="243" width="38" height="38" fill="#2a1a00" opacity="0.5" rx="2"/>
+
+      <!-- Door line -->
+      <line x1="100" y1="14" x2="100" y2="281" stroke="#7a5020" stroke-width="1.5" opacity="0.6"/>
+
+      <!-- Glass reflection -->
+      <rect x="16" y="14" width="168" height="267" fill="url(#glass-reflect)" rx="1"/>
+      <rect x="16" y="14" width="1"   height="267" fill="white" opacity="0.16"/>
+      <rect x="16" y="14" width="168" height="1"   fill="white" opacity="0.14"/>
+
+      <!-- Handles: wood-tone -->
+      <rect x="108" y="145" width="4" height="22" fill="#8a6030" rx="2"/>
+      <rect x="88"  y="145" width="4" height="22" fill="#8a6030" rx="2"/>
+
+      <!-- Base -->
+      <rect x="20" y="290" width="160" height="5" fill="#8a6030" rx="2"/>
+      <rect x="30" y="293" width="20"  height="6" fill="#8a6030" rx="1"/>
+      <rect x="150" y="293" width="20" height="6" fill="#8a6030" rx="1"/>
+
+    </g>
+
+    <text x="120" y="368" text-anchor="middle" font-family="'Helvetica Neue',Arial,sans-serif" font-size="14" font-weight="bold" fill="white">ナチュラルモダン</text>
+    <text x="120" y="386" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#aaa">木目調外装 × ヒノキ内装</text>
+    <text x="120" y="403" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#777">totonoü対抗・ナチュラル志向層</text>
+    <text x="120" y="419" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#777">自然素材×モダンの融合</text>
+  </g>
+
+  <!-- Divider -->
+  <line x1="80" y1="570" x2="880" y2="570" stroke="#333" stroke-width="1"/>
+
+  <!-- Comparison table -->
+  <g transform="translate(80, 590)">
+    <text x="0" y="18" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#888">競合との差別化ポジション</text>
+    <text x="0"   y="40" font-family="Arial,sans-serif" font-size="10" fill="#666">MySauna ————</text>
+    <text x="0"   y="54" font-family="Arial,sans-serif" font-size="9"  fill="#888">伝統的和風ヒノキ。温かみあるが重い印象</text>
+    <text x="200" y="40" font-family="Arial,sans-serif" font-size="10" fill="#666">totonoü ————</text>
+    <text x="200" y="54" font-family="Arial,sans-serif" font-size="9"  fill="#888">北欧デザイン。ライトウッド×ガラス。人気No.1</text>
+    <text x="430" y="40" font-family="Arial,sans-serif" font-size="10" fill="#c05000">JapanSauna（B案推奨）————</text>
+    <text x="430" y="54" font-family="Arial,sans-serif" font-size="9"  fill="#c05000">チャコール×ヒノキ。日本初のこのゾーンを取りに行く</text>
+    <text x="700" y="40" font-family="Arial,sans-serif" font-size="10" fill="#666">HARVIA ————</text>
+    <text x="700" y="54" font-family="Arial,sans-serif" font-size="9"  fill="#888">スタンダード。デザイン差別化なし</text>
+  </g>
+
+  <!-- Footer -->
+  <text x="480" y="740" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#555">※ 本図はコンセプト検討用のビジュアルです。実際の製品デザインはクリエイティブ部門・設計部門にて詳細化してください。</text>
+</svg>

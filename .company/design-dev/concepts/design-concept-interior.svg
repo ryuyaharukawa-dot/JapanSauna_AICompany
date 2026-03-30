@@ -1,0 +1,358 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="740" viewBox="0 0 960 740">
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softshadow">
+      <feDropShadow dx="3" dy="5" stdDeviation="6" flood-color="#00000060"/>
+    </filter>
+
+    <!-- Hinoki wood gradient -->
+    <linearGradient id="hinoki-wall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#e8a840"/>
+      <stop offset="50%" stop-color="#d4902c"/>
+      <stop offset="100%" stop-color="#c07820"/>
+    </linearGradient>
+    <linearGradient id="hinoki-ceil" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#c87820"/>
+      <stop offset="100%" stop-color="#e09030"/>
+    </linearGradient>
+    <linearGradient id="hinoki-floor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#b06818"/>
+      <stop offset="100%" stop-color="#804808"/>
+    </linearGradient>
+    <!-- Tile ceiling gradient -->
+    <linearGradient id="tile-dark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#2a2a2a"/>
+      <stop offset="100%" stop-color="#3a3a3a"/>
+    </linearGradient>
+    <!-- Stone accent gradient -->
+    <linearGradient id="stone-wall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#555"/>
+      <stop offset="100%" stop-color="#3d3d3d"/>
+    </linearGradient>
+    <!-- Ambient room light for walls -->
+    <radialGradient id="room-light-A" cx="50%" cy="55%" r="60%">
+      <stop offset="0%"  stop-color="#f8b840" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#c07020" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="room-light-B" cx="50%" cy="60%" r="60%">
+      <stop offset="0%"  stop-color="#ffb030" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#c06810" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="room-light-C" cx="50%" cy="55%" r="60%">
+      <stop offset="0%"  stop-color="#f0a020" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#b06010" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="960" height="740" fill="#111"/>
+
+  <!-- Title -->
+  <text x="480" y="44" text-anchor="middle" font-family="'Helvetica Neue',Arial,sans-serif" font-size="18" font-weight="bold" letter-spacing="1" fill="white">JapanSauna 新ライン ｜ 内装デザイン コンセプト</text>
+  <text x="480" y="64" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#666">天井・壁・素材の組み合わせ 3 パターン ／ 内装仕様変更可 ／ 2026-03-27</text>
+  <line x1="60" y1="78" x2="900" y2="78" stroke="#2a2a2a" stroke-width="1"/>
+
+  <!-- ================================================================ -->
+  <!-- Helper macros: each interior panel is 260×360px perspective box  -->
+  <!-- Front opening: 260×360                                           -->
+  <!-- Back wall: x=35→225, y=30→310 (190×280)                        -->
+  <!-- Left wall: (0,0)→(35,30)→(35,310)→(0,360)                     -->
+  <!-- Right wall: (260,0)→(225,30)→(225,310)→(260,360)               -->
+  <!-- Ceiling: (0,0)→(260,0)→(225,30)→(35,30)                        -->
+  <!-- Floor: (0,360)→(260,360)→(225,310)→(35,310)                    -->
+  <!-- ================================================================ -->
+
+  <!-- ===== CONCEPT A: ヒノキ全面（オールウッド）===== -->
+  <g transform="translate(48, 105)" filter="url(#softshadow)">
+
+    <!-- Concept label -->
+    <rect x="0" y="-30" width="260" height="24" fill="#2a2a2a" rx="4"/>
+    <text x="130" y="-12" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#888" letter-spacing="1">CONCEPT  A</text>
+
+    <!-- CEILING: Hinoki plank -->
+    <polygon points="0,0 260,0 225,30 35,30" fill="#c07820"/>
+    <!-- Ceiling plank lines (perspective-converging) -->
+    <line x1="26"  y1="0" x2="38"  y2="30" stroke="#a06010" stroke-width="1.2" opacity="0.5"/>
+    <line x1="52"  y1="0" x2="58"  y2="30" stroke="#a06010" stroke-width="1.2" opacity="0.5"/>
+    <line x1="78"  y1="0" x2="82"  y2="30" stroke="#a06010" stroke-width="1.2" opacity="0.5"/>
+    <line x1="104" y1="0" x2="108" y2="30" stroke="#a06010" stroke-width="1.2" opacity="0.4"/>
+    <line x1="130" y1="0" x2="130" y2="30" stroke="#a06010" stroke-width="1.2" opacity="0.4"/>
+    <line x1="156" y1="0" x2="152" y2="30" stroke="#a06010" stroke-width="1.2" opacity="0.4"/>
+    <line x1="182" y1="0" x2="172" y2="30" stroke="#a06010" stroke-width="1.2" opacity="0.5"/>
+    <line x1="208" y1="0" x2="198" y2="30" stroke="#a06010" stroke-width="1.2" opacity="0.5"/>
+    <line x1="234" y1="0" x2="218" y2="30" stroke="#a06010" stroke-width="1.2" opacity="0.5"/>
+
+    <!-- LEFT WALL: Hinoki plank -->
+    <polygon points="0,0 35,30 35,310 0,360" fill="#c87820"/>
+    <line x1="0"  y1="60"  x2="35" y2="62"  stroke="#a06010" stroke-width="0.8" opacity="0.4"/>
+    <line x1="0"  y1="110" x2="35" y2="108" stroke="#a06010" stroke-width="0.8" opacity="0.4"/>
+    <line x1="0"  y1="160" x2="35" y2="155" stroke="#a06010" stroke-width="0.8" opacity="0.4"/>
+    <line x1="0"  y1="210" x2="35" y2="202" stroke="#a06010" stroke-width="0.8" opacity="0.4"/>
+    <line x1="0"  y1="260" x2="35" y2="250" stroke="#a06010" stroke-width="0.8" opacity="0.4"/>
+    <line x1="0"  y1="310" x2="35" y2="298" stroke="#a06010" stroke-width="0.8" opacity="0.4"/>
+
+    <!-- RIGHT WALL: Hinoki plank -->
+    <polygon points="260,0 225,30 225,310 260,360" fill="#b87018"/>
+    <line x1="260" y1="60"  x2="225" y2="62"  stroke="#a06010" stroke-width="0.8" opacity="0.4"/>
+    <line x1="260" y1="110" x2="225" y2="108" stroke="#a06010" stroke-width="0.8" opacity="0.4"/>
+    <line x1="260" y1="160" x2="225" y2="155" stroke="#a06010" stroke-width="0.8" opacity="0.4"/>
+    <line x1="260" y1="210" x2="225" y2="202" stroke="#a06010" stroke-width="0.8" opacity="0.4"/>
+    <line x1="260" y1="260" x2="225" y2="250" stroke="#a06010" stroke-width="0.8" opacity="0.4"/>
+
+    <!-- FLOOR -->
+    <polygon points="0,360 260,360 225,310 35,310" fill="url(#hinoki-floor)"/>
+    <!-- Floor slat lines -->
+    <line x1="70"  y1="360" x2="62"  y2="310" stroke="#804808" stroke-width="1.2" opacity="0.5"/>
+    <line x1="130" y1="360" x2="130" y2="310" stroke="#804808" stroke-width="1.2" opacity="0.4"/>
+    <line x1="190" y1="360" x2="198" y2="310" stroke="#804808" stroke-width="1.2" opacity="0.5"/>
+
+    <!-- BACK WALL: Hinoki horizontal planks -->
+    <rect x="35" y="30" width="190" height="280" fill="url(#hinoki-wall)"/>
+    <!-- Horizontal plank lines on back wall -->
+    <line x1="35" y1="52"  x2="225" y2="52"  stroke="#a06010" stroke-width="1.5"/>
+    <line x1="35" y1="74"  x2="225" y2="74"  stroke="#a06010" stroke-width="1.5"/>
+    <line x1="35" y1="96"  x2="225" y2="96"  stroke="#a06010" stroke-width="1.5"/>
+    <line x1="35" y1="118" x2="225" y2="118" stroke="#a06010" stroke-width="1.5"/>
+    <line x1="35" y1="140" x2="225" y2="140" stroke="#a06010" stroke-width="1.5"/>
+    <line x1="35" y1="162" x2="225" y2="162" stroke="#a06010" stroke-width="1.2"/>
+    <line x1="35" y1="184" x2="225" y2="184" stroke="#a06010" stroke-width="1.2"/>
+    <line x1="35" y1="206" x2="225" y2="206" stroke="#a06010" stroke-width="1.2"/>
+    <line x1="35" y1="228" x2="225" y2="228" stroke="#a06010" stroke-width="1.2"/>
+    <line x1="35" y1="250" x2="225" y2="250" stroke="#a06010" stroke-width="1.0"/>
+
+    <!-- Room ambient light -->
+    <rect x="35" y="30" width="190" height="280" fill="url(#room-light-A)"/>
+
+    <!-- Upper bench -->
+    <rect x="35"  y="200" width="190" height="10" fill="#7a4808" rx="1"/>
+    <rect x="35"  y="210" width="190" height="55" fill="#9a5c18" opacity="0.7"/>
+    <!-- Upper bench seat planks -->
+    <line x1="35" y1="215" x2="225" y2="215" stroke="#7a4010" stroke-width="1.2" opacity="0.6"/>
+    <line x1="35" y1="225" x2="225" y2="225" stroke="#7a4010" stroke-width="1.2" opacity="0.6"/>
+    <line x1="35" y1="235" x2="225" y2="235" stroke="#7a4010" stroke-width="1.2" opacity="0.6"/>
+
+    <!-- LED under upper bench -->
+    <rect x="35" y="210" width="190" height="5" fill="#ffaa00" opacity="0.55" filter="url(#glow)"/>
+
+    <!-- Lower bench -->
+    <rect x="35"  y="265" width="120" height="7"  fill="#6a3808" rx="1"/>
+    <rect x="35"  y="272" width="120" height="38" fill="#884c14" opacity="0.7"/>
+    <!-- LED under lower bench -->
+    <rect x="35" y="272" width="120" height="4" fill="#ffaa00" opacity="0.4" filter="url(#glow)"/>
+
+    <!-- Stove (right side, floor level) -->
+    <rect x="165" y="255" width="52" height="55" fill="#1a1a1a" rx="3" opacity="0.9"/>
+    <text x="191" y="275" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#888">STOVE</text>
+    <text x="191" y="286" text-anchor="middle" font-family="Arial,sans-serif" font-size="6" fill="#666">3kW</text>
+
+    <!-- Frame/glass border -->
+    <rect x="0" y="0" width="260" height="360" fill="none" stroke="#2a2a2a" stroke-width="3"/>
+
+    <!-- Description -->
+    <text x="130" y="382" text-anchor="middle" font-family="'Helvetica Neue',Arial,sans-serif" font-size="13" font-weight="bold" fill="white">ヒノキ全面</text>
+    <text x="130" y="398" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#aaa">壁・天井・床 すべてヒノキ</text>
+    <text x="130" y="413" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#777">伝統的・本格フィンランドサウナ調</text>
+    <text x="130" y="427" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#777">MySaunaと差別化しにくい</text>
+  </g>
+
+  <!-- ===== CONCEPT B: ヒノキ壁 × ダークタイル天井（推奨）===== -->
+  <g transform="translate(348, 105)" filter="url(#softshadow)">
+
+    <!-- Concept label (highlighted) -->
+    <rect x="0" y="-30" width="260" height="24" fill="#c05000" rx="4"/>
+    <text x="110" y="-12" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="white" letter-spacing="1">CONCEPT  B</text>
+    <rect x="170" y="-26" width="84" height="16" fill="white" rx="3"/>
+    <text x="212" y="-14" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#c05000">★ 推奨</text>
+
+    <!-- CEILING: Dark tile -->
+    <polygon points="0,0 260,0 225,30 35,30" fill="#252525"/>
+    <!-- Tile grid on ceiling (perspective) -->
+    <line x1="52"  y1="0" x2="56"  y2="30" stroke="#333" stroke-width="0.8" opacity="0.7"/>
+    <line x1="104" y1="0" x2="104" y2="30" stroke="#333" stroke-width="0.8" opacity="0.7"/>
+    <line x1="156" y1="0" x2="152" y2="30" stroke="#333" stroke-width="0.8" opacity="0.7"/>
+    <line x1="208" y1="0" x2="200" y2="30" stroke="#333" stroke-width="0.8" opacity="0.7"/>
+    <line x1="0"   y1="12" x2="260" y2="12" stroke="#333" stroke-width="0.8" opacity="0.5"/>
+    <line x1="4"   y1="22" x2="256" y2="22" stroke="#333" stroke-width="0.8" opacity="0.5"/>
+
+    <!-- LEFT WALL: Hinoki plank -->
+    <polygon points="0,0 35,30 35,310 0,360" fill="#c07818"/>
+    <line x1="0"  y1="70"  x2="35" y2="68"  stroke="#a06010" stroke-width="0.8" opacity="0.5"/>
+    <line x1="0"  y1="130" x2="35" y2="126" stroke="#a06010" stroke-width="0.8" opacity="0.5"/>
+    <line x1="0"  y1="190" x2="35" y2="184" stroke="#a06010" stroke-width="0.8" opacity="0.5"/>
+    <line x1="0"  y1="250" x2="35" y2="242" stroke="#a06010" stroke-width="0.8" opacity="0.5"/>
+    <line x1="0"  y1="310" x2="35" y2="300" stroke="#a06010" stroke-width="0.8" opacity="0.5"/>
+
+    <!-- RIGHT WALL: Hinoki plank -->
+    <polygon points="260,0 225,30 225,310 260,360" fill="#b06810"/>
+    <line x1="260" y1="70"  x2="225" y2="68"  stroke="#a06010" stroke-width="0.8" opacity="0.5"/>
+    <line x1="260" y1="130" x2="225" y2="126" stroke="#a06010" stroke-width="0.8" opacity="0.5"/>
+    <line x1="260" y1="190" x2="225" y2="184" stroke="#a06010" stroke-width="0.8" opacity="0.5"/>
+    <line x1="260" y1="250" x2="225" y2="242" stroke="#a06010" stroke-width="0.8" opacity="0.5"/>
+
+    <!-- FLOOR: Slatted hinoki -->
+    <polygon points="0,360 260,360 225,310 35,310" fill="#7a4810"/>
+    <line x1="65"  y1="360" x2="57"  y2="310" stroke="#5a3408" stroke-width="1.2" opacity="0.5"/>
+    <line x1="130" y1="360" x2="130" y2="310" stroke="#5a3408" stroke-width="1.2" opacity="0.4"/>
+    <line x1="195" y1="360" x2="203" y2="310" stroke="#5a3408" stroke-width="1.2" opacity="0.5"/>
+
+    <!-- BACK WALL: Hinoki horizontal planks -->
+    <rect x="35" y="30" width="190" height="280" fill="url(#hinoki-wall)"/>
+    <!-- Plank lines -->
+    <line x1="35" y1="52"  x2="225" y2="52"  stroke="#a06010" stroke-width="1.5"/>
+    <line x1="35" y1="74"  x2="225" y2="74"  stroke="#a06010" stroke-width="1.5"/>
+    <line x1="35" y1="96"  x2="225" y2="96"  stroke="#a06010" stroke-width="1.5"/>
+    <line x1="35" y1="118" x2="225" y2="118" stroke="#a06010" stroke-width="1.5"/>
+    <line x1="35" y1="140" x2="225" y2="140" stroke="#a06010" stroke-width="1.5"/>
+    <line x1="35" y1="162" x2="225" y2="162" stroke="#a06010" stroke-width="1.2"/>
+    <line x1="35" y1="184" x2="225" y2="184" stroke="#a06010" stroke-width="1.2"/>
+    <line x1="35" y1="206" x2="225" y2="206" stroke="#a06010" stroke-width="1.2"/>
+    <line x1="35" y1="228" x2="225" y2="228" stroke="#a06010" stroke-width="1.2"/>
+    <line x1="35" y1="250" x2="225" y2="250" stroke="#a06010" stroke-width="1.0"/>
+
+    <!-- Upper back wall: tile accent strip (top 80px of back wall) -->
+    <rect x="35" y="30" width="190" height="60" fill="#2e2e2e" opacity="0.75"/>
+    <line x1="35" y1="50" x2="225" y2="50" stroke="#3a3a3a" stroke-width="0.8"/>
+    <line x1="35" y1="68" x2="225" y2="68" stroke="#3a3a3a" stroke-width="0.8"/>
+    <line x1="35" y1="83" x2="225" y2="83" stroke="#3a3a3a" stroke-width="0.8"/>
+    <line x1="72"  y1="30" x2="72"  y2="90" stroke="#3a3a3a" stroke-width="0.8" opacity="0.7"/>
+    <line x1="109" y1="30" x2="109" y2="90" stroke="#3a3a3a" stroke-width="0.8" opacity="0.7"/>
+    <line x1="146" y1="30" x2="146" y2="90" stroke="#3a3a3a" stroke-width="0.8" opacity="0.7"/>
+    <line x1="183" y1="30" x2="183" y2="90" stroke="#3a3a3a" stroke-width="0.8" opacity="0.7"/>
+
+    <!-- Room ambient light -->
+    <rect x="35" y="30" width="190" height="280" fill="url(#room-light-B)"/>
+
+    <!-- Upper bench -->
+    <rect x="35"  y="195" width="190" height="10" fill="#6a3808" rx="1"/>
+    <rect x="35"  y="205" width="190" height="60" fill="#8a5010" opacity="0.7"/>
+    <line x1="35" y1="212" x2="225" y2="212" stroke="#6a3010" stroke-width="1.2" opacity="0.7"/>
+    <line x1="35" y1="222" x2="225" y2="222" stroke="#6a3010" stroke-width="1.2" opacity="0.7"/>
+    <line x1="35" y1="232" x2="225" y2="232" stroke="#6a3010" stroke-width="1.2" opacity="0.7"/>
+    <line x1="35" y1="242" x2="225" y2="242" stroke="#6a3010" stroke-width="1.2" opacity="0.6"/>
+
+    <!-- LED under upper bench (brighter) -->
+    <rect x="35" y="205" width="190" height="6" fill="#ffaa00" opacity="0.65" filter="url(#glow)"/>
+
+    <!-- Lower bench -->
+    <rect x="35"  y="263" width="130" height="7"  fill="#5a3008" rx="1"/>
+    <rect x="35"  y="270" width="130" height="40" fill="#7a4010" opacity="0.7"/>
+    <line x1="35" y1="276" x2="165" y2="276" stroke="#5a3010" stroke-width="1.2" opacity="0.6"/>
+    <line x1="35" y1="286" x2="165" y2="286" stroke="#5a3010" stroke-width="1.2" opacity="0.6"/>
+    <!-- LED under lower bench -->
+    <rect x="35" y="270" width="130" height="5" fill="#ffaa00" opacity="0.50" filter="url(#glow)"/>
+
+    <!-- Bench back LED accent (behind upper bench, wall-mounted) -->
+    <rect x="35" y="193" width="190" height="3" fill="#ffcc44" opacity="0.6" filter="url(#glow)"/>
+
+    <!-- Stove -->
+    <rect x="165" y="252" width="52" height="58" fill="#1a1a1a" rx="3" opacity="0.92"/>
+    <text x="191" y="273" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#888">STOVE</text>
+    <text x="191" y="284" text-anchor="middle" font-family="Arial,sans-serif" font-size="6" fill="#666">3kW</text>
+    <!-- Stove rocks -->
+    <ellipse cx="179" cy="254" rx="5" ry="3" fill="#333" opacity="0.7"/>
+    <ellipse cx="191" cy="252" rx="4" ry="2.5" fill="#333" opacity="0.7"/>
+    <ellipse cx="203" cy="254" rx="4" ry="2.5" fill="#333" opacity="0.7"/>
+
+    <!-- Frame -->
+    <rect x="0" y="0" width="260" height="360" fill="none" stroke="#c05000" stroke-width="3"/>
+
+    <text x="130" y="382" text-anchor="middle" font-family="'Helvetica Neue',Arial,sans-serif" font-size="13" font-weight="bold" fill="white">ヒノキ壁 × ダークタイル天井</text>
+    <text x="130" y="398" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#ffaa00">参考画像のスタイル。最も映える</text>
+    <text x="130" y="413" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#c05000">木の温かさ × クールな天井のコントラスト</text>
+    <text x="130" y="427" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#c05000">totonoü・MySauna と完全差別化 ◎</text>
+  </g>
+
+  <!-- ===== CONCEPT C: ヒノキ縦張り × ストーン調アクセント ===== -->
+  <g transform="translate(648, 105)" filter="url(#softshadow)">
+
+    <rect x="0" y="-30" width="260" height="24" fill="#2a2a2a" rx="4"/>
+    <text x="130" y="-12" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#888" letter-spacing="1">CONCEPT  C</text>
+
+    <!-- CEILING: Hinoki (warm) -->
+    <polygon points="0,0 260,0 225,30 35,30" fill="#c07820"/>
+    <line x1="52"  y1="0" x2="56"  y2="30" stroke="#a06010" stroke-width="1" opacity="0.4"/>
+    <line x1="104" y1="0" x2="104" y2="30" stroke="#a06010" stroke-width="1" opacity="0.4"/>
+    <line x1="156" y1="0" x2="152" y2="30" stroke="#a06010" stroke-width="1" opacity="0.4"/>
+    <line x1="208" y1="0" x2="200" y2="30" stroke="#a06010" stroke-width="1" opacity="0.4"/>
+
+    <!-- LEFT WALL: Hinoki VERTICAL planks -->
+    <polygon points="0,0 35,30 35,310 0,360" fill="#c07818"/>
+    <line x1="8"  y1="0" x2="9"  y2="360" stroke="#a06010" stroke-width="0.8" opacity="0.5"/>
+    <line x1="16" y1="0" x2="17" y2="360" stroke="#a06010" stroke-width="0.8" opacity="0.4"/>
+    <line x1="24" y1="0" x2="25" y2="360" stroke="#a06010" stroke-width="0.8" opacity="0.5"/>
+
+    <!-- RIGHT WALL: Hinoki VERTICAL planks -->
+    <polygon points="260,0 225,30 225,310 260,360" fill="#b06810"/>
+    <line x1="236" y1="0" x2="235" y2="360" stroke="#a06010" stroke-width="0.8" opacity="0.5"/>
+    <line x1="245" y1="0" x2="244" y2="360" stroke="#a06010" stroke-width="0.8" opacity="0.4"/>
+    <line x1="254" y1="0" x2="253" y2="360" stroke="#a06010" stroke-width="0.8" opacity="0.5"/>
+
+    <!-- FLOOR -->
+    <polygon points="0,360 260,360 225,310 35,310" fill="#7a4810"/>
+    <line x1="65"  y1="360" x2="57"  y2="310" stroke="#5a3408" stroke-width="1.2" opacity="0.5"/>
+    <line x1="130" y1="360" x2="130" y2="310" stroke="#5a3408" stroke-width="1.2" opacity="0.4"/>
+    <line x1="195" y1="360" x2="203" y2="310" stroke="#5a3408" stroke-width="1.2" opacity="0.5"/>
+
+    <!-- BACK WALL: Stone/concrete accent (center) + Hinoki vertical (sides) -->
+    <rect x="35" y="30" width="190" height="280" fill="url(#hinoki-wall)"/>
+    <!-- Vertical plank lines on back wall -->
+    <line x1="57"  y1="30" x2="57"  y2="310" stroke="#a06010" stroke-width="1.5"/>
+    <line x1="79"  y1="30" x2="79"  y2="310" stroke="#a06010" stroke-width="1.5"/>
+    <line x1="101" y1="30" x2="101" y2="310" stroke="#a06010" stroke-width="1.5"/>
+    <line x1="123" y1="30" x2="123" y2="310" stroke="#a06010" stroke-width="1.5"/>
+    <line x1="145" y1="30" x2="145" y2="310" stroke="#a06010" stroke-width="1.5"/>
+    <line x1="167" y1="30" x2="167" y2="310" stroke="#a06010" stroke-width="1.5"/>
+    <line x1="189" y1="30" x2="189" y2="310" stroke="#a06010" stroke-width="1.5"/>
+    <line x1="211" y1="30" x2="211" y2="310" stroke="#a06010" stroke-width="1.5"/>
+
+    <!-- Stone/slate accent panel (center back wall, upper area) -->
+    <rect x="85" y="30" width="120" height="110" fill="#3a3a38" opacity="0.88"/>
+    <!-- Stone texture lines -->
+    <line x1="85"  y1="52"  x2="205" y2="52"  stroke="#484845" stroke-width="0.8"/>
+    <line x1="85"  y1="72"  x2="205" y2="72"  stroke="#484845" stroke-width="0.8"/>
+    <line x1="85"  y1="92"  x2="205" y2="92"  stroke="#484845" stroke-width="0.8"/>
+    <line x1="85"  y1="112" x2="205" y2="112" stroke="#484845" stroke-width="0.8"/>
+    <line x1="115" y1="30" x2="115" y2="140" stroke="#484845" stroke-width="0.8" opacity="0.5"/>
+    <line x1="155" y1="30" x2="155" y2="140" stroke="#484845" stroke-width="0.8" opacity="0.5"/>
+    <line x1="185" y1="30" x2="185" y2="140" stroke="#484845" stroke-width="0.8" opacity="0.5"/>
+
+    <!-- Room ambient light -->
+    <rect x="35" y="30" width="190" height="280" fill="url(#room-light-C)"/>
+
+    <!-- Upper bench -->
+    <rect x="35"  y="200" width="190" height="10" fill="#6a3808" rx="1"/>
+    <rect x="35"  y="210" width="190" height="55" fill="#8a5010" opacity="0.7"/>
+    <line x1="35" y1="218" x2="225" y2="218" stroke="#6a3010" stroke-width="1.2" opacity="0.6"/>
+    <line x1="35" y1="228" x2="225" y2="228" stroke="#6a3010" stroke-width="1.2" opacity="0.6"/>
+    <line x1="35" y1="238" x2="225" y2="238" stroke="#6a3010" stroke-width="1.2" opacity="0.6"/>
+    <rect x="35" y="210" width="190" height="5" fill="#ffaa00" opacity="0.55" filter="url(#glow)"/>
+
+    <!-- Lower bench -->
+    <rect x="35"  y="268" width="120" height="7"  fill="#5a3008" rx="1"/>
+    <rect x="35"  y="275" width="120" height="35" fill="#7a4010" opacity="0.7"/>
+    <rect x="35" y="275" width="120" height="4" fill="#ffaa00" opacity="0.40" filter="url(#glow)"/>
+
+    <!-- Stove -->
+    <rect x="165" y="255" width="52" height="55" fill="#1a1a1a" rx="3" opacity="0.9"/>
+    <text x="191" y="276" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#888">STOVE</text>
+
+    <!-- Frame -->
+    <rect x="0" y="0" width="260" height="360" fill="none" stroke="#2a2a2a" stroke-width="3"/>
+
+    <text x="130" y="382" text-anchor="middle" font-family="'Helvetica Neue',Arial,sans-serif" font-size="13" font-weight="bold" fill="white">ヒノキ縦張り × ストーン</text>
+    <text x="130" y="398" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#aaa">縦張り × 石調アクセントパネル</text>
+    <text x="130" y="413" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#777">高級ホテル・リゾート感。BtoB向け</text>
+    <text x="130" y="427" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#777">コストやや高め（石調タイル追加）</text>
+  </g>
+
+  <!-- Footer info bar -->
+  <rect x="48" y="660" width="864" height="52" fill="#1a1a1a" rx="6"/>
+  <text x="75" y="681" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#888">共通仕様</text>
+  <text x="75" y="698" font-family="Arial,sans-serif" font-size="9" fill="#666">内壁: ヒノキ羽目板 t12〜15mm（無節）／ ベンチ: ヒノキ無垢 t30 2段（H950・H450）</text>
+  <text x="450" y="681" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#888">変更ポイント</text>
+  <text x="450" y="698" font-family="Arial,sans-serif" font-size="9" fill="#666">A: 天井ヒノキ ／ B: 天井ダークタイル＋上部タイルアクセント ／ C: 縦張り＋石調パネル</text>
+  <text x="480" y="724" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#444">※ 本図はデザイン検討用コンセプトビジュアルです。正式な内装設計はクリエイティブ部門・設計部門にて詳細化してください。</text>
+</svg>

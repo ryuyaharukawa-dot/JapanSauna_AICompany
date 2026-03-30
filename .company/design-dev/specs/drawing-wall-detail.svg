@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="480" viewBox="0 0 680 480">
+  <defs>
+    <marker id="ah" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <polygon points="0 0, 6 3, 0 6" fill="#333"/>
+    </marker>
+    <marker id="ahR" markerWidth="6" markerHeight="6" refX="1" refY="3" orient="auto-start-reverse">
+      <polygon points="0 0, 6 3, 0 6" fill="#333"/>
+    </marker>
+  </defs>
+
+  <rect width="680" height="480" fill="#f7f7f7"/>
+
+  <!-- Title bar -->
+  <rect x="0" y="0" width="680" height="58" fill="#2c2c2c"/>
+  <text x="340" y="30" text-anchor="middle" font-family="'Helvetica Neue',Arial,sans-serif" font-size="16" font-weight="bold" fill="white">JapanSauna 新ライン ｜ 壁断面詳細</text>
+  <text x="340" y="48" text-anchor="middle" font-family="'Helvetica Neue',Arial,sans-serif" font-size="11" fill="#aaa">Scale 1:5 ／ 単位: mm ／ 2026-03-27（壁厚 合計48mm）</text>
+
+  <!-- ===== WALL CROSS SECTION ===== -->
+  <!-- Scale: 1mm = 5px (1:5) -->
+  <!-- Layers: メラミン2mm=10px / シナ合板5mm=25px / ロックウール25mm=125px / 防湿シート1mm=5px / ヒノキ羽目板15mm=75px -->
+  <!-- Total: 48mm = 240px -->
+
+  <!-- Drawing starts at x=160, y=100, height=260px (just a tall cross section) -->
+  <g transform="translate(160, 100)">
+
+    <!-- Outside label -->
+    <text x="-15" y="135" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#888" transform="rotate(-90,-15,135)">← 屋外（室内設置なので室温）</text>
+
+    <!-- Inside label -->
+    <text x="255" y="135" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#cc4400" transform="rotate(90,255,135)">サウナ内部（80〜100℃）→</text>
+
+    <!-- Layer 1: メラミン化粧板 2mm=10px -->
+    <rect x="0" y="0" width="10" height="260" fill="#d8d8c0" stroke="#aaa" stroke-width="0.5"/>
+
+    <!-- Layer 2: シナ合板下地 5mm=25px -->
+    <rect x="10" y="0" width="25" height="260" fill="#c8b880" stroke="#aaa" stroke-width="0.5"/>
+    <!-- Wood grain lines -->
+    <line x1="10" y1="30" x2="35" y2="30" stroke="#b09060" stroke-width="0.5" opacity="0.5"/>
+    <line x1="10" y1="65" x2="35" y2="65" stroke="#b09060" stroke-width="0.5" opacity="0.5"/>
+    <line x1="10" y1="100" x2="35" y2="100" stroke="#b09060" stroke-width="0.5" opacity="0.5"/>
+    <line x1="10" y1="135" x2="35" y2="135" stroke="#b09060" stroke-width="0.5" opacity="0.5"/>
+    <line x1="10" y1="170" x2="35" y2="170" stroke="#b09060" stroke-width="0.5" opacity="0.5"/>
+    <line x1="10" y1="205" x2="35" y2="205" stroke="#b09060" stroke-width="0.5" opacity="0.5"/>
+    <line x1="10" y1="240" x2="35" y2="240" stroke="#b09060" stroke-width="0.5" opacity="0.5"/>
+
+    <!-- Layer 3: ロックウール 25mm=125px -->
+    <rect x="35" y="0" width="125" height="260" fill="#f0d898" stroke="#c8a840" stroke-width="0.5"/>
+    <!-- Wool texture (wavy lines) -->
+    <path d="M 40 20 Q 50 10 60 20 Q 70 30 80 20 Q 90 10 100 20 Q 110 30 120 20 Q 130 10 140 20 Q 150 30 155 20" stroke="#d4a820" stroke-width="1" fill="none" opacity="0.4"/>
+    <path d="M 40 45 Q 50 35 60 45 Q 70 55 80 45 Q 90 35 100 45 Q 110 55 120 45 Q 130 35 140 45 Q 150 55 155 45" stroke="#d4a820" stroke-width="1" fill="none" opacity="0.4"/>
+    <path d="M 40 70 Q 50 60 60 70 Q 70 80 80 70 Q 90 60 100 70 Q 110 80 120 70 Q 130 60 140 70 Q 150 80 155 70" stroke="#d4a820" stroke-width="1" fill="none" opacity="0.4"/>
+    <path d="M 40 95 Q 50 85 60 95 Q 70 105 80 95 Q 90 85 100 95 Q 110 105 120 95 Q 130 85 140 95 Q 150 105 155 95" stroke="#d4a820" stroke-width="1" fill="none" opacity="0.4"/>
+    <path d="M 40 120 Q 50 110 60 120 Q 70 130 80 120 Q 90 110 100 120 Q 110 130 120 120 Q 130 110 140 120 Q 150 130 155 120" stroke="#d4a820" stroke-width="1" fill="none" opacity="0.4"/>
+    <path d="M 40 145 Q 50 135 60 145 Q 70 155 80 145 Q 90 135 100 145 Q 110 155 120 145 Q 130 135 140 145 Q 150 155 155 145" stroke="#d4a820" stroke-width="1" fill="none" opacity="0.4"/>
+    <path d="M 40 170 Q 50 160 60 170 Q 70 180 80 170 Q 90 160 100 170 Q 110 180 120 170 Q 130 160 140 170 Q 150 180 155 170" stroke="#d4a820" stroke-width="1" fill="none" opacity="0.4"/>
+    <path d="M 40 195 Q 50 185 60 195 Q 70 205 80 195 Q 90 185 100 195 Q 110 205 120 195 Q 130 185 140 195 Q 150 205 155 195" stroke="#d4a820" stroke-width="1" fill="none" opacity="0.4"/>
+    <path d="M 40 220 Q 50 210 60 220 Q 70 230 80 220 Q 90 210 100 220 Q 110 230 120 220 Q 130 210 140 220 Q 150 230 155 220" stroke="#d4a820" stroke-width="1" fill="none" opacity="0.4"/>
+    <path d="M 40 245 Q 50 235 60 245 Q 70 255 80 245 Q 90 235 100 245 Q 110 255 120 245 Q 130 235 140 245 Q 150 255 155 245" stroke="#d4a820" stroke-width="1" fill="none" opacity="0.4"/>
+
+    <!-- Layer 4: 防湿シート 1mm=5px -->
+    <rect x="160" y="0" width="5" height="260" fill="#99ccee" stroke="#5599bb" stroke-width="0.5" opacity="0.85"/>
+
+    <!-- Layer 5: ヒノキ羽目板 15mm=75px -->
+    <rect x="165" y="0" width="75" height="260" fill="#d4a060" stroke="#a07030" stroke-width="0.5"/>
+    <!-- Wood plank lines (horizontal) -->
+    <line x1="165" y1="32" x2="240" y2="32" stroke="#b07030" stroke-width="1.5"/>
+    <line x1="165" y1="65" x2="240" y2="65" stroke="#b07030" stroke-width="1.5"/>
+    <line x1="165" y1="98" x2="240" y2="98" stroke="#b07030" stroke-width="1.5"/>
+    <line x1="165" y1="131" x2="240" y2="131" stroke="#b07030" stroke-width="1.5"/>
+    <line x1="165" y1="164" x2="240" y2="164" stroke="#b07030" stroke-width="1.5"/>
+    <line x1="165" y1="197" x2="240" y2="197" stroke="#b07030" stroke-width="1.5"/>
+    <line x1="165" y1="230" x2="240" y2="230" stroke="#b07030" stroke-width="1.5"/>
+    <!-- Wood grain within planks -->
+    <line x1="175" y1="5" x2="178" y2="30" stroke="#c09040" stroke-width="0.5" opacity="0.5"/>
+    <line x1="185" y1="5" x2="183" y2="30" stroke="#c09040" stroke-width="0.5" opacity="0.5"/>
+    <line x1="195" y1="5" x2="198" y2="30" stroke="#c09040" stroke-width="0.5" opacity="0.5"/>
+    <line x1="210" y1="5" x2="207" y2="30" stroke="#c09040" stroke-width="0.5" opacity="0.5"/>
+    <line x1="225" y1="5" x2="228" y2="30" stroke="#c09040" stroke-width="0.5" opacity="0.5"/>
+
+    <!-- DIMENSION ARROWS (top) -->
+
+    <!-- Layer 1: 2mm -->
+    <line x1="0" y1="-20" x2="10" y2="-20" stroke="#333" stroke-width="0.9" marker-start="url(#ahR)" marker-end="url(#ah)"/>
+    <text x="5" y="-25" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#333">2</text>
+
+    <!-- Layer 2: 5mm -->
+    <line x1="10" y1="-20" x2="35" y2="-20" stroke="#333" stroke-width="0.9" marker-start="url(#ahR)" marker-end="url(#ah)"/>
+    <text x="22" y="-25" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#333">5</text>
+
+    <!-- Layer 3: 25mm -->
+    <line x1="35" y1="-20" x2="160" y2="-20" stroke="#333" stroke-width="0.9" marker-start="url(#ahR)" marker-end="url(#ah)"/>
+    <text x="97" y="-25" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#333">25</text>
+
+    <!-- Layer 4: 1mm -->
+    <line x1="160" y1="-20" x2="165" y2="-20" stroke="#333" stroke-width="0.9" marker-start="url(#ahR)" marker-end="url(#ah)"/>
+    <text x="162" y="-25" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#333">1</text>
+
+    <!-- Layer 5: 15mm -->
+    <line x1="165" y1="-20" x2="240" y2="-20" stroke="#333" stroke-width="0.9" marker-start="url(#ahR)" marker-end="url(#ah)"/>
+    <text x="202" y="-25" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#333">15</text>
+
+    <!-- Total: 48mm -->
+    <line x1="0" y1="-40" x2="240" y2="-40" stroke="#333" stroke-width="1.2" marker-start="url(#ahR)" marker-end="url(#ah)"/>
+    <rect x="90" y="-52" width="60" height="16" fill="#f7f7f7"/>
+    <text x="120" y="-40" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#333">壁厚 計 48mm</text>
+
+    <!-- Layer labels (bottom) -->
+    <text x="5" y="278" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#555" transform="rotate(-40,5,278)">メラミン</text>
+    <text x="22" y="278" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#555" transform="rotate(-40,22,278)">シナ合板</text>
+    <text x="97" y="278" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#8a6600" transform="rotate(-40,97,278)">ロックウール 24K</text>
+    <text x="162" y="278" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#336699" transform="rotate(-40,162,278)">防湿シート</text>
+    <text x="202" y="278" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#7a4000" transform="rotate(-40,202,278)">ヒノキ羽目板（無節）</text>
+  </g>
+
+  <!-- Ceiling section (smaller, right side) -->
+  <g transform="translate(490, 100)">
+    <text x="75" y="-10" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#333">天井断面</text>
+
+    <!-- ↓ direction label -->
+    <text x="-20" y="30" font-family="Arial,sans-serif" font-size="9" fill="#888">↓ 屋内側（上）</text>
+
+    <!-- Layer 1: シナ合板外面 5mm=15px (H direction, but showing as thin strip) -->
+    <!-- Showing horizontal layers for ceiling (rotated 90 degrees conceptually) -->
+    <!-- シナ合板: 5mm=15px -->
+    <rect x="0" y="0" width="150" height="15" fill="#c8b880" stroke="#aaa" stroke-width="0.5"/>
+    <text x="155" y="11" font-family="Arial,sans-serif" font-size="9" fill="#555">シナ合板 5mm</text>
+
+    <!-- ロックウール: 100mm=150px ... too tall, use 1px=2mm -->
+    <!-- ロックウール: 100mm=50px (1px=2mm) -->
+    <!-- Re-scale for ceiling: 1px=2mm -->
+    <rect x="0" y="15" width="150" height="50" fill="#f0d898" stroke="#c8a840" stroke-width="0.5"/>
+    <path d="M 5 25 Q 20 18 35 25 Q 50 32 65 25 Q 80 18 95 25 Q 110 32 125 25 Q 140 18 148 25" stroke="#d4a820" stroke-width="1" fill="none" opacity="0.5"/>
+    <path d="M 5 40 Q 20 33 35 40 Q 50 47 65 40 Q 80 33 95 40 Q 110 47 125 40 Q 140 33 148 40" stroke="#d4a820" stroke-width="1" fill="none" opacity="0.5"/>
+    <path d="M 5 55 Q 20 48 35 55 Q 50 62 65 55 Q 80 48 95 55 Q 110 62 125 55 Q 140 48 148 55" stroke="#d4a820" stroke-width="1" fill="none" opacity="0.5"/>
+    <text x="155" y="43" font-family="Arial,sans-serif" font-size="9" fill="#8a6600">ロックウール 100mm</text>
+
+    <!-- 防湿シート: 1mm=0.5px → show as thin line 2px -->
+    <rect x="0" y="65" width="150" height="2" fill="#99ccee" stroke="#5599bb" stroke-width="0.5"/>
+    <text x="155" y="69" font-family="Arial,sans-serif" font-size="9" fill="#336699">防湿シート 1mm</text>
+
+    <!-- ヒノキ羽目板: 15mm=30px (1px=2mm) -->
+    <rect x="0" y="67" width="150" height="30" fill="#d4a060" stroke="#a07030" stroke-width="0.5"/>
+    <line x1="0" y1="77" x2="150" y2="77" stroke="#b07030" stroke-width="1.2"/>
+    <line x1="0" y1="87" x2="150" y2="87" stroke="#b07030" stroke-width="1.2"/>
+    <text x="155" y="84" font-family="Arial,sans-serif" font-size="9" fill="#7a4000">ヒノキ羽目板 15mm</text>
+
+    <!-- ↓ direction label -->
+    <text x="-20" y="107" font-family="Arial,sans-serif" font-size="9" fill="#cc4400">↓ サウナ内部側（下）</text>
+
+    <!-- Total height -->
+    <line x1="-12" y1="0" x2="-12" y2="97" stroke="#333" stroke-width="0.9" marker-start="url(#ahR)" marker-end="url(#ah)"/>
+    <text x="-28" y="52" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#333" transform="rotate(-90,-28,52)">天井厚 121mm</text>
+  </g>
+
+  <!-- Footer -->
+  <text x="340" y="468" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#aaa">※ 接着には耐熱ネタボンド使用（白ボンド・速乾ボンド禁止）／ ジョイント部は気密テープで完全シール</text>
+</svg>

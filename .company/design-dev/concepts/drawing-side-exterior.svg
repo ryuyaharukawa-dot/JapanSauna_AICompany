@@ -1,0 +1,217 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="620" viewBox="0 0 960 620">
+  <defs>
+    <linearGradient id="charcoal-side" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"  stop-color="#222"/>
+      <stop offset="60%" stop-color="#3a3a3a"/>
+      <stop offset="100%" stop-color="#2a2a2a"/>
+    </linearGradient>
+    <linearGradient id="charcoal-top" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#444"/>
+      <stop offset="100%" stop-color="#2a2a2a"/>
+    </linearGradient>
+    <linearGradient id="glass-side" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"  stop-color="#a8d4ec" stop-opacity="0.7"/>
+      <stop offset="40%" stop-color="#c8e8f8" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#a8d4ec" stop-opacity="0.7"/>
+    </linearGradient>
+    <linearGradient id="interior-glow-side" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%"  stop-color="#d06010"/>
+      <stop offset="40%" stop-color="#e89030"/>
+      <stop offset="100%" stop-color="#c87030"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="6" dy="10" stdDeviation="10" flood-color="#00000050"/>
+    </filter>
+  </defs>
+
+  <rect width="960" height="620" fill="#1a1a1a"/>
+
+  <!-- Title -->
+  <text x="480" y="44" text-anchor="middle" font-family="'Helvetica Neue',Arial,sans-serif" font-size="18" font-weight="bold" letter-spacing="1" fill="white">JapanSauna 新ライン ｜ 側面図 × 外観バリエーション</text>
+  <text x="480" y="64" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#666">Concept B（推奨: チャコール）を軸に 3 カラーバリエーションを比較 ／ 2026-03-27</text>
+  <line x1="60" y1="78" x2="900" y2="78" stroke="#333" stroke-width="1"/>
+
+  <!-- ===== MAIN SIDE VIEW (Concept B - Charcoal, Large) ===== -->
+  <!-- M size: D1100 × H2000 at scale 1:7 → 157 × 286px -->
+  <g transform="translate(100, 110)" filter="url(#shadow)">
+
+    <!-- Label -->
+    <rect x="-8" y="-32" width="175" height="24" fill="#c05000" rx="4"/>
+    <text x="79" y="-14" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="white">B: チャコール ★推奨  側面</text>
+
+    <!-- Main body -->
+    <rect x="0" y="0" width="157" height="286" fill="url(#charcoal-side)" rx="4"/>
+
+    <!-- Top cap -->
+    <rect x="0" y="0" width="157" height="12" fill="#444" rx="4"/>
+    <rect x="0" y="6"  width="157" height="6"  fill="#444"/>
+
+    <!-- Bottom base -->
+    <rect x="0" y="278" width="157" height="8"  fill="#222" rx="2"/>
+    <rect x="10" y="284" width="25" height="8"  fill="#1a1a1a" rx="2"/>
+    <rect x="122" y="284" width="25" height="8" fill="#1a1a1a" rx="2"/>
+
+    <!-- Melamine panel lines (subtle horizontal grain) -->
+    <line x1="8" y1="60"  x2="149" y2="60"  stroke="#404040" stroke-width="0.5" opacity="0.6"/>
+    <line x1="8" y1="110" x2="149" y2="110" stroke="#404040" stroke-width="0.5" opacity="0.5"/>
+    <line x1="8" y1="160" x2="149" y2="160" stroke="#404040" stroke-width="0.5" opacity="0.6"/>
+    <line x1="8" y1="210" x2="149" y2="210" stroke="#404040" stroke-width="0.5" opacity="0.5"/>
+    <line x1="8" y1="250" x2="149" y2="250" stroke="#404040" stroke-width="0.5" opacity="0.4"/>
+
+    <!-- Dimension: Height H2000 -->
+    <line x1="-20" y1="0"   x2="-20" y2="286" stroke="#666" stroke-width="0.9" marker-end="url(#ah2)"/>
+    <line x1="-20" y1="286" x2="-20" y2="0"   stroke="#666" stroke-width="0.9" marker-end="url(#ah2)"/>
+    <text x="-34" y="148" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#888" transform="rotate(-90,-34,148)">H 2,000</text>
+
+    <!-- Dimension: Depth D1100 -->
+    <line x1="0"   y1="304" x2="157" y2="304" stroke="#666" stroke-width="0.9"/>
+    <line x1="0"   y1="298" x2="0"   y2="310" stroke="#666" stroke-width="0.9"/>
+    <line x1="157" y1="298" x2="157" y2="310" stroke="#666" stroke-width="0.9"/>
+    <text x="78" y="316" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#888">D 1,100</text>
+
+    <!-- Wall thickness annotation -->
+    <line x1="0"  y1="320" x2="7"  y2="320" stroke="#c05000" stroke-width="0.8"/>
+    <line x1="150" y1="320" x2="157" y2="320" stroke="#c05000" stroke-width="0.8"/>
+    <text x="78" y="332" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#c05000">壁厚 48mm（ロックウール25mm含む）</text>
+  </g>
+
+  <!-- ===== 3D PERSPECTIVE CORNER VIEW (Charcoal) ===== -->
+  <g transform="translate(340, 110)" filter="url(#shadow)">
+    <rect x="-8" y="-32" width="200" height="24" fill="#444" rx="4"/>
+    <text x="92" y="-14" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#ccc">コーナービュー（正面＋側面）</text>
+
+    <!-- Front face (W1200 × H2000 at ~1:8 = 150×250) -->
+    <!-- Front: x=50 to x=200, y=0 to y=250 -->
+    <rect x="50" y="0" width="150" height="250" fill="url(#charcoal-side)" rx="0"/>
+    <!-- Front top cap -->
+    <rect x="50" y="0" width="150" height="10" fill="#444"/>
+    <!-- Front glass panel (large, center) -->
+    <rect x="59" y="10" width="133" height="232" fill="url(#interior-glow-side)" opacity="0.85"/>
+    <!-- Hinoki planks visible through glass -->
+    <line x1="59" y1="45"  x2="192" y2="45"  stroke="#b07028" stroke-width="1.2" opacity="0.4"/>
+    <line x1="59" y1="68"  x2="192" y2="68"  stroke="#b07028" stroke-width="1.2" opacity="0.4"/>
+    <line x1="59" y1="91"  x2="192" y2="91"  stroke="#b07028" stroke-width="1.2" opacity="0.4"/>
+    <line x1="59" y1="114" x2="192" y2="114" stroke="#b07028" stroke-width="1.2" opacity="0.4"/>
+    <line x1="59" y1="137" x2="192" y2="137" stroke="#b07028" stroke-width="1.2" opacity="0.35"/>
+    <!-- Bench & LED -->
+    <rect x="59"  y="145" width="133" height="5"  fill="#1a0800" opacity="0.6"/>
+    <rect x="59"  y="150" width="133" height="5"  fill="#ffaa00" opacity="0.5"/>
+    <rect x="59"  y="198" width="80"  height="4"  fill="#1a0800" opacity="0.5"/>
+    <rect x="59"  y="202" width="80"  height="4"  fill="#ffaa00" opacity="0.35"/>
+    <!-- Stove -->
+    <rect x="155" y="210" width="30" height="32" fill="#0d0d0d" opacity="0.7" rx="2"/>
+    <!-- Glass door line -->
+    <line x1="125" y1="10" x2="125" y2="242" stroke="#111" stroke-width="1.5" opacity="0.8"/>
+    <!-- Glass reflection -->
+    <rect x="59" y="10" width="133" height="232" fill="white" opacity="0.06"/>
+    <rect x="59" y="10" width="3"   height="232" fill="white" opacity="0.15"/>
+
+    <!-- Side face (D1100 × H2000 at ~1:8, shown as parallelogram) -->
+    <!-- Side: front edge at x=200 y=0..250, back edge offset +35 +(-20) -->
+    <polygon points="200,0 235,-20 235,230 200,250" fill="#2a2a2a" stroke="#222" stroke-width="0.5"/>
+    <!-- Top surface -->
+    <polygon points="50,0 200,0 235,-20 15,-20" fill="#3a3a3a" stroke="#333" stroke-width="0.5"/>
+
+    <!-- Side grain lines -->
+    <line x1="200" y1="50"  x2="235" y2="30"  stroke="#333" stroke-width="0.5" opacity="0.6"/>
+    <line x1="200" y1="100" x2="235" y2="80"  stroke="#333" stroke-width="0.5" opacity="0.5"/>
+    <line x1="200" y1="150" x2="235" y2="130" stroke="#333" stroke-width="0.5" opacity="0.6"/>
+    <line x1="200" y1="200" x2="235" y2="180" stroke="#333" stroke-width="0.5" opacity="0.5"/>
+
+    <!-- Front base -->
+    <rect x="50" y="248" width="150" height="6" fill="#1a1a1a"/>
+    <rect x="60" y="252" width="22" height="7" fill="#111" rx="1"/>
+    <rect x="168" y="252" width="22" height="7" fill="#111" rx="1"/>
+
+    <!-- Annotations -->
+    <text x="125" y="272" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#666">← 前面（強化ガラス）　　側面 →</text>
+  </g>
+
+  <!-- ===== COLOR VARIANTS STRIP ===== -->
+  <g transform="translate(630, 110)">
+    <text x="140" y="-14" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#888">外装カラーバリエーション（側面）</text>
+
+    <!-- Variant A: Black -->
+    <g transform="translate(0, 10)">
+      <rect x="0" y="0" width="90" height="130" fill="#111" rx="3" filter="url(#shadow)"/>
+      <rect x="0" y="0" width="90" height="8"   fill="#1a1a1a" rx="3"/>
+      <line x1="5" y1="35"  x2="85" y2="35"  stroke="#1e1e1e" stroke-width="0.6" opacity="0.7"/>
+      <line x1="5" y1="65"  x2="85" y2="65"  stroke="#1e1e1e" stroke-width="0.6" opacity="0.6"/>
+      <line x1="5" y1="95"  x2="85" y2="95"  stroke="#1e1e1e" stroke-width="0.6" opacity="0.7"/>
+      <rect x="0" y="124" width="90" height="6" fill="#0a0a0a" rx="2"/>
+      <text x="45" y="148" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#888">A: ブラック</text>
+      <text x="45" y="160" text-anchor="middle" font-family="Arial,sans-serif" font-size="8"  fill="#555">#111 マット黒</text>
+    </g>
+
+    <!-- Variant B: Charcoal (recommended) -->
+    <g transform="translate(110, 10)">
+      <rect x="-4" y="-4" width="98" height="176" fill="none" stroke="#c05000" stroke-width="2" rx="5"/>
+      <rect x="0" y="0" width="90" height="130" fill="#3a3a3a" rx="3" filter="url(#shadow)"/>
+      <rect x="0" y="0" width="90" height="8"   fill="#484848" rx="3"/>
+      <line x1="5" y1="35"  x2="85" y2="35"  stroke="#444" stroke-width="0.6" opacity="0.7"/>
+      <line x1="5" y1="65"  x2="85" y2="65"  stroke="#444" stroke-width="0.6" opacity="0.6"/>
+      <line x1="5" y1="95"  x2="85" y2="95"  stroke="#444" stroke-width="0.6" opacity="0.7"/>
+      <rect x="0" y="124" width="90" height="6" fill="#2a2a2a" rx="2"/>
+      <text x="45" y="148" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#c05000">B: チャコール ★</text>
+      <text x="45" y="160" text-anchor="middle" font-family="Arial,sans-serif" font-size="8"  fill="#c05000">#3a3a3a 推奨</text>
+    </g>
+
+    <!-- Variant C: Natural -->
+    <g transform="translate(220, 10)">
+      <rect x="0" y="0" width="90" height="130" fill="#a87848" rx="3" filter="url(#shadow)"/>
+      <rect x="0" y="0" width="90" height="8"   fill="#b88858" rx="3"/>
+      <line x1="5" y1="28"  x2="85" y2="28"  stroke="#8a6030" stroke-width="0.8" opacity="0.5"/>
+      <line x1="5" y1="50"  x2="85" y2="50"  stroke="#8a6030" stroke-width="0.8" opacity="0.4"/>
+      <line x1="5" y1="72"  x2="85" y2="72"  stroke="#8a6030" stroke-width="0.8" opacity="0.5"/>
+      <line x1="5" y1="95"  x2="85" y2="95"  stroke="#8a6030" stroke-width="0.8" opacity="0.4"/>
+      <line x1="5" y1="115" x2="85" y2="115" stroke="#8a6030" stroke-width="0.8" opacity="0.5"/>
+      <rect x="0" y="124" width="90" height="6" fill="#9a7040" rx="2"/>
+      <text x="45" y="148" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a87848">C: ナチュラル</text>
+      <text x="45" y="160" text-anchor="middle" font-family="Arial,sans-serif" font-size="8"  fill="#888">木目調メラミン</text>
+    </g>
+
+    <!-- Additional: Pure White option -->
+    <g transform="translate(0, 195)">
+      <rect x="0" y="0" width="90" height="130" fill="#e8e8e4" rx="3" filter="url(#shadow)"/>
+      <rect x="0" y="0" width="90" height="8"   fill="#f0f0ec" rx="3"/>
+      <line x1="5" y1="35"  x2="85" y2="35"  stroke="#d0d0cc" stroke-width="0.6"/>
+      <line x1="5" y1="65"  x2="85" y2="65"  stroke="#d0d0cc" stroke-width="0.6"/>
+      <line x1="5" y1="95"  x2="85" y2="95"  stroke="#d0d0cc" stroke-width="0.6"/>
+      <rect x="0" y="124" width="90" height="6" fill="#d0d0cc" rx="2"/>
+      <text x="45" y="148" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#888">D: ホワイト</text>
+      <text x="45" y="160" text-anchor="middle" font-family="Arial,sans-serif" font-size="8"  fill="#666">清潔感・女性層</text>
+    </g>
+
+    <!-- Mocha/warm gray -->
+    <g transform="translate(110, 195)">
+      <rect x="0" y="0" width="90" height="130" fill="#6a5a4a" rx="3" filter="url(#shadow)"/>
+      <rect x="0" y="0" width="90" height="8"   fill="#7a6a5a" rx="3"/>
+      <line x1="5" y1="35"  x2="85" y2="35"  stroke="#5a4a3a" stroke-width="0.6" opacity="0.6"/>
+      <line x1="5" y1="65"  x2="85" y2="65"  stroke="#5a4a3a" stroke-width="0.6" opacity="0.5"/>
+      <line x1="5" y1="95"  x2="85" y2="95"  stroke="#5a4a3a" stroke-width="0.6" opacity="0.6"/>
+      <rect x="0" y="124" width="90" height="6" fill="#5a4a3a" rx="2"/>
+      <text x="45" y="148" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#a09080">E: モカブラウン</text>
+      <text x="45" y="160" text-anchor="middle" font-family="Arial,sans-serif" font-size="8"  fill="#888">温かみ×シック</text>
+    </g>
+
+    <text x="140" y="375" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#555">※ すべてメラミン化粧板で対応可能</text>
+  </g>
+
+  <!-- Specs summary -->
+  <rect x="60" y="520" width="840" height="70" fill="#111" rx="6"/>
+  <text x="90" y="544" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#888">外装仕様（確定）</text>
+  <text x="90" y="562" font-family="Arial,sans-serif" font-size="10" fill="#666">外壁: メラミン化粧板（木目柄）＋ シナ合板下地</text>
+  <text x="90" y="578" font-family="Arial,sans-serif" font-size="10" fill="#666">壁構成: 48mm ／ ロックウール25mm断熱 ／ ヒノキ羽目板内面</text>
+  <text x="430" y="562" font-family="Arial,sans-serif" font-size="10" fill="#666">Mサイズ: W1,200 × D1,100 × H2,000mm</text>
+  <text x="430" y="578" font-family="Arial,sans-serif" font-size="10" fill="#666">Lサイズ: W1,500 × D1,200 × H2,000mm</text>
+  <text x="700" y="562" font-family="Arial,sans-serif" font-size="10" fill="#666">カラーは受注時に選択可能</text>
+  <text x="700" y="578" font-family="Arial,sans-serif" font-size="10" fill="#c05000">推奨カラー: チャコール（B案）</text>
+
+  <text x="480" y="608" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#444">※ 本図はデザイン検討用です。正式な製造図面はCADにて作成してください。</text>
+
+  <defs>
+    <marker id="ah2" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+      <polygon points="0 0, 6 3, 0 6" fill="#666"/>
+    </marker>
+  </defs>
+</svg>

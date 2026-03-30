@@ -1,0 +1,164 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="620" viewBox="0 0 900 620">
+  <defs>
+    <marker id="ah" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <polygon points="0 0, 6 3, 0 6" fill="#333"/>
+    </marker>
+    <marker id="ahR" markerWidth="6" markerHeight="6" refX="1" refY="3" orient="auto-start-reverse">
+      <polygon points="0 0, 6 3, 0 6" fill="#333"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="620" fill="#f7f7f7"/>
+
+  <!-- Title -->
+  <rect x="0" y="0" width="900" height="58" fill="#2c2c2c"/>
+  <text x="450" y="30" text-anchor="middle" font-family="'Helvetica Neue',Arial,sans-serif" font-size="16" font-weight="bold" fill="white">JapanSauna 新ライン ｜ 平面図（上面図）</text>
+  <text x="450" y="48" text-anchor="middle" font-family="'Helvetica Neue',Arial,sans-serif" font-size="11" fill="#aaa">Scale 1:50 ／ 単位: mm ／ 2026-03-27</text>
+
+  <!-- ===== M SIZE ===== -->
+  <!-- 1px = 5mm : W1200=240px D1100=220px wall=10px -->
+  <g transform="translate(100, 120)">
+
+    <!-- Label -->
+    <text x="120" y="-22" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#222">M サイズ</text>
+    <text x="120" y="-7" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#666">W1,200 × D1,100 × H2,000</text>
+
+    <!-- Outer walls -->
+    <rect x="0" y="0" width="240" height="220" fill="#aaa" stroke="#888" stroke-width="1.5"/>
+    <!-- Interior -->
+    <rect x="10" y="10" width="220" height="200" fill="#fdf8f0"/>
+    <!-- Front glass wall (override bottom wall) -->
+    <rect x="0" y="210" width="240" height="10" fill="#a8d4ec" stroke="#5599cc" stroke-width="1"/>
+
+    <!-- Upper bench: 600mm=120px deep from back wall -->
+    <rect x="10" y="10" width="220" height="120" fill="#d4a870" stroke="#a07030" stroke-width="1"/>
+    <!-- Lower bench: 400mm=80px deep (darker shade, same back wall) -->
+    <rect x="10" y="10" width="220" height="80" fill="#b88840" stroke="#a07030" stroke-width="0.5"/>
+
+    <!-- Bench text -->
+    <text x="120" y="48" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#4a2800">上段ベンチ</text>
+    <text x="120" y="61" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#4a2800">D600 / H950mm</text>
+    <text x="120" y="92" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#3a1800">下段 D400 / H450mm</text>
+
+    <!-- Stove 3kW: ~250×250mm=50×50px, front-right -->
+    <rect x="168" y="150" width="50" height="50" fill="#4a4a4a" stroke="#222" stroke-width="1" rx="4"/>
+    <text x="193" y="171" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="white">ストーブ</text>
+    <text x="193" y="184" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#88ccff">3kW</text>
+
+    <!-- Fan (tentative, dashed circle near stove back wall) -->
+    <circle cx="193" cy="22" r="9" fill="none" stroke="#dd3333" stroke-width="1.5" stroke-dasharray="3,2"/>
+    <text x="193" y="38" text-anchor="middle" font-family="Arial,sans-serif" font-size="7.5" fill="#dd3333">ファン(検討)</text>
+
+    <!-- Door swing (front-left) -->
+    <line x1="40" y1="210" x2="100" y2="210" stroke="#333" stroke-width="2.5"/>
+    <path d="M 100 210 A 60 60 0 0 1 56 161" fill="none" stroke="#888" stroke-width="1" stroke-dasharray="5,3"/>
+
+    <!-- LED indicator (under-bench line) -->
+    <line x1="10" y1="131" x2="230" y2="131" stroke="#ffaa00" stroke-width="2.5" stroke-dasharray="7,3"/>
+
+    <!-- Glass label -->
+    <text x="120" y="225" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#2255aa">強化ガラス t6</text>
+
+    <!-- Dimension: Width (top) -->
+    <line x1="0" y1="-32" x2="240" y2="-32" stroke="#333" stroke-width="0.9" marker-start="url(#ahR)" marker-end="url(#ah)"/>
+    <rect x="90" y="-42" width="60" height="14" fill="#f7f7f7"/>
+    <text x="120" y="-32" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#333">W 1,200</text>
+
+    <!-- Dimension: Depth (left) -->
+    <line x1="-32" y1="0" x2="-32" y2="220" stroke="#333" stroke-width="0.9" marker-start="url(#ahR)" marker-end="url(#ah)"/>
+    <rect x="-62" y="97" width="14" height="28" fill="#f7f7f7" transform="rotate(-90,-48,111)"/>
+    <text x="-48" y="118" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#333" transform="rotate(-90,-48,118)">D 1,100</text>
+
+    <!-- Bench depth dim (right) -->
+    <line x1="233" y1="10" x2="233" y2="130" stroke="#a07030" stroke-width="0.8" marker-start="url(#ahR)" marker-end="url(#ah)"/>
+    <text x="252" y="75" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a07030" transform="rotate(-90,252,75)">600</text>
+
+    <!-- Footwell dim (right) -->
+    <line x1="233" y1="130" x2="233" y2="210" stroke="#3377aa" stroke-width="0.8" marker-start="url(#ahR)" marker-end="url(#ah)"/>
+    <text x="252" y="173" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#3377aa" transform="rotate(-90,252,173)">400</text>
+
+    <!-- Entry label -->
+    <text x="120" y="248" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#999">▼ 前面（入口）</text>
+  </g>
+
+  <!-- ===== L SIZE ===== -->
+  <!-- 1px = 5mm : W1500=300px D1200=240px wall=10px -->
+  <g transform="translate(490, 110)">
+
+    <text x="150" y="-22" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#222">L サイズ</text>
+    <text x="150" y="-7" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#666">W1,500 × D1,200 × H2,000</text>
+
+    <!-- Outer walls -->
+    <rect x="0" y="0" width="300" height="240" fill="#aaa" stroke="#888" stroke-width="1.5"/>
+    <!-- Interior -->
+    <rect x="10" y="10" width="280" height="220" fill="#fdf8f0"/>
+    <!-- Front glass -->
+    <rect x="0" y="230" width="300" height="10" fill="#a8d4ec" stroke="#5599cc" stroke-width="1"/>
+
+    <!-- Upper bench: 600mm=120px -->
+    <rect x="10" y="10" width="280" height="120" fill="#d4a870" stroke="#a07030" stroke-width="1"/>
+    <!-- Lower bench: 400mm=80px -->
+    <rect x="10" y="10" width="280" height="80" fill="#b88840" stroke="#a07030" stroke-width="0.5"/>
+
+    <text x="150" y="48" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#4a2800">上段ベンチ</text>
+    <text x="150" y="61" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#4a2800">D600 / H950mm</text>
+    <text x="150" y="92" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#3a1800">下段 D400 / H450mm</text>
+
+    <!-- Stove 6kW: ~300×300mm=60×60px, front-right -->
+    <rect x="228" y="162" width="60" height="56" fill="#4a4a4a" stroke="#222" stroke-width="1" rx="4"/>
+    <text x="258" y="183" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="white">ストーブ</text>
+    <text x="258" y="198" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#88ccff">6kW</text>
+
+    <!-- Fan -->
+    <circle cx="258" cy="22" r="9" fill="none" stroke="#dd3333" stroke-width="1.5" stroke-dasharray="3,2"/>
+    <text x="258" y="38" text-anchor="middle" font-family="Arial,sans-serif" font-size="7.5" fill="#dd3333">ファン(検討)</text>
+
+    <!-- Door -->
+    <line x1="50" y1="230" x2="120" y2="230" stroke="#333" stroke-width="2.5"/>
+    <path d="M 120 230 A 70 70 0 0 1 68 172" fill="none" stroke="#888" stroke-width="1" stroke-dasharray="5,3"/>
+
+    <!-- LED -->
+    <line x1="10" y1="131" x2="290" y2="131" stroke="#ffaa00" stroke-width="2.5" stroke-dasharray="7,3"/>
+
+    <text x="150" y="245" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#2255aa">強化ガラス t6</text>
+
+    <!-- Dimension: Width (top) -->
+    <line x1="0" y1="-32" x2="300" y2="-32" stroke="#333" stroke-width="0.9" marker-start="url(#ahR)" marker-end="url(#ah)"/>
+    <rect x="115" y="-42" width="70" height="14" fill="#f7f7f7"/>
+    <text x="150" y="-32" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#333">W 1,500</text>
+
+    <!-- Dimension: Depth (left) -->
+    <line x1="-32" y1="0" x2="-32" y2="240" stroke="#333" stroke-width="0.9" marker-start="url(#ahR)" marker-end="url(#ah)"/>
+    <text x="-48" y="128" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#333" transform="rotate(-90,-48,128)">D 1,200</text>
+
+    <!-- Bench depth dim -->
+    <line x1="293" y1="10" x2="293" y2="130" stroke="#a07030" stroke-width="0.8" marker-start="url(#ahR)" marker-end="url(#ah)"/>
+    <text x="312" y="75" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a07030" transform="rotate(-90,312,75)">600</text>
+
+    <!-- Footwell dim -->
+    <line x1="293" y1="130" x2="293" y2="230" stroke="#3377aa" stroke-width="0.8" marker-start="url(#ahR)" marker-end="url(#ah)"/>
+    <text x="312" y="183" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#3377aa" transform="rotate(-90,312,183)">500</text>
+
+    <text x="150" y="268" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#999">▼ 前面（入口）</text>
+  </g>
+
+  <!-- Legend -->
+  <rect x="50" y="520" width="800" height="60" fill="white" stroke="#ddd" stroke-width="1" rx="4"/>
+  <text x="70" y="540" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#333">凡例</text>
+  <rect x="70" y="547" width="14" height="10" fill="#d4a870" stroke="#a07030" stroke-width="1"/>
+  <text x="90" y="557" font-family="Arial,sans-serif" font-size="9" fill="#333">上段ベンチ (D600/H950)</text>
+  <rect x="210" y="547" width="14" height="10" fill="#b88840" stroke="#a07030" stroke-width="1"/>
+  <text x="230" y="557" font-family="Arial,sans-serif" font-size="9" fill="#333">下段ベンチ (D400/H450)</text>
+  <rect x="380" y="547" width="14" height="10" fill="#a8d4ec" stroke="#5599cc" stroke-width="1"/>
+  <text x="400" y="557" font-family="Arial,sans-serif" font-size="9" fill="#333">強化ガラス（前面）</text>
+  <rect x="530" y="547" width="14" height="10" fill="#4a4a4a" rx="2"/>
+  <text x="550" y="557" font-family="Arial,sans-serif" font-size="9" fill="#333">ストーブ</text>
+  <line x1="620" y1="552" x2="650" y2="552" stroke="#ffaa00" stroke-width="2.5" stroke-dasharray="7,3"/>
+  <text x="657" y="557" font-family="Arial,sans-serif" font-size="9" fill="#333">LED照明（ベンチ下）</text>
+  <circle cx="76" cy="570" r="7" fill="none" stroke="#dd3333" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="90" y="574" font-family="Arial,sans-serif" font-size="9" fill="#333">ファン位置（特許調査中）</text>
+
+  <!-- Footer note -->
+  <text x="450" y="610" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#aaa">※ 本図は設計検討用の参考図です。正式施工図は CAD にて別途作成してください。</text>
+</svg>
