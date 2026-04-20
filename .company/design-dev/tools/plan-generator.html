@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>造作サウナ 図面ジェネレーター | JapanSauna</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Helvetica Neue', Arial, sans-serif; background: #1a1a2e; color: #e0e0e0; height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+
+header { background: #2c3e50; padding: 13px 24px; flex-shrink: 0; }
+header h1 { font-size: 16px; color: white; font-weight: 700; }
+header span { font-size: 11px; color: #90a4b8; }
+
+.container { display: flex; flex: 1; overflow: hidden; }
+
+/* SIDEBAR */
+.sidebar { width: 264px; background: #16213e; padding: 14px; overflow-y: auto; border-right: 1px solid #243450; flex-shrink: 0; }
+.sec { font-size: 10px; color: #607d9b; text-transform: uppercase; letter-spacing: .1em; margin: 16px 0 7px; padding-bottom: 3px; border-bottom: 1px solid #243450; }
+.sec:first-child { margin-top: 0; }
+.field { margin-bottom: 9px; }
+label { display: block; font-size: 11px; color: #90a4b8; margin-bottom: 3px; }
+input[type="number"], select { width: 100%; padding: 6px 9px; background: #0f3460; border: 1px solid #1e4a7a; border-radius: 4px; color: white; font-size: 13px; }
+input:focus, select:focus { outline: none; border-color: #3498db; }
+.row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 7px; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+
+.btn-dl { width: 100%; padding: 10px; background: #e74c3c; color: white; border: none; border-radius: 6px; font-size: 13px; font-weight: bold; cursor: pointer; margin-top: 18px; }
+.btn-dl:hover { background: #c0392b; }
+.btn-2 { width: 100%; padding: 7px; background: transparent; color: #607d9b; border: 1px solid #243450; border-radius: 6px; font-size: 11px; cursor: pointer; margin-top: 7px; }
+.btn-2:hover { background: #243450; color: #c0d4e8; }
+
+.badge { margin-top: 14px; padding: 9px 11px; background: #0a2040; border: 1px solid #1e4a7a; border-radius: 6px; font-size: 11px; color: #90a4b8; line-height: 1.8; }
+.badge strong { color: #58a6e8; }
+
+/* PREVIEW */
+.preview { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+
+.tabs { display: flex; background: #0f1929; border-bottom: 1px solid #243450; flex-shrink: 0; }
+.tab { padding: 10px 22px; font-size: 13px; color: #607d9b; cursor: pointer; border: none; background: none; border-bottom: 2px solid transparent; transition: all .15s; }
+.tab:hover { color: #aac; }
+.tab.active { color: white; border-bottom-color: #e74c3c; }
+
+.canvas { flex: 1; display: flex; align-items: center; justify-content: center; padding: 20px; background: #0d0d1a; overflow: auto; }
+#svg-wrap { background: white; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,.5); overflow: hidden; }
+#svg-wrap svg { display: block; max-width: 100%; height: auto; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>造作サウナ　図面ジェネレーター</h1>
+  <span>JapanSauna | design-dev tools</span>
+</header>
+
+<div class="container">
+  <div class="sidebar">
+
+    <div class="sec">基本寸法（mm）</div>
+    <div class="row3">
+      <div class="field"><label>幅 W</label><input type="number" id="W" value="1500" min="800" max="6000" step="50"></div>
+      <div class="field"><label>奥行 D</label><input type="number" id="D" value="1300" min="800" max="6000" step="50"></div>
+      <div class="field"><label>高さ H</label><input type="number" id="H" value="2100" min="1800" max="3000" step="50"></div>
+    </div>
+
+    <div class="sec">壁厚</div>
+    <div class="field"><label>壁厚（mm）</label><input type="number" id="wall" value="80" min="50" max="200" step="10"></div>
+
+    <div class="sec">ベンチ</div>
+    <div class="row2">
+      <div class="field"><label>上段 奥行き</label><input type="number" id="ubD" value="350" min="200" max="700" step="50"></div>
+      <div class="field"><label>下段 奥行き</label><input type="number" id="lbD" value="300" min="150" max="600" step="50"></div>
+    </div>
+    <div class="row2">
+      <div class="field"><label>上段 座面高さ</label><input type="number" id="ubH" value="900" min="600" max="1400" step="50"></div>
+      <div class="field"><label>下段 座面高さ</label><input type="number" id="lbH" value="450" min="300" max="800" step="50"></div>
+    </div>
+
+    <div class="sec">扉</div>
+    <div class="row2">
+      <div class="field"><label>扉幅</label><input type="number" id="doorW" value="650" min="500" max="900" step="50"></div>
+      <div class="field"><label>扉高さ</label><input type="number" id="doorH" value="1950" min="1700" max="2200" step="50"></div>
+    </div>
+    <div class="field">
+      <label>蝶番の位置</label>
+      <select id="hinge"><option value="left">左ヒンジ</option><option value="right">右ヒンジ</option></select>
+    </div>
+
+    <div class="sec">ヒーター</div>
+    <div class="row2">
+      <div class="field"><label>サイズ（mm）</label><input type="number" id="heaterSz" value="300" min="200" max="600" step="50"></div>
+      <div class="field"><label>設置側</label><select id="heaterSide"><option value="right">右</option><option value="left">左</option></select></div>
+    </div>
+
+    <button class="btn-dl" onclick="download()">↓ SVGをダウンロード</button>
+    <button class="btn-2" onclick="copySpec()">仕様テキストをコピー</button>
+
+    <div class="badge" id="badge">計算中...</div>
+  </div>
+
+  <div class="preview">
+    <div class="tabs">
+      <button class="tab active" data-v="plan">平面図</button>
+      <button class="tab" data-v="front">正面図</button>
+      <button class="tab" data-v="section">断面図</button>
+    </div>
+    <div class="canvas"><div id="svg-wrap"></div></div>
+  </div>
+</div>
+
+<script>
+let activeView = 'plan';
+
+// ── PARAMS ──────────────────────────────────────────────────────────
+function getP() {
+  return {
+    W: +document.getElementById('W').value,
+    D: +document.getElementById('D').value,
+    H: +document.getElementById('H').value,
+    wall: +document.getElementById('wall').value,
+    ubD: +document.getElementById('ubD').value,
+    lbD: +document.getElementById('lbD').value,
+    ubH: +document.getElementById('ubH').value,
+    lbH: +document.getElementById('lbH').value,
+    doorW: +document.getElementById('doorW').value,
+    doorH: +document.getElementById('doorH').value,
+    hinge: document.getElementById('hinge').value,
+    heaterSz: +document.getElementById('heaterSz').value,
+    heaterSide: document.getElementById('heaterSide').value,
+  };
+}
+
+const r = n => Math.round(n * 10) / 10;
+
+function titleBlock(svgW, p, subtitle) {
+  const scN = subtitle;
+  return `<rect x="0" y="0" width="${svgW}" height="58" fill="#2c3e50"/>
+<text x="${svgW/2}" y="23" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="bold" fill="white">${scN}</text>
+<text x="${svgW/2}" y="43" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#90a4b8">外寸 W${p.W} × D${p.D} × H${p.H}mm</text>`;
+}
+
+// ── PLAN VIEW ────────────────────────────────────────────────────────
+function genPlan(p) {
+  const { W, D, wall, ubD, lbD, doorW, hinge, heaterSz, heaterSide } = p;
+  const svgW = 640, svgH = 520;
+  const mL = 72, mR = 82, mT = 68, mB = 108;
+  const sc = Math.min((svgW - mL - mR) / W, (svgH - mT - mB) / D);
+  const pW = W*sc, pH = D*sc, wp = wall*sc;
+  const ox = mL + ((svgW-mL-mR) - pW)/2, oy = mT + ((svgH-mT-mB) - pH)/2;
+  const iW = (W-2*wall)*sc, iH = (D-2*wall)*sc;
+  const ix = ox+wp, iy = oy+wp;
+  const ubH = ubD*sc, lbH = lbD*sc, dPx = doorW*sc, hPx = heaterSz*sc;
+  const dL = ox+(pW-dPx)/2, dR = dL+dPx;
+  const frontInnerY = iy+iH;
+  const hingeX = hinge==='left' ? dL : dR;
+  const freeX  = hinge==='left' ? dR : dL;
+  const sg = hinge==='left' ? 1 : -1;
+  const ang = Math.PI*0.45;
+  const deX = hingeX + sg*dPx*Math.sin(ang);
+  const deY = frontInnerY + dPx*Math.cos(ang);
+  const sweep = hinge==='left' ? 1 : 0;
+  const hx = heaterSide==='right' ? ix+iW-hPx : ix;
+  const hy = iy+iH-hPx;
+  const iWmm = W-2*wall, iDmm = D-2*wall;
+
+  let o = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${svgW} ${svgH}" width="${svgW}" height="${svgH}">`;
+  o += `<rect width="${svgW}" height="${svgH}" fill="#f5f4f0"/>`;
+  o += titleBlock(svgW, p, '造作サウナ　平面図');
+
+  // Walls
+  o += `<rect x="${r(ox)}" y="${r(oy)}" width="${r(pW)}" height="${r(wp)}" fill="#3d3d3d"/>`;
+  o += `<rect x="${r(ox)}" y="${r(oy+wp)}" width="${r(wp)}" height="${r(iH)}" fill="#3d3d3d"/>`;
+  o += `<rect x="${r(ox+pW-wp)}" y="${r(oy+wp)}" width="${r(wp)}" height="${r(iH)}" fill="#3d3d3d"/>`;
+  o += `<rect x="${r(ox)}" y="${r(oy+pH-wp)}" width="${r(dL-ox)}" height="${r(wp)}" fill="#3d3d3d"/>`;
+  o += `<rect x="${r(dR)}" y="${r(oy+pH-wp)}" width="${r(ox+pW-dR)}" height="${r(wp)}" fill="#3d3d3d"/>`;
+  o += `<rect x="${r(ix)}" y="${r(iy)}" width="${r(iW)}" height="${r(iH)}" fill="#faf5e4"/>`;
+
+  // Upper bench
+  o += `<rect x="${r(ix)}" y="${r(iy)}" width="${r(iW)}" height="${r(ubH)}" fill="#c8845a" stroke="#8b5030" stroke-width="1.5"/>`;
+  [1,2].forEach(i => { const gy=r(iy+ubH*i/3); o+=`<line x1="${r(ix)}" y1="${gy}" x2="${r(ix+iW)}" y2="${gy}" stroke="#9e6040" stroke-width="0.5" opacity="0.5"/>`; });
+  o += `<text x="${r(ix+iW/2)}" y="${r(iy+ubH/2+4)}" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="white">上段ベンチ　W${iWmm} × D${ubD}mm</text>`;
+
+  // Lower bench
+  o += `<rect x="${r(ix)}" y="${r(iy+ubH)}" width="${r(iW)}" height="${r(lbH)}" fill="#daa064" stroke="#8b5030" stroke-width="1.5"/>`;
+  [1,2].forEach(i => { const gy=r(iy+ubH+lbH*i/3); o+=`<line x1="${r(ix)}" y1="${gy}" x2="${r(ix+iW)}" y2="${gy}" stroke="#b07844" stroke-width="0.5" opacity="0.5"/>`; });
+  o += `<text x="${r(ix+iW/2)}" y="${r(iy+ubH+lbH/2+4)}" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#5c3a1e">下段ベンチ　W${iWmm} × D${lbD}mm</text>`;
+
+  // Heater
+  o += `<rect x="${r(hx)}" y="${r(hy)}" width="${r(hPx)}" height="${r(hPx)}" fill="#e74c3c" stroke="#c0392b" stroke-width="2" rx="4"/>`;
+  o += `<text x="${r(hx+hPx/2)}" y="${r(hy+hPx/2-3)}" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="white">HEATER</text>`;
+  o += `<text x="${r(hx+hPx/2)}" y="${r(hy+hPx/2+10)}" text-anchor="middle" font-family="Arial,sans-serif" font-size="7.5" fill="#ffbbbb">${heaterSz}×${heaterSz}</text>`;
+
+  // Door swing
+  o += `<line x1="${r(hingeX)}" y1="${r(frontInnerY)}" x2="${r(deX)}" y2="${r(deY)}" stroke="#444" stroke-width="2"/>`;
+  o += `<path d="M ${r(freeX)},${r(frontInnerY)} A ${r(dPx)},${r(dPx)} 0 0,${sweep} ${r(deX)},${r(deY)}" fill="none" stroke="#777" stroke-width="1" stroke-dasharray="6,3"/>`;
+  o += `<text x="${r((dL+dR)/2)}" y="${r(oy+pH+17)}" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#444">扉 W${doorW}（外開き）</text>`;
+
+  // Dimensions
+  const dimY = oy+pH+42, dimX = ox+pW+28;
+  o += dimLine('h', ox, ox+pW, dimY, `W = ${W}`, 11);
+  o += dimLine('v', dimX, oy, oy+pH, `D = ${D}`, 11);
+  const idY = dimY+22;
+  o += `<line x1="${r(ix)}" y1="${r(idY)}" x2="${r(ix+iW)}" y2="${r(idY)}" stroke="#aaa" stroke-width="0.8" stroke-dasharray="3,2"/>`;
+  o += tick(ix, idY) + tick(ix+iW, idY);
+  o += `<text x="${r(ix+iW/2)}" y="${r(idY+12)}" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#aaa">内寸 W${iWmm} × D${iDmm}mm</text>`;
+
+  // Legend
+  o += legend(10, oy);
+  o += scaleBar(10, svgH-22, 500, sc);
+  o += '</svg>';
+  return o;
+}
+
+// ── FRONT ELEVATION ──────────────────────────────────────────────────
+function genFront(p) {
+  const { W, H, wall, doorW, doorH, hinge } = p;
+  const svgW = 640, svgH = 520;
+  const mL = 72, mR = 82, mT = 68, mB = 90;
+  const sc = Math.min((svgW-mL-mR)/W, (svgH-mT-mB)/H);
+  const dW = W*sc, dH = H*sc, wp = wall*sc;
+  const ox = mL+((svgW-mL-mR)-dW)/2, oy = mT+((svgH-mT-mB)-dH)/2;
+  const floorBot = oy+dH, floorTop = floorBot-wp;
+  const doorWpx = doorW*sc, doorHpx = doorH*sc;
+  const dL = ox+(dW-doorWpx)/2, dR = dL+doorWpx;
+  const doorTop = floorBot-doorHpx;
+  const frameW = Math.max(3, 35*sc);
+  const glassL = dL+frameW, glassR = dR-frameW;
+  const glassTop = doorTop+frameW, glassBot = doorTop+doorHpx*0.55;
+
+  let o = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${svgW} ${svgH}" width="${svgW}" height="${svgH}">`;
+  o += `<rect width="${svgW}" height="${svgH}" fill="#f5f4f0"/>`;
+  o += titleBlock(svgW, p, '造作サウナ　正面図');
+
+  // Facade surface
+  o += `<rect x="${r(ox+wp)}" y="${r(oy+wp)}" width="${r(dW-2*wp)}" height="${r(dH-wp)}" fill="#e2d8c8"/>`;
+  // Walls (side + roof edges)
+  o += `<rect x="${r(ox)}" y="${r(oy)}" width="${r(wp)}" height="${r(dH)}" fill="#3d3d3d"/>`;
+  o += `<rect x="${r(ox+dW-wp)}" y="${r(oy)}" width="${r(wp)}" height="${r(dH)}" fill="#3d3d3d"/>`;
+  o += `<rect x="${r(ox)}" y="${r(oy)}" width="${r(dW)}" height="${r(wp)}" fill="#3d3d3d"/>`;
+  // Floor slab
+  o += `<rect x="${r(ox)}" y="${r(floorTop)}" width="${r(dW)}" height="${r(wp)}" fill="#555"/>`;
+
+  // Door backing
+  o += `<rect x="${r(dL)}" y="${r(doorTop)}" width="${r(doorWpx)}" height="${r(doorHpx)}" fill="#c8a070"/>`;
+  // Door frame (border)
+  o += `<rect x="${r(dL)}" y="${r(doorTop)}" width="${r(doorWpx)}" height="${r(doorHpx)}" fill="none" stroke="#7a4820" stroke-width="${r(frameW)}"/>`;
+  // Glass panel
+  if (glassR > glassL && glassBot > glassTop) {
+    o += `<rect x="${r(glassL)}" y="${r(glassTop)}" width="${r(glassR-glassL)}" height="${r(glassBot-glassTop)}" fill="#a8d0e8" opacity="0.75"/>`;
+    o += `<line x1="${r(glassL+3)}" y1="${r(glassTop+5)}" x2="${r(glassL+(glassR-glassL)*0.35)}" y2="${r(glassTop+5)}" stroke="white" stroke-width="1.5" opacity="0.65"/>`;
+  }
+  // Handle
+  const hx2 = hinge==='left' ? dR-frameW-8 : dL+frameW+2;
+  const hy2 = doorTop+doorHpx*0.5;
+  o += `<rect x="${r(hx2)}" y="${r(hy2-18*sc)}" width="${r(6)}" height="${r(36*sc)}" fill="#888" rx="2"/>`;
+
+  // Ventilation slots (top right of facade)
+  const vx = ox+dW-wp-30, vy = oy+wp+18;
+  for (let i=0; i<4; i++) o += `<line x1="${r(vx-14)}" y1="${r(vy+i*9)}" x2="${r(vx+14)}" y2="${r(vy+i*9)}" stroke="#999" stroke-width="1.5"/>`;
+  o += `<text x="${r(vx)}" y="${r(vy+38)}" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#999">排気口</text>`;
+
+  // Dimension lines
+  const dimY = floorBot+38, dimX = ox+dW+28;
+  o += dimLine('h', ox, ox+dW, dimY, `W = ${W}`, 11);
+  o += dimLine('v', dimX, oy, floorBot, `H = ${H}`, 11);
+  // Door callouts
+  const dDimY = doorTop-16;
+  o += `<line x1="${r(dL)}" y1="${r(dDimY)}" x2="${r(dR)}" y2="${r(dDimY)}" stroke="#888" stroke-width="0.8"/>`;
+  o += tick(dL, dDimY, 4, '#888') + tick(dR, dDimY, 4, '#888');
+  o += `<text x="${r((dL+dR)/2)}" y="${r(dDimY-4)}" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#888">扉 W${doorW}</text>`;
+  const dDimX = dR+18;
+  o += `<line x1="${r(dDimX)}" y1="${r(doorTop)}" x2="${r(dDimX)}" y2="${r(floorBot)}" stroke="#888" stroke-width="0.8"/>`;
+  o += htick(dDimX, doorTop, 4, '#888') + htick(dDimX, floorBot, 4, '#888');
+  o += `<text x="${r(dDimX+14)}" y="${r((doorTop+floorBot)/2)}" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#888" transform="rotate(90,${r(dDimX+14)},${r((doorTop+floorBot)/2)})">扉 H${doorH}</text>`;
+
+  o += scaleBar(10, svgH-22, 500, sc);
+  o += `<text x="${r(ox+wp+8)}" y="${r(oy+wp+15)}" font-family="Arial,sans-serif" font-size="9" fill="#bbb">正面（外観）</text>`;
+  o += '</svg>';
+  return o;
+}
+
+// ── SECTION VIEW ─────────────────────────────────────────────────────
+function genSection(p) {
+  const { D, H, wall, ubD, lbD, ubH: ubHmm, lbH: lbHmm, heaterSz, doorH } = p;
+  const svgW = 640, svgH = 520;
+  const mL = 88, mR = 72, mT = 68, mB = 90;
+  const sc = Math.min((svgW-mL-mR)/D, (svgH-mT-mB)/H);
+  const dW = D*sc, dH = H*sc, wp = wall*sc;
+  const ox = mL+((svgW-mL-mR)-dW)/2, oy = mT+((svgH-mT-mB)-dH)/2;
+
+  const floorOuter = oy+dH, floorIn = floorOuter-wp;
+  const ceilOuter  = oy,    ceilIn  = ceilOuter+wp;
+  const backOuter  = ox,    backIn  = ox+wp;
+  const frontOuter = ox+dW, frontIn = frontOuter-wp;
+
+  // Bench geometry
+  const ubSeatBot = floorIn - ubHmm*sc;
+  const ubSeatTop = ubSeatBot - 50*sc;
+  const ubFrontX  = backIn + ubD*sc;
+  const lbSeatBot = floorIn - lbHmm*sc;
+  const lbSeatTop = lbSeatBot - 50*sc;
+  const lbFrontX  = backIn + lbD*sc;
+
+  // Heater (against front inner wall, on floor)
+  const hPx = heaterSz*sc;
+  const heaterTop = floorIn-hPx, heaterLeft = frontIn-hPx;
+
+  // Door gap in front wall
+  const doorHpx = doorH*sc;
+  const doorTopY = floorOuter-doorHpx;
+
+  let o = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${svgW} ${svgH}" width="${svgW}" height="${svgH}">`;
+  o += `<defs><pattern id="hatch" x="0" y="0" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">`;
+  o += `<line x1="0" y1="0" x2="0" y2="7" stroke="#aaa" stroke-width="1.2"/></pattern></defs>`;
+  o += `<rect width="${svgW}" height="${svgH}" fill="#f5f4f0"/>`;
+  o += titleBlock(svgW, p, '造作サウナ　断面図（A-A）');
+
+  // Interior
+  o += `<rect x="${r(backIn)}" y="${r(ceilIn)}" width="${r(frontIn-backIn)}" height="${r(floorIn-ceilIn)}" fill="#faf5e4"/>`;
+
+  // Cut walls (hatched)
+  o += `<rect x="${r(backOuter)}" y="${r(ceilOuter)}" width="${r(wp)}" height="${r(dH)}" fill="url(#hatch)" stroke="#555" stroke-width="1"/>`;
+  // Front wall: above door
+  o += `<rect x="${r(frontIn)}" y="${r(ceilOuter)}" width="${r(wp)}" height="${r(Math.max(0, doorTopY-ceilOuter))}" fill="url(#hatch)" stroke="#555" stroke-width="1"/>`;
+  // Front wall: below door (floor slab only visible in section)
+  o += `<rect x="${r(frontIn)}" y="${r(floorIn)}" width="${r(wp)}" height="${r(wp)}" fill="url(#hatch)" stroke="#555" stroke-width="1"/>`;
+  // Ceiling slab
+  o += `<rect x="${r(backOuter)}" y="${r(ceilOuter)}" width="${r(dW)}" height="${r(wp)}" fill="url(#hatch)" stroke="#555" stroke-width="0.8"/>`;
+  // Floor slab
+  o += `<rect x="${r(backOuter)}" y="${r(floorIn)}" width="${r(dW)}" height="${r(wp)}" fill="#555" stroke="#444" stroke-width="1"/>`;
+
+  // Upper bench (body + seat)
+  const ubBodyH = floorIn - ubSeatTop;
+  if (ubFrontX > backIn) {
+    o += `<rect x="${r(backIn)}" y="${r(ubSeatTop)}" width="${r(ubFrontX-backIn)}" height="${r(ubBodyH)}" fill="#c8845a" stroke="#8b5030" stroke-width="1.5"/>`;
+    // seat line
+    o += `<line x1="${r(backIn)}" y1="${r(ubSeatBot)}" x2="${r(ubFrontX)}" y2="${r(ubSeatBot)}" stroke="#8b5030" stroke-width="0.8" stroke-dasharray="3,2"/>`;
+    o += `<text x="${r(backIn+4)}" y="${r(ubSeatTop-5)}" font-family="Arial,sans-serif" font-size="8.5" fill="#7a4820">上段ベンチ</text>`;
+  }
+
+  // Lower bench
+  const lbBodyH = floorIn - lbSeatTop;
+  if (lbFrontX > backIn && lbSeatTop < ubSeatTop) {
+    // Only draw the "step" part in front of upper bench, or full width
+    o += `<rect x="${r(backIn)}" y="${r(lbSeatTop)}" width="${r(Math.min(lbFrontX, ubFrontX)-backIn)}" height="${r(lbBodyH)}" fill="#daa064" stroke="#8b5030" stroke-width="1.5"/>`;
+    if (lbFrontX > ubFrontX) {
+      o += `<rect x="${r(ubFrontX)}" y="${r(lbSeatTop)}" width="${r(lbFrontX-ubFrontX)}" height="${r(lbBodyH)}" fill="#daa064" stroke="#8b5030" stroke-width="1.5"/>`;
+    }
+    o += `<line x1="${r(backIn)}" y1="${r(lbSeatBot)}" x2="${r(lbFrontX)}" y2="${r(lbSeatBot)}" stroke="#8b5030" stroke-width="0.8" stroke-dasharray="3,2"/>`;
+    o += `<text x="${r(backIn+4)}" y="${r(lbSeatTop-5)}" font-family="Arial,sans-serif" font-size="8.5" fill="#7a4820">下段ベンチ</text>`;
+  }
+
+  // Heater
+  if (heaterLeft >= backIn) {
+    o += `<rect x="${r(heaterLeft)}" y="${r(heaterTop)}" width="${r(hPx)}" height="${r(hPx)}" fill="#e74c3c" stroke="#c0392b" stroke-width="2" rx="3"/>`;
+    o += `<text x="${r(heaterLeft+hPx/2)}" y="${r(heaterTop+hPx*0.45)}" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" font-weight="bold" fill="white">HTR</text>`;
+    o += `<text x="${r(heaterLeft+hPx/2)}" y="${r(heaterTop+hPx*0.7)}" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#ffbbbb">${heaterSz}mm</text>`;
+  }
+
+  // Ventilation
+  const ventSY = floorIn - 300*sc;
+  o += `<rect x="${r(frontIn-4)}" y="${r(ventSY-12*sc)}" width="${r(8)}" height="${r(24*sc)}" fill="#3498db" opacity="0.7" rx="2"/>`;
+  o += `<text x="${r(frontIn+12)}" y="${r(ventSY+3)}" font-family="Arial,sans-serif" font-size="8" fill="#3498db">給気</text>`;
+  const ventEY = ceilIn + 300*sc;
+  o += `<rect x="${r(backIn-4)}" y="${r(ventEY-12*sc)}" width="${r(8)}" height="${r(24*sc)}" fill="#e67e22" opacity="0.7" rx="2"/>`;
+  o += `<text x="${r(backIn+12)}" y="${r(ventEY+3)}" font-family="Arial,sans-serif" font-size="8" fill="#e67e22">排気</text>`;
+
+  // Bench height callouts (left of section)
+  const cxA = backOuter - 16;
+  if (ubSeatTop > ceilIn && ubSeatTop < floorIn) {
+    o += `<line x1="${r(cxA)}" y1="${r(floorIn)}" x2="${r(cxA)}" y2="${r(ubSeatTop)}" stroke="#888" stroke-width="0.8" stroke-dasharray="3,2"/>`;
+    o += tick(cxA, floorIn, 4, '#888', 'v') + tick(cxA, ubSeatTop, 4, '#888', 'v');
+    const midA = (floorIn+ubSeatTop)/2;
+    o += `<text x="${r(cxA-6)}" y="${r(midA)}" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#888" transform="rotate(-90,${r(cxA-6)},${r(midA)})">${ubHmm}（上段）</text>`;
+  }
+  const cxB = cxA - 20;
+  if (lbSeatTop > ceilIn && lbSeatTop < floorIn) {
+    o += `<line x1="${r(cxB)}" y1="${r(floorIn)}" x2="${r(cxB)}" y2="${r(lbSeatTop)}" stroke="#aaa" stroke-width="0.8" stroke-dasharray="3,2"/>`;
+    o += tick(cxB, floorIn, 4, '#aaa', 'v') + tick(cxB, lbSeatTop, 4, '#aaa', 'v');
+    const midB = (floorIn+lbSeatTop)/2;
+    o += `<text x="${r(cxB-6)}" y="${r(midB)}" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#aaa" transform="rotate(-90,${r(cxB-6)},${r(midB)})">${lbHmm}（下段）</text>`;
+  }
+
+  // Main dimension lines
+  const dimY = floorOuter+38, dimX = frontOuter+28;
+  o += dimLine('h', backOuter, frontOuter, dimY, `D = ${D}`, 11);
+  o += dimLine('v', dimX, ceilOuter, floorOuter, `H = ${H}`, 11);
+
+  // Inner depth
+  const idY = dimY+22;
+  o += `<line x1="${r(backIn)}" y1="${r(idY)}" x2="${r(frontIn)}" y2="${r(idY)}" stroke="#aaa" stroke-width="0.8" stroke-dasharray="3,2"/>`;
+  o += tick(backIn, idY, 4, '#aaa') + tick(frontIn, idY, 4, '#aaa');
+  o += `<text x="${r((backIn+frontIn)/2)}" y="${r(idY+12)}" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#aaa">内寸 D${D-2*wall}mm</text>`;
+
+  o += `<text x="${r(backIn+8)}" y="${r(ceilIn+15)}" font-family="Arial,sans-serif" font-size="9" fill="#bbb">← 奥　　　　　　　手前 →</text>`;
+  o += scaleBar(10, svgH-22, 500, sc);
+  o += '</svg>';
+  return o;
+}
+
+// ── SHARED DRAWING HELPERS ────────────────────────────────────────────
+function dimLine(dir, a, b, pos, label, fs=10) {
+  const f = r;
+  if (dir === 'h') {
+    return `<line x1="${f(a)}" y1="${f(pos)}" x2="${f(b)}" y2="${f(pos)}" stroke="#333" stroke-width="1"/>` +
+      `<line x1="${f(a)}" y1="${f(pos-5)}" x2="${f(a)}" y2="${f(pos+5)}" stroke="#333" stroke-width="2"/>` +
+      `<line x1="${f(b)}" y1="${f(pos-5)}" x2="${f(b)}" y2="${f(pos+5)}" stroke="#333" stroke-width="2"/>` +
+      `<text x="${f((a+b)/2)}" y="${f(pos+14)}" text-anchor="middle" font-family="Arial,sans-serif" font-size="${fs}" fill="#333">${label}</text>`;
+  } else {
+    const mx = f(pos+18);
+    const my = f((a+b)/2);
+    return `<line x1="${f(pos)}" y1="${f(a)}" x2="${f(pos)}" y2="${f(b)}" stroke="#333" stroke-width="1"/>` +
+      `<line x1="${f(pos-5)}" y1="${f(a)}" x2="${f(pos+5)}" y2="${f(a)}" stroke="#333" stroke-width="2"/>` +
+      `<line x1="${f(pos-5)}" y1="${f(b)}" x2="${f(pos+5)}" y2="${f(b)}" stroke="#333" stroke-width="2"/>` +
+      `<text x="${mx}" y="${my}" text-anchor="middle" font-family="Arial,sans-serif" font-size="${fs}" fill="#333" transform="rotate(90,${mx},${my})">${label}</text>`;
+  }
+}
+function tick(x, y, s=5, c='#333', dir='h') {
+  return dir==='h'
+    ? `<line x1="${r(x)}" y1="${r(y-s)}" x2="${r(x)}" y2="${r(y+s)}" stroke="${c}" stroke-width="1"/>`
+    : `<line x1="${r(x-s)}" y1="${r(y)}" x2="${r(x+s)}" y2="${r(y)}" stroke="${c}" stroke-width="1"/>`;
+}
+function htick(x, y, s=5, c='#333') {
+  return `<line x1="${r(x-s)}" y1="${r(y)}" x2="${r(x+s)}" y2="${r(y)}" stroke="${c}" stroke-width="1"/>`;
+}
+function legend(lx, ly) {
+  return `<rect x="${lx}" y="${ly}" width="60" height="11" fill="#c8845a" stroke="#8b5030" stroke-width="0.8"/>` +
+    `<text x="${lx+64}" y="${ly+9}" font-family="Arial,sans-serif" font-size="8" fill="#333">上段ベンチ</text>` +
+    `<rect x="${lx}" y="${ly+14}" width="60" height="11" fill="#daa064" stroke="#8b5030" stroke-width="0.8"/>` +
+    `<text x="${lx+64}" y="${ly+23}" font-family="Arial,sans-serif" font-size="8" fill="#333">下段ベンチ</text>` +
+    `<rect x="${lx}" y="${ly+28}" width="11" height="11" fill="#e74c3c" rx="2"/>` +
+    `<text x="${lx+15}" y="${ly+37}" font-family="Arial,sans-serif" font-size="8" fill="#333">ヒーター</text>` +
+    `<line x1="${lx}" y1="${ly+49}" x2="${lx+20}" y2="${ly+49}" stroke="#444" stroke-width="2"/>` +
+    `<text x="${lx+24}" y="${ly+52}" font-family="Arial,sans-serif" font-size="8" fill="#333">扉（開き）</text>` +
+    `<line x1="${lx}" y1="${ly+62}" x2="${lx+20}" y2="${ly+62}" stroke="#777" stroke-width="1" stroke-dasharray="4,2"/>` +
+    `<text x="${lx+24}" y="${ly+65}" font-family="Arial,sans-serif" font-size="8" fill="#333">扉スウィング</text>`;
+}
+function scaleBar(bx, by, mm, sc) {
+  const len = mm * sc;
+  return `<text x="${bx}" y="${by-2}" font-family="Arial,sans-serif" font-size="8" fill="#555">0</text>` +
+    `<rect x="${bx+10}" y="${by}" width="${r(len/2)}" height="5" fill="#555"/>` +
+    `<rect x="${bx+10+r(len/2)}" y="${by}" width="${r(len/2)}" height="5" fill="none" stroke="#555" stroke-width="1.5"/>` +
+    `<line x1="${bx+10}" y1="${by-3}" x2="${bx+10}" y2="${by+8}" stroke="#555" stroke-width="1.5"/>` +
+    `<line x1="${bx+10+r(len/2)}" y1="${by-3}" x2="${bx+10+r(len/2)}" y2="${by+8}" stroke="#555" stroke-width="1.5"/>` +
+    `<line x1="${bx+10+r(len)}" y1="${by-3}" x2="${bx+10+r(len)}" y2="${by+8}" stroke="#555" stroke-width="1.5"/>` +
+    `<text x="${bx+10+r(len/4)}" y="${by+17}" text-anchor="middle" font-family="Arial,sans-serif" font-size="7.5" fill="#555">${mm/2}</text>` +
+    `<text x="${bx+10+r(len*3/4)}" y="${by+17}" text-anchor="middle" font-family="Arial,sans-serif" font-size="7.5" fill="#555">${mm}mm</text>`;
+}
+
+// ── UI ───────────────────────────────────────────────────────────────
+function currentSVG() {
+  const p = getP();
+  if (activeView === 'plan')    return { svg: genPlan(p),    name: `sauna-plan_W${p.W}xD${p.D}xH${p.H}.svg` };
+  if (activeView === 'front')   return { svg: genFront(p),   name: `sauna-front_W${p.W}xD${p.D}xH${p.H}.svg` };
+  if (activeView === 'section') return { svg: genSection(p), name: `sauna-section_W${p.W}xD${p.D}xH${p.H}.svg` };
+}
+
+function update() {
+  const p = getP();
+  const { svg } = currentSVG();
+  document.getElementById('svg-wrap').innerHTML = svg;
+  const iW = p.W-2*p.wall, iD = p.D-2*p.wall, iH = p.H-2*p.wall;
+  const area = (iW*iD/1e6).toFixed(2);
+  const cap = iW <= 1200 ? '1名' : iW <= 1700 ? '2名' : iW <= 2400 ? '3名' : '4名+';
+  document.getElementById('badge').innerHTML =
+    `<strong>内寸</strong>　W${iW}×D${iD}×H${iH}mm<br><strong>床面積</strong>　${area}㎡　<strong>収容</strong>　${cap}`;
+}
+
+function download() {
+  const { svg, name } = currentSVG();
+  const blob = new Blob([svg], { type: 'image/svg+xml;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = Object.assign(document.createElement('a'), { href: url, download: name });
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function copySpec() {
+  const p = getP();
+  const iW = p.W-2*p.wall, iD = p.D-2*p.wall, iH = p.H-2*p.wall;
+  const txt = `【造作サウナ仕様】\n外寸: W${p.W}×D${p.D}×H${p.H}mm\n内寸: W${iW}×D${iD}×H${iH}mm\n壁厚: ${p.wall}mm\n上段ベンチ: W${iW}×D${p.ubD}mm 座面H${p.ubH}mm\n下段ベンチ: W${iW}×D${p.lbD}mm 座面H${p.lbH}mm\n扉: W${p.doorW}×H${p.doorH}mm（外開き・${p.hinge==='left'?'左':'右'}ヒンジ）\nヒーター: ${p.heaterSz}×${p.heaterSz}mm（${p.heaterSide==='right'?'右':'左'}側設置）`;
+  navigator.clipboard.writeText(txt).then(() => {
+    const btn = document.querySelectorAll('.btn-2')[0];
+    const orig = btn.textContent;
+    btn.textContent = 'コピーしました！';
+    setTimeout(() => btn.textContent = orig, 1800);
+  });
+}
+
+// Tabs
+document.querySelectorAll('.tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeView = btn.dataset.v;
+    update();
+  });
+});
+
+document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', update));
+update();
+</script>
+</body>
+</html>

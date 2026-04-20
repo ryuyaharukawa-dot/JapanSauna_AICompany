@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【ワイヤー】施設・ホテル向けサウナ導入 | JapanSauna</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+/* =====================================================
+   JapanSauna toB LP — Wireframe
+   ===================================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body { font-family: 'Noto Sans JP', 'Hiragino Sans', sans-serif; color: #1a1a1a; background: #fff; line-height: 1.8; }
+img { max-width: 100%; height: auto; display: block; }
+a { text-decoration: none; color: inherit; }
+
+:root {
+  --navy: #111820; --navy-mid: #1e2d3d;
+  --gold: #C49A6C; --gold-light: #d9b48a;
+  --warm: #F7F4F1; --white: #ffffff;
+  --text: #1a1a1a; --muted: #666666;
+  --border: #e8e4df; --max-w: 1080px;
+}
+h1, h2, h3 { font-family: 'Noto Serif JP', 'Playfair Display', Georgia, serif; line-height: 1.35; letter-spacing: -0.01em; }
+
+.section { padding: 96px 24px; }
+.section--light { background: var(--white); }
+.section--dark { background: var(--navy); color: var(--white); }
+.section--warm { background: var(--warm); }
+.section__inner { max-width: var(--max-w); margin: 0 auto; }
+.section__title { font-size: clamp(28px, 4vw, 42px); font-weight: 700; margin-bottom: 20px; color: var(--navy); }
+.section__title--light { color: var(--white); }
+.section__lead { font-size: 17px; color: var(--muted); max-width: 600px; margin-bottom: 56px; line-height: 1.9; }
+.section__lead--light { color: rgba(255,255,255,0.65); }
+
+.label { display: block; font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; font-weight: 700; margin-bottom: 14px; }
+.label--gold { color: var(--gold); }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; padding: 14px 32px; border-radius: 2px; letter-spacing: 0.04em; transition: all 0.2s; cursor: pointer; border: none; }
+.btn--lg { padding: 18px 40px; font-size: 16px; }
+.btn--gold { background: var(--gold); color: #fff; }
+.btn--gold:hover { background: var(--gold-light); }
+.btn--ghost { background: transparent; border: 1.5px solid rgba(255,255,255,0.45); color: #fff; }
+.btn--ghost:hover { background: rgba(255,255,255,0.1); }
+
+.img-placeholder { background: linear-gradient(135deg, #cdd6e0 0%, #b0bfcc 100%); display: flex; align-items: center; justify-content: center; text-align: center; color: rgba(30,45,61,0.55); font-size: 13px; line-height: 1.7; letter-spacing: 0.03em; }
+.img-placeholder--hero { width: 100%; height: 100%; min-height: 520px; }
+.img-placeholder--case { width: 100%; aspect-ratio: 4/3; }
+.img-placeholder--thumb { width: 100%; aspect-ratio: 4/3; }
+.img-placeholder--product { width: 100%; aspect-ratio: 16/9; }
+
+/* HEADER */
+.header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(17,24,32,0.96); backdrop-filter: blur(6px); padding: 0 24px; }
+.header__inner { max-width: var(--max-w); margin: 0 auto; height: 68px; display: flex; align-items: center; gap: 40px; }
+.header__logo { font-family: 'Playfair Display', 'Noto Serif JP', serif; font-size: 20px; font-weight: 700; color: #fff; letter-spacing: 0.05em; margin-right: auto; }
+.header__nav { display: flex; gap: 28px; }
+.header__nav a { font-size: 13px; color: rgba(255,255,255,0.7); letter-spacing: 0.03em; transition: color 0.2s; }
+.header__nav a:hover { color: #fff; }
+
+/* HERO */
+.hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 100vh; padding-top: 68px; background: var(--navy); }
+.hero__copy { display: flex; flex-direction: column; justify-content: center; padding: 80px 64px 80px 48px; }
+.hero__title { font-family: 'Playfair Display', 'Noto Serif JP', serif; font-size: clamp(36px, 4.5vw, 56px); font-weight: 700; color: #fff; line-height: 1.25; margin-bottom: 24px; letter-spacing: -0.02em; }
+.hero__title em { color: var(--gold); font-style: normal; }
+.hero__sub { font-size: 17px; color: rgba(255,255,255,0.68); line-height: 1.9; margin-bottom: 40px; }
+.hero__cta { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; margin-bottom: 16px; }
+.hero__note { font-size: 12px; color: rgba(255,255,255,0.35); letter-spacing: 0.05em; }
+.hero__visual { overflow: hidden; position: relative; }
+
+/* PROOF BAR */
+.proof-bar { background: var(--gold); padding: 20px 24px; }
+.proof-bar__inner { max-width: var(--max-w); margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap; }
+.proof-bar__item { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.proof-bar__item strong { font-size: 15px; font-weight: 700; color: #fff; }
+.proof-bar__item span { font-size: 11px; color: rgba(255,255,255,0.8); }
+.proof-bar__sep { color: rgba(255,255,255,0.4); font-size: 20px; }
+
+/* PROBLEM */
+.problem__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.problem__card { background: var(--warm); border-radius: 4px; padding: 40px 32px; border-top: 3px solid var(--gold); }
+.problem__num { display: block; font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 700; color: var(--gold); opacity: 0.5; line-height: 1; margin-bottom: 20px; }
+.problem__card h3 { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 12px; line-height: 1.5; }
+.problem__card p { font-size: 14px; color: var(--muted); line-height: 1.85; }
+
+/* SOLUTION */
+.solution__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
+.solution__item { padding: 40px 28px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); transition: background 0.2s; }
+.solution__item:hover { background: rgba(255,255,255,0.07); }
+.solution__icon-wrap { width: 52px; height: 52px; border: 1.5px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+.solution__icon { font-size: 22px; color: var(--gold); line-height: 1; }
+.solution__item h3 { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 12px; line-height: 1.5; }
+.solution__item p { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.85; }
+
+/* CASES */
+.case-feature { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; margin-bottom: 80px; }
+.case-feature--rev { direction: rtl; }
+.case-feature--rev > * { direction: ltr; }
+.case-tag { display: inline-block; background: var(--navy); color: #fff; font-size: 11px; letter-spacing: 0.15em; padding: 5px 14px; margin-bottom: 16px; }
+.case-feature__name { font-size: 28px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+.case-feature__location { font-size: 13px; color: var(--muted); margin-bottom: 28px; }
+.case-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+.case-metric { background: var(--warm); padding: 16px; text-align: center; border-radius: 2px; display: flex; flex-direction: column; gap: 4px; }
+.case-metric__val { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--gold); line-height: 1; }
+.case-metric__label { font-size: 11px; color: var(--muted); }
+.case-quote { border-left: 3px solid var(--gold); padding: 12px 16px; font-size: 14px; color: #555; font-style: italic; line-height: 1.85; margin-bottom: 20px; background: var(--warm); }
+.case-specs { display: flex; flex-wrap: wrap; gap: 8px; }
+.case-specs span { font-size: 11px; background: #f0ebe0; color: var(--gold); padding: 4px 12px; border-radius: 100px; font-weight: 700; letter-spacing: 0.05em; }
+.case-thumbs { margin-top: 80px; padding-top: 48px; border-top: 1px solid var(--border); }
+.case-thumbs__title { font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 28px; text-align: center; }
+.case-thumbs__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.case-thumb { background: var(--white); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+.case-thumb__name { font-size: 14px; font-weight: 700; color: var(--navy); padding: 12px 14px 4px; }
+.case-thumb__model { font-size: 12px; color: var(--muted); padding: 0 14px 14px; }
+
+/* PRODUCTS */
+.products__grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin-bottom: 32px; }
+.product-card { border: 1.5px solid var(--border); border-radius: 4px; overflow: hidden; transition: box-shadow 0.2s; background: var(--white); }
+.product-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.07); }
+.product-card__body { padding: 24px; }
+.product-tag { display: inline-block; background: var(--warm); color: var(--navy); font-size: 11px; font-weight: 700; padding: 4px 12px; letter-spacing: 0.08em; margin-bottom: 12px; }
+.product-card__name { font-size: 22px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+.product-card__desc { font-size: 13px; color: var(--muted); line-height: 1.85; margin-bottom: 16px; }
+.product-features { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+.product-features li { font-size: 11px; background: #f0ebe0; color: #8B6914; padding: 4px 12px; border-radius: 100px; font-weight: 700; }
+.product-price { font-size: 22px; font-weight: 700; color: var(--navy); }
+.product-price span { font-size: 13px; font-weight: 400; color: var(--muted); }
+.product-card--custom { background: var(--navy); border-color: var(--navy); display: flex; align-items: center; justify-content: center; }
+.product-card__custom-body { padding: 40px 32px; text-align: center; }
+.product-card__custom-body h3 { font-size: 20px; color: #fff; margin-bottom: 12px; font-weight: 700; }
+.product-card__custom-body p { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.85; margin-bottom: 28px; }
+.products__subsidy { background: #fff8f0; border: 1px solid #e8d8c0; border-radius: 4px; padding: 20px 24px; }
+.products__subsidy p { font-size: 14px; color: var(--text); line-height: 1.8; }
+
+/* COMPLIANCE */
+.compliance__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-bottom: 32px; }
+.compliance__card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); padding: 40px 32px; transition: background 0.2s; }
+.compliance__card:hover { background: rgba(255,255,255,0.08); }
+.compliance__icon { font-size: 32px; margin-bottom: 16px; line-height: 1; }
+.compliance__card h3 { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+.compliance__label { font-size: 11px; font-weight: 700; color: var(--gold); letter-spacing: 0.1em; margin-bottom: 14px; display: block; }
+.compliance__card p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.85; }
+.compliance__note { background: rgba(196,154,108,0.12); border: 1px solid rgba(196,154,108,0.3); border-radius: 4px; padding: 20px 28px; }
+.compliance__note p { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.85; }
+
+/* FLOW */
+.flow { display: flex; align-items: flex-start; gap: 0; }
+.flow__step { flex: 1; text-align: center; padding: 0 16px; }
+.flow__num { width: 64px; height: 64px; background: var(--navy); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 20px; color: #fff; font-weight: 700; margin: 0 auto 20px; }
+.flow__step h3 { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+.flow__step p { font-size: 13px; color: var(--muted); line-height: 1.8; }
+.flow__arrow { flex-shrink: 0; font-size: 20px; color: var(--gold); padding-top: 22px; }
+
+/* MAINTENANCE */
+.maintenance__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.maintenance__item { background: var(--white); border: 1.5px solid var(--border); border-radius: 4px; padding: 32px 24px; display: flex; flex-direction: column; gap: 10px; transition: box-shadow 0.2s; }
+.maintenance__item:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.06); }
+.maintenance__icon { font-size: 28px; line-height: 1; }
+.maintenance__item h3 { font-size: 18px; font-weight: 700; color: var(--navy); }
+.maintenance__item p { font-size: 13px; color: var(--muted); line-height: 1.85; flex: 1; }
+.maintenance__badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 100px; letter-spacing: 0.05em; align-self: flex-start; margin-top: 4px; }
+.maintenance__badge--free { background: #e8f4ec; color: #2d7a45; }
+.maintenance__badge--paid { background: #f0ebe0; color: #8B6914; }
+
+/* FAQ */
+.faq { max-width: 760px; margin: 0 auto; }
+.faq__item { border-bottom: 1px solid var(--border); }
+.faq__q { display: flex; justify-content: space-between; align-items: center; padding: 24px 0; font-size: 16px; font-weight: 700; color: var(--navy); cursor: pointer; list-style: none; line-height: 1.6; gap: 16px; }
+.faq__q::-webkit-details-marker { display: none; }
+.faq__q::after { content: '+'; font-size: 24px; color: var(--gold); font-weight: 300; flex-shrink: 0; line-height: 1; }
+details[open] .faq__q::after { content: '−'; }
+.faq__a { padding: 0 0 24px 0; font-size: 15px; color: var(--muted); line-height: 1.9; }
+
+/* FOOTER CTA */
+.footer-cta { background: var(--navy); padding: 100px 24px; text-align: center; }
+.footer-cta__inner { max-width: var(--max-w); margin: 0 auto; }
+.footer-cta__title { font-family: 'Playfair Display', 'Noto Serif JP', serif; font-size: clamp(28px, 3.5vw, 40px); font-weight: 700; color: #fff; margin-bottom: 16px; }
+.footer-cta__sub { font-size: 17px; color: rgba(255,255,255,0.6); line-height: 1.9; margin-bottom: 48px; }
+.footer-cta__btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.footer-cta__note { margin-top: 24px; font-size: 12px; color: rgba(255,255,255,0.35); letter-spacing: 0.05em; }
+
+/* FOOTER */
+.footer { background: #0b1016; padding: 40px 24px; }
+.footer__inner { max-width: var(--max-w); margin: 0 auto; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 24px; }
+.footer__logo { font-family: 'Playfair Display', serif; font-size: 16px; color: rgba(255,255,255,0.7); font-weight: 700; }
+.footer__links { display: flex; gap: 24px; justify-content: center; }
+.footer__links a { font-size: 12px; color: rgba(255,255,255,0.4); transition: color 0.2s; }
+.footer__links a:hover { color: rgba(255,255,255,0.8); }
+.footer__copy { font-size: 12px; color: rgba(255,255,255,0.3); }
+
+/* FLOAT CTA */
+.float-cta { display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 200; background: var(--navy); padding: 12px 16px; }
+.float-cta a { display: block; background: var(--gold); color: #fff; font-weight: 700; font-size: 15px; padding: 16px; border-radius: 2px; text-align: center; letter-spacing: 0.04em; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .solution__grid { grid-template-columns: 1fr 1fr; }
+  .products__grid { grid-template-columns: 1fr; }
+  .compliance__grid { grid-template-columns: 1fr; gap: 12px; }
+  .maintenance__grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .section { padding: 64px 20px; }
+  .header__nav { display: none; }
+  .header .btn { font-size: 13px; padding: 10px 20px; }
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero__copy { padding: 80px 24px 48px; }
+  .hero__title { font-size: 36px; }
+  .hero__cta { width: 100%; }
+  .hero__cta .btn { width: 100%; text-align: center; justify-content: center; }
+  .img-placeholder--hero { min-height: 280px; }
+  .proof-bar__inner { gap: 20px; }
+  .proof-bar__sep { display: none; }
+  .problem__grid { grid-template-columns: 1fr; }
+  .solution__grid { grid-template-columns: 1fr 1fr; }
+  .case-feature { grid-template-columns: 1fr; gap: 32px; }
+  .case-feature--rev { direction: ltr; }
+  .case-thumbs__grid { grid-template-columns: 1fr 1fr; }
+  .flow { flex-direction: column; align-items: stretch; }
+  .flow__step { display: flex; gap: 20px; text-align: left; padding: 24px 0; border-bottom: 1px solid var(--border); }
+  .flow__step:last-child { border-bottom: none; }
+  .flow__num { flex-shrink: 0; width: 48px; height: 48px; font-size: 16px; margin: 0; }
+  .flow__arrow { display: none; }
+  .footer__inner { grid-template-columns: 1fr; text-align: center; }
+  .footer__links { flex-wrap: wrap; }
+  .float-cta { display: block; padding-bottom: calc(12px + env(safe-area-inset-bottom)); }
+  .footer-cta__btns { flex-direction: column; align-items: center; }
+  .footer-cta__btns .btn { width: 100%; max-width: 400px; justify-content: center; }
+}
+@media (max-width: 480px) {
+  .solution__grid { grid-template-columns: 1fr; }
+  .case-thumbs__grid { grid-template-columns: 1fr; }
+  .maintenance__grid { grid-template-columns: 1fr; }
+}
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+    <div class="header__inner">
+      <div class="header__logo">JapanSauna</div>
+      <nav class="header__nav">
+        <a href="#cases">導入事例</a>
+        <a href="#products">商品・プラン</a>
+        <a href="#flow">導入の流れ</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a href="#contact" class="btn btn--gold">無料相談を申し込む →</a>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero__copy">
+      <p class="label label--gold">FOR VILLA / HOTEL / RENTAL</p>
+      <h1 class="hero__title">サウナが、<br>施設の<em>価値</em>を変える。</h1>
+      <p class="hero__sub">客単価・口コミ・リピート率の向上。<br>ヴィラ・ホテル・民泊へのサウナ導入ならJapanSauna。</p>
+      <div class="hero__cta">
+        <a href="#contact" class="btn btn--gold btn--lg">無料相談・現地調査を申し込む</a>
+        <a href="#contact-doc" class="btn btn--ghost btn--lg">導入事例資料をダウンロード</a>
+      </div>
+      <p class="hero__note">相談・現地調査・お見積りはすべて無料です</p>
+    </div>
+    <div class="hero__visual">
+      <div class="img-placeholder img-placeholder--hero">
+        <span>📷 メインビジュアル<br>高級感のある施設内サウナ空間<br>（夜景・ウッドデッキ・バレル）</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROOF BAR ===== -->
+  <div class="proof-bar">
+    <div class="proof-bar__inner">
+      <div class="proof-bar__item"><strong>導入実績 6施設以上</strong><span>ヴィラ・ホテル・民泊</span></div>
+      <div class="proof-bar__sep">|</div>
+      <div class="proof-bar__item"><strong>最短3週間</strong><span>で設置完了</span></div>
+      <div class="proof-bar__sep">|</div>
+      <div class="proof-bar__item"><strong>法規届出</strong><span>サポート・代行対応</span></div>
+      <div class="proof-bar__sep">|</div>
+      <div class="proof-bar__item"><strong>相談・調査・見積</strong><span>すべて無料</span></div>
+    </div>
+  </div>
+
+  <!-- ===== PROBLEM ===== -->
+  <section class="section section--light" id="problem">
+    <div class="section__inner">
+      <p class="label label--gold">CHALLENGES</p>
+      <h2 class="section__title">近隣施設と、<br>差別化できていますか？</h2>
+      <p class="section__lead">宿泊施設・ヴィラ・民泊の競争が激化するなかで、多くの施設オーナーが同じ3つの課題を抱えています。</p>
+      <div class="problem__grid">
+        <div class="problem__card">
+          <span class="problem__num">01</span>
+          <h3>競合施設との差別化ができない</h3>
+          <p>設備・立地・価格での差別化に限界を感じている。「何か一つ、話題になる体験」が欲しいが見つからない。</p>
+        </div>
+        <div class="problem__card">
+          <span class="problem__num">02</span>
+          <h3>客単価・稼働率が伸び悩んでいる</h3>
+          <p>部屋を埋めることはできても、単価を上げる手段が見当たらない。プレミアム感の演出が難しい。</p>
+        </div>
+        <div class="problem__card">
+          <span class="problem__num">03</span>
+          <h3>SNSで自発的に話題にならない</h3>
+          <p>宿泊客にSNS投稿をしてほしいが、「写真に撮りたくなる体験」が施設内にない。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SOLUTION ===== -->
+  <section class="section section--dark" id="solution">
+    <div class="section__inner">
+      <p class="label label--gold">SOLUTION</p>
+      <h2 class="section__title section__title--light">サウナ導入で、<br>施設が変わる。</h2>
+      <p class="section__lead section__lead--light">JapanSaunaのサウナを導入した施設では、4つの変化が共通して起きています。</p>
+      <div class="solution__grid">
+        <div class="solution__item">
+          <div class="solution__icon-wrap"><span class="solution__icon">¥</span></div>
+          <h3>客単価・<br>宿泊単価UP</h3>
+          <p>「サウナ付きプラン」として高単価設定が可能に。施設の付加価値として価格交渉力が上がります。</p>
+        </div>
+        <div class="solution__item">
+          <div class="solution__icon-wrap"><span class="solution__icon">✦</span></div>
+          <h3>SNS・口コミで<br>自然な集客</h3>
+          <p>「サウナのある宿」としてInstagram・Xで話題に。宿泊客が自発的に投稿・拡散する体験を提供できます。</p>
+        </div>
+        <div class="solution__item">
+          <div class="solution__icon-wrap"><span class="solution__icon">↻</span></div>
+          <h3>リピート率・<br>指名予約の向上</h3>
+          <p>「またあのサウナに入りたい」という理由でリピーターが生まれます。OTAに依存しない指名予約が増えます。</p>
+        </div>
+        <div class="solution__item">
+          <div class="solution__icon-wrap"><span class="solution__icon">◈</span></div>
+          <h3>競合との<br>明確な差別化</h3>
+          <p>近隣に「サウナのある施設」がなければ、市場内で唯一の体験を提供できます。検索での訴求力も上がります。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CASES ===== -->
+  <section class="section section--light" id="cases">
+    <div class="section__inner">
+      <p class="label label--gold">CASE STUDIES</p>
+      <h2 class="section__title">導入事例</h2>
+      <p class="section__lead">「数」ではなく「変化」で伝えます。実際に導入した施設オーナーの声をご紹介します。</p>
+      <div class="case-feature">
+        <div class="case-feature__img">
+          <div class="img-placeholder img-placeholder--case"><span>📷 STELLA STORIA 葉山<br>バレルサウナ外観・夜景<br>ヒノキ露天風呂・ウッドデッキ</span></div>
+        </div>
+        <div class="case-feature__body">
+          <span class="case-tag">一棟貸し・ヴィラ</span>
+          <h3 class="case-feature__name">STELLA STORIA 葉山</h3>
+          <p class="case-feature__location">神奈川県葉山町 · 諏訪海岸まで徒歩10秒 · 富士山ビュー</p>
+          <div class="case-metrics">
+            <div class="case-metric"><span class="case-metric__val">取材予定</span><span class="case-metric__label">宿泊単価の変化</span></div>
+            <div class="case-metric"><span class="case-metric__val">取材予定</span><span class="case-metric__label">リピート率の変化</span></div>
+          </div>
+          <blockquote class="case-quote">「バレルサウナ（2025年7月設置）・ロウリュ可能・ヒノキ露天風呂併設・ウッドデッキ外気浴。オーナーインタビュー取材後に掲載予定。」</blockquote>
+          <div class="case-specs"><span>バレルサウナ</span><span>屋外設置</span><span>ロウリュ対応</span><span>ヒノキ露天風呂併設</span></div>
+        </div>
+      </div>
+      <div class="case-feature case-feature--rev">
+        <div class="case-feature__img">
+          <div class="img-placeholder img-placeholder--case"><span>📷 千葉の民泊施設<br>サウナ外観・内観</span></div>
+        </div>
+        <div class="case-feature__body">
+          <span class="case-tag">民泊 · Airbnb掲載物件</span>
+          <h3 class="case-feature__name">千葉の民泊施設</h3>
+          <p class="case-feature__location">千葉県 · Airbnb掲載物件</p>
+          <div class="case-metrics">
+            <div class="case-metric"><span class="case-metric__val">取材予定</span><span class="case-metric__label">口コミスコアの変化</span></div>
+            <div class="case-metric"><span class="case-metric__val">取材予定</span><span class="case-metric__label">予約率の変化</span></div>
+          </div>
+          <blockquote class="case-quote">「オーナーインタビュー取材後に掲載予定。」</blockquote>
+        </div>
+      </div>
+      <div class="case-thumbs">
+        <h3 class="case-thumbs__title">その他の導入施設</h3>
+        <div class="case-thumbs__grid">
+          <div class="case-thumb"><div class="img-placeholder img-placeholder--thumb"><span>📷 施設A</span></div><p class="case-thumb__name">施設名（準備中）</p><p class="case-thumb__model">バレルサウナ · 都道府県</p></div>
+          <div class="case-thumb"><div class="img-placeholder img-placeholder--thumb"><span>📷 施設B</span></div><p class="case-thumb__name">施設名（準備中）</p><p class="case-thumb__model">キャビンサウナ · 都道府県</p></div>
+          <div class="case-thumb"><div class="img-placeholder img-placeholder--thumb"><span>📷 施設C</span></div><p class="case-thumb__name">施設名（準備中）</p><p class="case-thumb__model">バレルサウナ · 都道府県</p></div>
+          <div class="case-thumb"><div class="img-placeholder img-placeholder--thumb"><span>📷 施設D</span></div><p class="case-thumb__name">施設名（準備中）</p><p class="case-thumb__model">屋内サウナ · 都道府県</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRODUCTS ===== -->
+  <section class="section section--warm" id="products">
+    <div class="section__inner">
+      <p class="label label--gold">PRODUCTS</p>
+      <h2 class="section__title">施設向けモデル</h2>
+      <p class="section__lead">屋内・屋外・バレルの3タイプ。施設の規模・用途に合わせて選べます。</p>
+      <div class="products__grid">
+        <div class="product-card">
+          <div class="img-placeholder img-placeholder--product"><span>📷 バレルサウナ</span></div>
+          <div class="product-card__body">
+            <span class="product-tag">屋外設置</span>
+            <h3 class="product-card__name">バレルサウナ</h3>
+            <p class="product-card__desc">露天・庭・デッキへの設置に最適。圧倒的なビジュアルでSNS映えも抜群。ロウリュ可能な本格仕様。</p>
+            <ul class="product-features"><li>屋外設置対応</li><li>ロウリュ可能</li><li>2〜6名対応</li></ul>
+            <p class="product-price">¥1,300,000〜<span>（税込）</span></p>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="img-placeholder img-placeholder--product"><span>📷 キャビンサウナ（屋内）</span></div>
+          <div class="product-card__body">
+            <span class="product-tag">屋内設置</span>
+            <h3 class="product-card__name">キャビンサウナ</h3>
+            <p class="product-card__desc">客室・別荘・ヴィラの屋内に設置可能。省スペースで導入できる定番モデル。カスタマイズ対応。</p>
+            <ul class="product-features"><li>屋内・屋外対応</li><li>1畳〜設置可能</li><li>カスタマイズ対応</li></ul>
+            <p class="product-price">¥863,500〜<span>（税込）</span></p>
+          </div>
+        </div>
+        <div class="product-card product-card--custom">
+          <div class="product-card__custom-body">
+            <h3>複数台・大型カスタマイズ</h3>
+            <p>施設の規模・コンセプトに合わせた特注対応。複数室・大型サイズ・素材指定など、まずはご相談ください。</p>
+            <a href="#contact" class="btn btn--gold">相談する →</a>
+          </div>
+        </div>
+      </div>
+      <div class="products__subsidy">
+        <p>💡 <strong>補助金・税制優遇のご相談も承ります</strong>　施設設備への投資として活用できる制度があります。現状整備中ですが、個別にご相談ください。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 法規対応 ===== -->
+  <section class="section section--dark" id="compliance">
+    <div class="section__inner">
+      <p class="label label--gold">COMPLIANCE</p>
+      <h2 class="section__title section__title--light">法規対応も、<br>JapanSaunaが代行します。</h2>
+      <p class="section__lead section__lead--light">サウナ導入には消防・保健所・建築基準法など複数の法規確認が必要です。JapanSaunaは届出サポート・代行まで一貫して対応します。</p>
+      <div class="compliance__grid">
+        <div class="compliance__card">
+          <div class="compliance__icon">🔥</div>
+          <h3>消防法</h3>
+          <p class="compliance__label">届出サポート・代行</p>
+          <p>サウナストーブの出力・設置場所に応じた消防署への届出を代行します。設置前の事前相談から完了まで対応。</p>
+        </div>
+        <div class="compliance__card">
+          <div class="compliance__icon">🏛</div>
+          <h3>保健所対応</h3>
+          <p class="compliance__label">届出サポート・代行</p>
+          <p>施設規模・利用形態による公衆浴場法の適用確認および保健所への届出を代行します。</p>
+        </div>
+        <div class="compliance__card">
+          <div class="compliance__icon">📐</div>
+          <h3>建築基準法</h3>
+          <p class="compliance__label">届出サポート・代行</p>
+          <p>工作物確認申請・増築申請など、建築基準法に基づく各種申請手続きをサポート・代行します。</p>
+        </div>
+      </div>
+      <div class="compliance__note">
+        <p>法規対応は施設の種別・規模・設置場所によって異なります。現地調査時に必要な対応を確認し、費用・スケジュールを含めてご提案します。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FLOW ===== -->
+  <section class="section section--light" id="flow">
+    <div class="section__inner">
+      <p class="label label--gold">HOW IT WORKS</p>
+      <h2 class="section__title">導入の流れ</h2>
+      <p class="section__lead">相談から設置完了まで、JapanSaunaが一貫してサポートします。</p>
+      <div class="flow">
+        <div class="flow__step"><div class="flow__num">01</div><h3>無料相談</h3><p>施設の概要・ご要望をヒアリング。最適なモデルをご提案します。</p></div>
+        <div class="flow__arrow">→</div>
+        <div class="flow__step"><div class="flow__num">02</div><h3>現地調査</h3><p>設置場所の採寸・電気容量・基礎の確認を無料で行います。</p></div>
+        <div class="flow__arrow">→</div>
+        <div class="flow__step"><div class="flow__num">03</div><h3>提案・お見積もり</h3><p>工事費・法規対応費含めた総費用を明示した見積書をご提出します。</p></div>
+        <div class="flow__arrow">→</div>
+        <div class="flow__step"><div class="flow__num">04</div><h3>設置工事</h3><p>最短3週間で設置完了。電気・基礎工事も対応可能です。</p></div>
+        <div class="flow__arrow">→</div>
+        <div class="flow__step"><div class="flow__num">05</div><h3>アフターサポート</h3><p>設置後のメンテナンス・修理にも継続対応します。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 保守メンテナンス ===== -->
+  <section class="section section--warm" id="maintenance">
+    <div class="section__inner">
+      <p class="label label--gold">MAINTENANCE</p>
+      <h2 class="section__title">導入後も、ずっとサポートします。</h2>
+      <p class="section__lead">設置して終わりではありません。施設の運営を止めないために、JapanSaunaが継続してサポートします。</p>
+      <div class="maintenance__grid">
+        <div class="maintenance__item">
+          <div class="maintenance__icon">🔍</div>
+          <h3>定期点検</h3>
+          <p>ストーブ・電気系統・木材の状態を定期的に点検。不具合を早期発見し、施設の安定稼働を維持します。</p>
+          <span class="maintenance__badge maintenance__badge--free">保証期間内：無償</span>
+        </div>
+        <div class="maintenance__item">
+          <div class="maintenance__icon">⚡</div>
+          <h3>ストーブ交換</h3>
+          <p>経年劣化や故障によるストーブ交換に対応。施設の運営スケジュールに合わせて迅速に対応します。</p>
+          <span class="maintenance__badge maintenance__badge--paid">保証期間後：有償</span>
+        </div>
+        <div class="maintenance__item">
+          <div class="maintenance__icon">🔧</div>
+          <h3>部品修理</h3>
+          <p>ドア・ベンチ・照明など各部品の修理・交換に対応。純正部品での対応で品質を維持します。</p>
+          <span class="maintenance__badge maintenance__badge--paid">保証期間後：有償</span>
+        </div>
+        <div class="maintenance__item">
+          <div class="maintenance__icon">🚨</div>
+          <h3>緊急対応</h3>
+          <p>突発的な不具合・トラブル時の緊急対応も承ります。施設の営業に影響が出ないよう優先対応します。</p>
+          <span class="maintenance__badge maintenance__badge--paid">保証期間後：有償</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="section section--light" id="faq">
+    <div class="section__inner">
+      <p class="label label--gold">FAQ</p>
+      <h2 class="section__title">よくある質問</h2>
+      <div class="faq">
+        <details class="faq__item">
+          <summary class="faq__q">設置工事の規模と工期はどのくらいですか？</summary>
+          <p class="faq__a">モデルや設置環境によりますが、標準的な屋内設置で最短3週間、屋外バレルサウナで最短2週間です。電気工事・基礎工事が必要な場合は別途工期を確認します。現地調査の際に詳しくご説明します。</p>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__q">電気工事・基礎工事は必要ですか？</summary>
+          <p class="faq__a">設置環境によって異なります。200Vの専用回路が必要になるケースが多く、既存の電気設備の状況によって工事が必要になります。屋外設置の場合は基礎工事が必要なことも。現地調査で確認し、費用を見積もりに含めてご提案します。</p>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__q">消防・保健所・建築基準法への対応はどうすればいいですか？</summary>
+          <p class="faq__a">JapanSaunaが届出サポート・代行まで対応します。施設の種別・規模・設置場所によって必要な手続きが異なるため、現地調査時に確認し、費用・スケジュールを含めてご提案します。</p>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__q">設置後のメンテナンスはどのように対応してもらえますか？</summary>
+          <p class="faq__a">定期点検・ストーブ交換・部品修理・緊急対応まで一貫してサポートします。保証期間内は無償、保証期間終了後は有償にて継続対応が可能です。</p>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__q">補助金・税制優遇は使えますか？</summary>
+          <p class="faq__a">施設設備投資として活用できる制度がある場合があります。スキームは整備中ですが、個別にご相談いただければ最新情報をご案内します。</p>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__q">複数台の導入はできますか？</summary>
+          <p class="faq__a">可能です。複数室・複数棟への導入実績もあります。台数に応じたご提案・お見積もりをいたします。まずはご相談ください。</p>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__q">運営中の施設でも設置できますか？</summary>
+          <p class="faq__a">施設を長期間止めることなく設置できます。工事の規模によって施設の一部を一時的に使用制限する場合がありますが、スケジュールは事前に調整します。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER CTA ===== -->
+  <section class="footer-cta" id="contact">
+    <div class="footer-cta__inner">
+      <p class="label label--gold">CONTACT</p>
+      <h2 class="footer-cta__title">まず、相談だけでも構いません。</h2>
+      <p class="footer-cta__sub">「うちの施設に合うか分からない」という段階でも大丈夫です。<br>現地調査・お見積もりまで、すべて無料でご対応します。</p>
+      <div class="footer-cta__btns">
+        <a href="#" class="btn btn--gold btn--lg">無料相談・現地調査を申し込む</a>
+        <a href="#" class="btn btn--ghost btn--lg" id="contact-doc">導入事例資料をダウンロード</a>
+      </div>
+      <p class="footer-cta__note">平日10:00〜18:00 · お問い合わせ後、1営業日以内にご連絡します</p>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <p class="footer__logo">JapanSauna</p>
+      <div class="footer__links">
+        <a href="#">プライバシーポリシー</a>
+        <a href="#">特定商取引法に基づく表示</a>
+        <a href="#">会社概要</a>
+      </div>
+      <p class="footer__copy">© 2026 JapanSauna. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <div class="float-cta">
+    <a href="#contact">無料相談・現地調査を申し込む</a>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>JapanSauna スクエアバレル 外観コンセプト</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #111;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  color: #fff;
+  padding: 40px 20px 60px;
+}
+h1 {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+}
+.subtitle {
+  text-align: center;
+  font-size: 11px;
+  color: #555;
+  margin-bottom: 56px;
+  letter-spacing: 1px;
+}
+
+.concepts {
+  display: flex;
+  justify-content: center;
+  gap: 52px;
+  flex-wrap: wrap;
+}
+.concept-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+.concept-label {
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #888;
+  background: #1e1e1e;
+  padding: 5px 20px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+.concept-label.rec { background: #c05000; color: #fff; }
+.badge {
+  display: inline-block;
+  background: #fff;
+  color: #c05000;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 7px;
+  border-radius: 3px;
+  margin-left: 8px;
+}
+
+/* ===================================================
+   3D SCENE
+   Box: W=200, D=140, H=210 (visual px)
+   Front: 200×210  → translateZ(70)
+   Right: 140×210  → rotateY(90deg) translateZ(100)
+   Top  : 200×140  → rotateX(90deg) translateZ(105)
+   =================================================== */
+.scene {
+  perspective: 1100px;
+  perspective-origin: 50% 36%;
+  width: 400px;
+  height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+/* ground shadow */
+.scene::after {
+  content: '';
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-44%);
+  width: 280px; height: 28px;
+  background: radial-gradient(ellipse, rgba(0,0,0,0.55) 0%, transparent 70%);
+  filter: blur(10px);
+}
+
+.cabin {
+  position: relative;
+  width: 0; height: 0;
+  transform-style: preserve-3d;
+  /* rotateY negative → right side swings toward viewer */
+  transform: translateY(62px) rotateX(-13deg) rotateY(-44deg);
+}
+
+/* All faces centered at origin */
+.face {
+  position: absolute;
+  backface-visibility: hidden;
+}
+
+/* ---- FRONT : 200 × 210 ---- */
+.front-face {
+  width: 200px; height: 210px;
+  margin-left: -100px; margin-top: -105px;
+  transform: translateZ(70px);
+  border-radius: 34px 34px 6px 6px;
+  overflow: hidden;
+}
+
+/* ---- RIGHT SIDE : 140 × 210 ---- */
+.right-face {
+  width: 140px; height: 210px;
+  margin-left: -70px; margin-top: -105px;
+  /* rotateY(90deg) translateZ(100) → center lands at x=+100 (W/2) */
+  transform: rotateY(90deg) translateZ(100px);
+  border-radius: 0 34px 6px 0;
+  overflow: hidden;
+}
+
+/* ---- TOP : 200 × 140 ---- */
+.top-face {
+  width: 200px; height: 140px;
+  margin-left: -100px; margin-top: -70px;
+  /* rotateX(90deg) translateZ(105) → center lands at y=-105 (H/2, top) */
+  transform: rotateX(90deg) translateZ(105px);
+  border-radius: 34px 34px 0 0;
+  overflow: hidden;
+}
+
+/* ===================================================
+   BASE COLORS — 3 variants
+   =================================================== */
+/* Natural Thermowood */
+.nat-front { background: linear-gradient(175deg, #b89060 0%, #9a7248 50%, #a87a52 100%); }
+.nat-right  { background: linear-gradient(180deg, #7a5830 0%, #664820 60%, #704e28 100%); }
+.nat-top    { background: linear-gradient(150deg, #c8a870 0%, #a88048 55%, #b08a58 100%); }
+
+/* Charcoal */
+.cha-front { background: linear-gradient(175deg, #4c4c4c 0%, #2e2e2e 50%, #3a3a3a 100%); }
+.cha-right  { background: linear-gradient(180deg, #1e1e1e 0%, #161616 60%, #1a1a1a 100%); }
+.cha-top    { background: linear-gradient(150deg, #565656 0%, #363636 55%, #424242 100%); }
+
+/* Black */
+.blk-front { background: linear-gradient(175deg, #262626 0%, #131313 50%, #1d1d1d 100%); }
+.blk-right  { background: linear-gradient(180deg, #0e0e0e 0%, #0a0a0a 60%, #0c0c0c 100%); }
+.blk-top    { background: linear-gradient(150deg, #2c2c2c 0%, #181818 55%, #222 100%); }
+
+/* ===================================================
+   TEXTURE OVERLAYS
+   =================================================== */
+/* Barrel-curve highlight on front */
+.barrel-curve {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 62% 80% at 28% 52%,
+    rgba(255,255,255,0.13) 0%,
+    rgba(255,255,255,0.04) 44%,
+    rgba(0,0,0,0.20) 100%
+  );
+  pointer-events: none;
+}
+/* Side darkening */
+.side-shade {
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg,
+    rgba(0,0,0,0.28) 0%,
+    rgba(0,0,0,0.06) 40%,
+    rgba(0,0,0,0.20) 100%
+  );
+  pointer-events: none;
+}
+/* Top highlight */
+.top-shade {
+  position: absolute; inset: 0;
+  background: linear-gradient(148deg,
+    rgba(255,255,255,0.12) 0%,
+    rgba(255,255,255,0.03) 50%,
+    rgba(0,0,0,0.10) 100%
+  );
+  pointer-events: none;
+}
+/* Horizontal wood plank lines (front & side) */
+.grain-h {
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    180deg,
+    transparent 0px, transparent 23px,
+    rgba(0,0,0,0.10) 23px, rgba(0,0,0,0.10) 24.5px
+  );
+  pointer-events: none;
+}
+/* Top plank lines (seen from above, run front-to-back) */
+.grain-top-lines {
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0px, transparent 15px,
+    rgba(0,0,0,0.09) 15px, rgba(0,0,0,0.09) 16px
+  );
+  pointer-events: none;
+}
+
+/* ===================================================
+   PANORAMA GLASS (front)
+   =================================================== */
+.win-wrap {
+  position: absolute;
+  left: 20px; top: 22px; right: 20px; bottom: 22px;
+  border-radius: 20px 20px 4px 4px;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,0.16),
+              0 0 24px rgba(255,140,40,0.14);
+}
+.win-glass {
+  position: absolute; inset: 0;
+  background: linear-gradient(172deg,
+    rgba(255,200,90,0.72) 0%,
+    rgba(228,128,38,0.84) 26%,
+    rgba(182,76,16,0.91) 58%,
+    rgba(118,48,10,0.96) 100%
+  );
+}
+.plank-inside {
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    180deg,
+    transparent 0px, transparent 19px,
+    rgba(155,88,22,0.34) 19px, rgba(155,88,22,0.34) 20.5px
+  );
+}
+.bench-up {
+  position: absolute;
+  bottom: 70px; left: 0; right: 0; height: 7px;
+  background: rgba(14,5,0,0.60);
+}
+.bench-lo {
+  position: absolute;
+  bottom: 33px; left: 0; width: 72%; height: 5px;
+  background: rgba(14,5,0,0.50);
+}
+.led-up {
+  position: absolute;
+  bottom: 63px; left: 0; right: 0; height: 5px;
+  background: rgba(255,162,0,0.68);
+  filter: blur(2.5px);
+}
+.led-lo {
+  position: absolute;
+  bottom: 28px; left: 0; width: 72%; height: 4px;
+  background: rgba(255,162,0,0.52);
+  filter: blur(2px);
+}
+.stove-box {
+  position: absolute;
+  bottom: 8px; right: 11px;
+  width: 26px; height: 25px;
+  background: rgba(6,3,0,0.78);
+  border-radius: 3px;
+}
+.door-split {
+  position: absolute;
+  top: 0; bottom: 0; left: 50%;
+  width: 2px;
+  background: rgba(0,0,0,0.48);
+  transform: translateX(-50%);
+}
+.handle { position: absolute; top: 50%; transform: translateY(-50%); width: 4px; height: 18px; background: rgba(200,200,200,0.42); border-radius: 2px; }
+.hl { right: calc(50% + 9px); }
+.hr { left:  calc(50% + 9px); }
+.glass-refl {
+  position: absolute; inset: 0;
+  background: linear-gradient(122deg,
+    rgba(255,255,255,0.17) 0%,
+    rgba(255,255,255,0.04) 36%,
+    rgba(255,255,255,0) 62%,
+    rgba(255,255,255,0.08) 100%
+  );
+  pointer-events: none;
+}
+
+/* ===================================================
+   SIDE WINDOW (small, on right face)
+   =================================================== */
+.side-win {
+  position: absolute;
+  top: 28px; left: 18px;
+  width: 62px; height: 90px;
+  border-radius: 4px 28px 4px 4px;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.10);
+}
+.side-win-glass {
+  width: 100%; height: 100%;
+  background: linear-gradient(155deg,
+    rgba(255,175,65,0.52) 0%,
+    rgba(165,72,14,0.72) 100%
+  );
+}
+.side-win-refl {
+  position: absolute; inset: 0;
+  background: linear-gradient(120deg, rgba(255,255,255,0.14) 0%, transparent 50%);
+}
+
+/* Top vent pipe */
+.vent {
+  position: absolute;
+  top: 12px; right: 22px;
+  width: 14px; height: 22px;
+  background: rgba(0,0,0,0.55);
+  border-radius: 3px 3px 0 0;
+  border: 1px solid rgba(255,255,255,0.07);
+}
+.vent::after {
+  content: '';
+  position: absolute;
+  top: -4px; left: 2px;
+  width: 10px; height: 5px;
+  background: rgba(0,0,0,0.6);
+  border-radius: 2px 2px 0 0;
+}
+
+/* Front base strip */
+.base-strip {
+  position: absolute;
+  bottom: 0; left: 0; right: 0; height: 20px;
+  background: rgba(0,0,0,0.38);
+}
+.foot-l, .foot-r {
+  position: absolute;
+  bottom: -8px;
+  width: 22px; height: 10px;
+  background: rgba(0,0,0,0.50);
+  border-radius: 2px;
+}
+.foot-l { left: 18px; }
+.foot-r { right: 18px; }
+
+/* ===================================================
+   DESCRIPTION
+   =================================================== */
+.desc { text-align: center; line-height: 1.75; }
+.desc-title { font-size: 15px; font-weight: bold; }
+.desc-sub  { font-size: 10px; color: #aaa; }
+.desc-note { font-size: 10px; color: #666; }
+.desc-note.hi { color: #ffaa00; }
+
+/* ===================================================
+   SPEC BAR
+   =================================================== */
+.spec-bar {
+  max-width: 1080px;
+  margin: 68px auto 0;
+  background: #181818;
+  border-radius: 8px;
+  padding: 22px 36px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px 32px;
+  font-size: 10px;
+  color: #666;
+}
+.spec-head {
+  font-size: 11px; font-weight: bold; color: #888;
+  grid-column: 1 / -1;
+  border-bottom: 1px solid #252525;
+  padding-bottom: 8px; margin-bottom: 2px;
+}
+.spec-item strong { color: #c05000; }
+
+.sep { max-width: 1080px; margin: 48px auto 0; border-top: 1px solid #1e1e1e; }
+.comp-row {
+  max-width: 1080px; margin: 18px auto 0;
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 16px; font-size: 9px; color: #555;
+}
+.comp-name { font-size: 10px; font-weight: bold; margin-bottom: 4px; }
+.comp-us { color: #c05000; }
+.comp-us .comp-name { color: #c05000; }
+
+footer { text-align: center; font-size: 9px; color: #2e2e2e; margin-top: 44px; }
+</style>
+</head>
+<body>
+
+<h1>JapanSauna スクエアバレル ｜ 外観デザイン コンセプト</h1>
+<p class="subtitle">競合との差別化を意識した 3 パターン提案 ／ 2026-04-01</p>
+
+<div class="concepts">
+
+  <!-- ===== A : Thermowood Natural ===== -->
+  <div class="concept-card">
+    <div class="concept-label">CONCEPT &nbsp; A</div>
+    <div class="scene">
+      <div class="cabin">
+
+        <!-- TOP FACE -->
+        <div class="face top-face nat-top">
+          <div class="grain-top-lines"></div>
+          <div class="top-shade"></div>
+          <div class="vent"></div>
+        </div>
+
+        <!-- RIGHT / SIDE FACE -->
+        <div class="face right-face nat-right">
+          <div class="grain-h"></div>
+          <div class="side-shade"></div>
+          <div class="side-win">
+            <div class="side-win-glass"></div>
+            <div class="side-win-refl"></div>
+          </div>
+        </div>
+
+        <!-- FRONT FACE -->
+        <div class="face front-face nat-front">
+          <div class="grain-h"></div>
+          <div class="barrel-curve"></div>
+          <div class="win-wrap">
+            <div class="win-glass">
+              <div class="plank-inside"></div>
+              <div class="bench-up"></div>
+              <div class="bench-lo"></div>
+              <div class="led-up"></div>
+              <div class="led-lo"></div>
+              <div class="stove-box"></div>
+              <div class="door-split"></div>
+              <div class="handle hl"></div>
+              <div class="handle hr"></div>
+              <div class="glass-refl"></div>
+            </div>
+          </div>
+          <div class="base-strip"></div>
+          <div class="foot-l"></div>
+          <div class="foot-r"></div>
+        </div>
+
+      </div>
+    </div>
+    <div class="desc">
+      <div class="desc-title">サーモウッド ナチュラル</div>
+      <div class="desc-sub">加熱処理木材の自然な木目</div>
+      <div class="desc-note">ヴィラ・自然派リゾート向け</div>
+      <div class="desc-note">温かみ × 耐候性◎</div>
+    </div>
+  </div>
+
+  <!-- ===== B : Charcoal ★推奨 ===== -->
+  <div class="concept-card">
+    <div class="concept-label rec">CONCEPT &nbsp; B <span class="badge">★ 推奨</span></div>
+    <div class="scene">
+      <div class="cabin">
+
+        <div class="face top-face cha-top">
+          <div class="grain-top-lines"></div>
+          <div class="top-shade"></div>
+          <div class="vent"></div>
+        </div>
+
+        <div class="face right-face cha-right">
+          <div class="grain-h"></div>
+          <div class="side-shade"></div>
+          <div class="side-win">
+            <div class="side-win-glass"></div>
+            <div class="side-win-refl"></div>
+          </div>
+        </div>
+
+        <div class="face front-face cha-front">
+          <div class="grain-h"></div>
+          <div class="barrel-curve"></div>
+          <div class="win-wrap">
+            <div class="win-glass">
+              <div class="plank-inside"></div>
+              <div class="bench-up"></div>
+              <div class="bench-lo"></div>
+              <div class="led-up"></div>
+              <div class="led-lo"></div>
+              <div class="stove-box"></div>
+              <div class="door-split"></div>
+              <div class="handle hl"></div>
+              <div class="handle hr"></div>
+              <div class="glass-refl"></div>
+            </div>
+          </div>
+          <div class="base-strip"></div>
+          <div class="foot-l"></div>
+          <div class="foot-r"></div>
+        </div>
+
+      </div>
+    </div>
+    <div class="desc">
+      <div class="desc-title">チャコール × ヒノキ</div>
+      <div class="desc-sub">上質なグレー × ヒノキの温かさ</div>
+      <div class="desc-note hi">30代男性 新築戸建に最適</div>
+      <div class="desc-note hi">BtoC・BtoB 両対応 / 万能型</div>
+    </div>
+  </div>
+
+  <!-- ===== C : Matte Black ===== -->
+  <div class="concept-card">
+    <div class="concept-label">CONCEPT &nbsp; C</div>
+    <div class="scene">
+      <div class="cabin">
+
+        <div class="face top-face blk-top">
+          <div class="grain-top-lines"></div>
+          <div class="top-shade"></div>
+          <div class="vent"></div>
+        </div>
+
+        <div class="face right-face blk-right">
+          <div class="grain-h"></div>
+          <div class="side-shade"></div>
+          <div class="side-win">
+            <div class="side-win-glass"></div>
+            <div class="side-win-refl"></div>
+          </div>
+        </div>
+
+        <div class="face front-face blk-front">
+          <div class="grain-h"></div>
+          <div class="barrel-curve"></div>
+          <div class="win-wrap">
+            <div class="win-glass">
+              <div class="plank-inside"></div>
+              <div class="bench-up"></div>
+              <div class="bench-lo"></div>
+              <div class="led-up"></div>
+              <div class="led-lo"></div>
+              <div class="stove-box"></div>
+              <div class="door-split"></div>
+              <div class="handle hl"></div>
+              <div class="handle hr"></div>
+              <div class="glass-refl"></div>
+            </div>
+          </div>
+          <div class="base-strip"></div>
+          <div class="foot-l"></div>
+          <div class="foot-r"></div>
+        </div>
+
+      </div>
+    </div>
+    <div class="desc">
+      <div class="desc-title">マットブラック</div>
+      <div class="desc-sub">漆黒 × ヒノキ内装</div>
+      <div class="desc-note">高級ホテル・ショールーム向け</div>
+      <div class="desc-note">SNS映え・存在感◎</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Spec Bar -->
+<div class="spec-bar">
+  <div class="spec-head">外装仕様（確定）</div>
+  <div class="spec-item">外壁: <strong>サーモウッド 20mm</strong><br>透湿防水シート + 構造合板 9mm</div>
+  <div class="spec-item">断熱: <strong>ロックウール 75mm（壁）/ 100mm（天井）/ 50mm（床）</strong></div>
+  <div class="spec-item">内装: <strong>ヒノキ羽目板 15mm</strong>　壁厚合計 121mm</div>
+  <div class="spec-item">M サイズ: <strong>W1,800 × D1,500 × H1,800mm</strong></div>
+  <div class="spec-item">L サイズ: <strong>W2,200 × D1,800 × H2,000mm</strong></div>
+  <div class="spec-item">窓: <strong>パノラマガラス（耐熱ダブル）900×1,200mm</strong></div>
+</div>
+
+<div class="sep"></div>
+<div class="comp-row">
+  <div>
+    <div class="comp-name">BURROW ————</div>
+    国産ヒノキ＋サーモウッド二重構造<br>189万円〜（本体）断熱性確保だが高価格帯
+  </div>
+  <div>
+    <div class="comp-name">My Sauna ————</div>
+    国産材・スマホ遠隔操作対応<br>100万円〜。断熱訴求は弱め
+  </div>
+  <div class="comp-us">
+    <div class="comp-name">JapanSauna（B案推奨）————</div>
+    ロックウール75mm断熱＋サーモウッド外装<br>目標200〜250万円（工事込）← 空白ゾーン
+  </div>
+  <div>
+    <div class="comp-name">totonoü ————</div>
+    BtoB実績500件ワンストップ導入<br>119万円〜（BtoB）海外製耐久性懸念あり
+  </div>
+</div>
+
+<footer>※ 本図はコンセプト検討用のビジュアルです。正式な製造図面はCADにて作成してください。</footer>
+
+</body>
+</html>

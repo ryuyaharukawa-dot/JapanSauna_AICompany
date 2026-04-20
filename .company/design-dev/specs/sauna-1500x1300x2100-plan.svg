@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 525" style="background:#f5f4f0">
+
+  <!-- Title block -->
+  <rect x="0" y="0" width="600" height="58" fill="#2c3e50"/>
+  <text x="300" y="23" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="bold" fill="white">造作サウナ　平面図</text>
+  <text x="300" y="44" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#90a4b8">外寸 W1500 × D1300 × H2100mm　｜　縮尺 S=1:20</text>
+
+  <!-- Walls -->
+  <!-- Top wall -->
+  <rect x="90" y="75" width="375" height="20" fill="#3d3d3d"/>
+  <!-- Left wall -->
+  <rect x="90" y="95" width="20" height="285" fill="#3d3d3d"/>
+  <!-- Right wall -->
+  <rect x="445" y="95" width="20" height="285" fill="#3d3d3d"/>
+  <!-- Bottom wall left (door gap: x=199–361, 162px≈650mm) -->
+  <rect x="90" y="380" width="109" height="20" fill="#3d3d3d"/>
+  <!-- Bottom wall right -->
+  <rect x="361" y="380" width="104" height="20" fill="#3d3d3d"/>
+
+  <!-- Inner floor base -->
+  <rect x="110" y="95" width="335" height="285" fill="#faf5e4"/>
+
+  <!-- Upper bench: W1340×D350mm = 335×87px -->
+  <rect x="110" y="95" width="335" height="87" fill="#c8845a" stroke="#8b5030" stroke-width="1.5"/>
+  <line x1="110" y1="124" x2="445" y2="124" stroke="#a06040" stroke-width="0.5" opacity="0.6"/>
+  <line x1="110" y1="153" x2="445" y2="153" stroke="#a06040" stroke-width="0.5" opacity="0.6"/>
+  <text x="277" y="142" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="white">上段ベンチ　W1340 × D350mm</text>
+
+  <!-- Lower bench: W1340×D300mm = 335×75px -->
+  <rect x="110" y="182" width="335" height="75" fill="#daa064" stroke="#8b5030" stroke-width="1.5"/>
+  <line x1="110" y1="207" x2="445" y2="207" stroke="#b07844" stroke-width="0.5" opacity="0.6"/>
+  <line x1="110" y1="232" x2="445" y2="232" stroke="#b07844" stroke-width="0.5" opacity="0.6"/>
+  <text x="277" y="225" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#5c3a1e">下段ベンチ　W1340 × D300mm</text>
+
+  <!-- Heater: 300×300mm = 75×75px, right side near front -->
+  <rect x="370" y="278" width="75" height="75" fill="#e74c3c" stroke="#c0392b" stroke-width="2" rx="5"/>
+  <text x="407" y="313" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="white">HEATER</text>
+  <text x="407" y="326" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#ffbbbb">300×300mm</text>
+
+  <!-- Floor label -->
+  <text x="215" y="340" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#bbb">床（有効スペース）</text>
+
+  <!-- Door: hinge at (199,380), 162px radius, shown 45° open -->
+  <line x1="199" y1="380" x2="314" y2="495" stroke="#444" stroke-width="2"/>
+  <path d="M 361,380 A 162,162 0 0,1 314,495" fill="none" stroke="#777" stroke-width="1" stroke-dasharray="6,3"/>
+  <text x="268" y="415" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#444">扉 W650（外開き）</text>
+
+  <!-- ===== DIMENSION LINES ===== -->
+
+  <!-- Width 1500mm -->
+  <line x1="90" y1="432" x2="465" y2="432" stroke="#333" stroke-width="1"/>
+  <line x1="90" y1="427" x2="90" y2="437" stroke="#333" stroke-width="2"/>
+  <line x1="465" y1="427" x2="465" y2="437" stroke="#333" stroke-width="2"/>
+  <text x="277" y="447" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#333">W = 1500</text>
+
+  <!-- Depth 1300mm -->
+  <line x1="488" y1="75" x2="488" y2="400" stroke="#333" stroke-width="1"/>
+  <line x1="483" y1="75" x2="493" y2="75" stroke="#333" stroke-width="2"/>
+  <line x1="483" y1="400" x2="493" y2="400" stroke="#333" stroke-width="2"/>
+  <text x="510" y="242" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#333" transform="rotate(90,510,242)">D = 1300</text>
+
+  <!-- Inner width 1340mm (dashed) -->
+  <line x1="110" y1="458" x2="445" y2="458" stroke="#aaa" stroke-width="0.8" stroke-dasharray="3,2"/>
+  <line x1="110" y1="454" x2="110" y2="462" stroke="#aaa" stroke-width="1"/>
+  <line x1="445" y1="454" x2="445" y2="462" stroke="#aaa" stroke-width="1"/>
+  <text x="277" y="471" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#aaa">内寸 W1340</text>
+
+  <!-- ===== LEGEND ===== -->
+  <rect x="10" y="75" width="70" height="12" fill="#c8845a" stroke="#8b5030" stroke-width="0.8"/>
+  <text x="84" y="85" font-family="Arial,sans-serif" font-size="8" fill="#333">上段ベンチ</text>
+  <rect x="10" y="90" width="70" height="12" fill="#daa064" stroke="#8b5030" stroke-width="0.8"/>
+  <text x="84" y="100" font-family="Arial,sans-serif" font-size="8" fill="#333">下段ベンチ</text>
+  <rect x="10" y="105" width="12" height="12" fill="#e74c3c" rx="2"/>
+  <text x="26" y="115" font-family="Arial,sans-serif" font-size="8" fill="#333">ヒーター</text>
+  <line x1="10" y1="127" x2="30" y2="127" stroke="#444" stroke-width="2"/>
+  <text x="34" y="130" font-family="Arial,sans-serif" font-size="8" fill="#333">扉（開き位置）</text>
+  <line x1="10" y1="141" x2="30" y2="141" stroke="#777" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="34" y="144" font-family="Arial,sans-serif" font-size="8" fill="#333">扉スウィング</text>
+
+  <!-- ===== SCALE BAR ===== -->
+  <text x="10" y="498" font-family="Arial,sans-serif" font-size="9" fill="#555">S=1:20</text>
+  <text x="10" y="513" font-family="Arial,sans-serif" font-size="8" fill="#555">0</text>
+  <rect x="22" y="506" width="50" height="7" fill="#555"/>
+  <rect x="72" y="506" width="50" height="7" fill="none" stroke="#555" stroke-width="1.5"/>
+  <line x1="22" y1="503" x2="22" y2="516" stroke="#555" stroke-width="1.5"/>
+  <line x1="72" y1="503" x2="72" y2="516" stroke="#555" stroke-width="1.5"/>
+  <line x1="122" y1="503" x2="122" y2="516" stroke="#555" stroke-width="1.5"/>
+  <text x="47" y="522" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#555">500</text>
+  <text x="97" y="522" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#555">1000mm</text>
+
+</svg>

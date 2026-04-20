@@ -1,0 +1,200 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="850" height="600" viewBox="0 0 850 600">
+  <defs>
+    <marker id="ah" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <polygon points="0 0, 6 3, 0 6" fill="#333"/>
+    </marker>
+    <marker id="ahR" markerWidth="6" markerHeight="6" refX="1" refY="3" orient="auto-start-reverse">
+      <polygon points="0 0, 6 3, 0 6" fill="#333"/>
+    </marker>
+  </defs>
+
+  <rect width="850" height="600" fill="#f7f7f7"/>
+
+  <!-- Title bar -->
+  <rect x="0" y="0" width="850" height="58" fill="#1a4a3a"/>
+  <text x="425" y="30" text-anchor="middle" font-family="'Helvetica Neue',Arial,sans-serif" font-size="16" font-weight="bold" fill="white">JapanSauna 屋外キャビン（BtoB）｜ 断面図（側面から見た図）</text>
+  <text x="425" y="48" text-anchor="middle" font-family="'Helvetica Neue',Arial,sans-serif" font-size="11" fill="#aad4c4">Scale 1:20 ／ 単位: mm ／ 2026-03-31（外寸 W2,100 × D2,200 × H2,500）</text>
+
+  <!-- ===== SECTION VIEW ===== -->
+  <!-- Scale: 1px = 8mm -->
+  <!-- H2,500mm=312px / D2,200mm=275px / Ceiling200mm=25px / Floor100mm=13px / Wall150mm=19px -->
+  <!-- Interior H=2,200mm=275px / Interior D=1,900mm=237px -->
+
+  <g transform="translate(155, 105)">
+
+    <!-- === OUTER STRUCTURE === -->
+
+    <!-- Back wall (left): サーモウッド外装 + 断熱構造 150mm=19px -->
+    <rect x="0" y="0" width="19" height="312" fill="#8a7060" stroke="#5a4030" stroke-width="0.8"/>
+    <!-- Thermowood grain hint -->
+    <line x1="5"  y1="5" x2="5"  y2="307" stroke="#6a5040" stroke-width="0.5" opacity="0.6"/>
+    <line x1="10" y1="5" x2="10" y2="307" stroke="#6a5040" stroke-width="0.5" opacity="0.6"/>
+    <line x1="15" y1="5" x2="15" y2="307" stroke="#6a5040" stroke-width="0.5" opacity="0.6"/>
+    <!-- Insulation layer hint inside back wall -->
+    <rect x="3" y="5" width="13" height="302" fill="#f0d898" opacity="0.35"/>
+
+    <!-- Front wall frame (right): upper portion structural -->
+    <rect x="256" y="0" width="19" height="137" fill="#8a7060" stroke="#5a4030" stroke-width="0.8"/>
+    <!-- Front wall lower: panorama glass (1,100mm=137px from floor) -->
+    <rect x="252" y="137" width="23" height="162" fill="#a8d4ec" stroke="#4488bb" stroke-width="1.5" opacity="0.85"/>
+
+    <!-- Ceiling: total 200mm=25px (roof structure + insulation) -->
+    <rect x="0" y="0" width="275" height="25" fill="#7a6a58" stroke="#5a4030" stroke-width="0.8"/>
+    <!-- Ceiling insulation fill -->
+    <rect x="19" y="2" width="237" height="21" fill="#f0d898" opacity="0.7"/>
+    <text x="137" y="15" text-anchor="middle" font-family="Arial,sans-serif" font-size="7.5" fill="#5a3800" font-weight="bold">ロックウール 150mm ＋ 屋根構造計 200mm</text>
+
+    <!-- Floor frame: 100mm=13px -->
+    <rect x="0" y="299" width="275" height="13" fill="#9a8870" stroke="#5a4030" stroke-width="0.8"/>
+    <rect x="19" y="300" width="237" height="11" fill="#c8a870" opacity="0.8"/>
+    <text x="137" y="309" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#4a2800">木材フレーム 90mm ／ SUS304防水パン</text>
+
+    <!-- === INTERIOR SPACE === -->
+    <!-- x=19 to x=256 (237px), y=25 to y=299 (274px) -->
+    <rect x="19" y="25" width="237" height="274" fill="#fdf8f0"/>
+
+    <!-- Interior cladding hints -->
+    <rect x="19" y="25" width="3" height="274" fill="#d4a060" opacity="0.6"/>
+    <rect x="253" y="25" width="3" height="112" fill="#d4a060" opacity="0.6"/>
+    <rect x="19" y="22" width="237" height="3" fill="#d4a060" opacity="0.7"/>
+
+    <!-- Interior floor surface -->
+    <rect x="19" y="290" width="237" height="9" fill="#c8a870"/>
+
+    <!-- === UPPER BENCH === -->
+    <!-- H1,050mm from interior floor → 1050/8=131px up → bench top at y=299-131=168 -->
+    <!-- D600mm=75px from back wall (x=19 to x=94) -->
+    <line x1="19" y1="168" x2="94" y2="168" stroke="#a07030" stroke-width="4"/>
+    <rect x="19" y="169" width="75" height="4" fill="#b07030" opacity="0.8"/>
+    <rect x="19" y="173" width="4" height="117" fill="#b07030" opacity="0.7"/>
+    <rect x="90" y="173" width="4" height="51" fill="#b07030" opacity="0.7"/>
+    <!-- Bench planks -->
+    <line x1="19" y1="178" x2="94" y2="178" stroke="#c09040" stroke-width="1.5" opacity="0.5"/>
+    <line x1="19" y1="187" x2="94" y2="187" stroke="#c09040" stroke-width="1.5" opacity="0.5"/>
+    <text x="56" y="163" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#4a2800">上段 H1,050</text>
+
+    <!-- === LOWER BENCH === -->
+    <!-- H450mm from interior floor → 450/8=56px up → bench top at y=299-56=243 -->
+    <!-- D400mm=50px from back wall (x=19 to x=69) -->
+    <line x1="19" y1="243" x2="69" y2="243" stroke="#a07030" stroke-width="4"/>
+    <rect x="19" y="244" width="50" height="4" fill="#b07030" opacity="0.8"/>
+    <rect x="19" y="248" width="3" height="42" fill="#b07030" opacity="0.7"/>
+    <rect x="66" y="248" width="3" height="42" fill="#b07030" opacity="0.7"/>
+    <text x="44" y="238" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#4a2800">下段 H450</text>
+
+    <!-- === STOVE === -->
+    <!-- 300×300mm=37.5px → 38px. Front-right area: x=218 y=261 -->
+    <rect x="214" y="261" width="38" height="38" fill="#4a4a4a" stroke="#222" stroke-width="1" rx="3"/>
+    <text x="233" y="277" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="white">ストーブ</text>
+    <text x="233" y="289" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#88ccff">6kW</text>
+    <!-- Heat lines -->
+    <path d="M 228 256 Q 225 244 228 232 Q 231 220 228 208" stroke="#ff8800" stroke-width="1.2" fill="none" opacity="0.7"/>
+    <path d="M 237 254 Q 234 242 237 230 Q 240 218 237 206" stroke="#ff8800" stroke-width="1.2" fill="none" opacity="0.7"/>
+
+    <!-- === LED INDICATOR === -->
+    <circle cx="19" cy="247" r="3" fill="#ffaa00" opacity="0.9"/>
+    <text x="14" y="261" font-family="Arial,sans-serif" font-size="7" fill="#cc8800">LED</text>
+
+    <!-- === PANORAMA WINDOW LABEL === -->
+    <text x="275" y="210" font-family="Arial,sans-serif" font-size="7.5" fill="#1a5588" transform="rotate(90,275,210)">パノラマ窓（耐熱ダブルガラス）H1,100</text>
+
+    <!-- === DIMENSION LINES === -->
+
+    <!-- Total H2,500 (left outer) -->
+    <line x1="-28" y1="0" x2="-28" y2="312" stroke="#333" stroke-width="0.9" marker-start="url(#ahR)" marker-end="url(#ah)"/>
+    <text x="-46" y="160" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#333" transform="rotate(-90,-46,160)">H 2,500</text>
+
+    <!-- Ceiling thickness 200mm -->
+    <line x1="-10" y1="0" x2="-10" y2="25" stroke="#666" stroke-width="0.7" marker-start="url(#ahR)" marker-end="url(#ah)"/>
+    <text x="-22" y="15" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#666">200</text>
+
+    <!-- Interior H2,200 -->
+    <line x1="-10" y1="25" x2="-10" y2="299" stroke="#555" stroke-width="0.7" marker-start="url(#ahR)" marker-end="url(#ah)"/>
+    <text x="-22" y="165" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#555" transform="rotate(-90,-22,165)">内寸 H 2,200</text>
+
+    <!-- Floor 100mm -->
+    <line x1="-10" y1="299" x2="-10" y2="312" stroke="#666" stroke-width="0.7" marker-start="url(#ahR)" marker-end="url(#ah)"/>
+    <text x="-22" y="308" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#666">100</text>
+
+    <!-- Upper bench H1,050 (right) -->
+    <line x1="295" y1="168" x2="295" y2="299" stroke="#a07030" stroke-width="0.8" marker-start="url(#ahR)" marker-end="url(#ah)"/>
+    <text x="315" y="237" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a07030" transform="rotate(-90,315,237)">H 1,050</text>
+
+    <!-- Lower bench H450 (right) -->
+    <line x1="312" y1="243" x2="312" y2="299" stroke="#886622" stroke-width="0.8" marker-start="url(#ahR)" marker-end="url(#ah)"/>
+    <text x="328" y="274" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#886622" transform="rotate(-90,328,274)">H 450</text>
+
+    <!-- Total D2,200 (bottom) -->
+    <line x1="0" y1="334" x2="275" y2="334" stroke="#333" stroke-width="0.9" marker-start="url(#ahR)" marker-end="url(#ah)"/>
+    <text x="137" y="348" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#333">D 2,200</text>
+
+    <!-- Upper bench D600 (bottom) -->
+    <line x1="19" y1="318" x2="94" y2="318" stroke="#a07030" stroke-width="0.8" marker-start="url(#ahR)" marker-end="url(#ah)"/>
+    <text x="56" y="330" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#a07030">D 600</text>
+
+    <!-- Lower bench D400 (bottom) -->
+    <line x1="19" y1="357" x2="69" y2="357" stroke="#886622" stroke-width="0.8" marker-start="url(#ahR)" marker-end="url(#ah)"/>
+    <text x="44" y="369" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#886622">D 400</text>
+
+    <!-- Wall thickness label (back) -->
+    <line x1="0" y1="318" x2="19" y2="318" stroke="#5a4030" stroke-width="0.8" marker-start="url(#ahR)" marker-end="url(#ah)"/>
+    <text x="9" y="330" text-anchor="middle" font-family="Arial,sans-serif" font-size="7.5" fill="#5a4030">150</text>
+
+    <!-- Outdoor / indoor labels -->
+    <text x="-62" y="160" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#4a8a4a" transform="rotate(-90,-62,160)">← 屋外（外気温・雨風・UV）</text>
+    <text x="370" y="160" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#cc4400" transform="rotate(90,370,160)">サウナ内部（80〜100℃）→</text>
+
+    <!-- Interior annotation -->
+    <text x="148" y="140" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#aaa" opacity="0.8">室内スペース</text>
+
+  </g>
+
+  <!-- Right: Material structure notes -->
+  <g transform="translate(510, 110)">
+    <text x="0" y="0" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#333">構造メモ（断面）</text>
+    <line x1="0" y1="8" x2="260" y2="8" stroke="#ddd" stroke-width="1"/>
+
+    <text x="0" y="30" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#1a4a3a">天井・屋根（外→内）</text>
+    <rect x="0" y="38" width="12" height="8" fill="#7a6a58" stroke="#5a4030" stroke-width="0.5"/>
+    <text x="17" y="47" font-family="Arial,sans-serif" font-size="9" fill="#444">金属屋根 ＋ 防水シート 25mm</text>
+    <rect x="0" y="50" width="12" height="8" fill="#c8b880" stroke="#aaa" stroke-width="0.5"/>
+    <text x="17" y="59" font-family="Arial,sans-serif" font-size="9" fill="#444">構造用合板 9mm</text>
+    <rect x="0" y="62" width="12" height="8" fill="#f0d898" stroke="#c8a840" stroke-width="0.5"/>
+    <text x="17" y="71" font-family="Arial,sans-serif" font-size="9" fill="#8a6600">ロックウール 150mm ✦</text>
+    <rect x="0" y="74" width="12" height="8" fill="#99ccee" stroke="#5599bb" stroke-width="0.5"/>
+    <text x="17" y="83" font-family="Arial,sans-serif" font-size="9" fill="#444">防湿シート 1mm</text>
+    <rect x="0" y="86" width="12" height="8" fill="#d4a060" stroke="#a07030" stroke-width="0.5"/>
+    <text x="17" y="95" font-family="Arial,sans-serif" font-size="9" fill="#444">ヒノキ羽目板 15mm</text>
+
+    <text x="0" y="115" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#1a4a3a">外壁（外→内）</text>
+    <rect x="0" y="123" width="12" height="8" fill="#8a7060" stroke="#5a4030" stroke-width="0.5"/>
+    <text x="17" y="132" font-family="Arial,sans-serif" font-size="9" fill="#444">サーモウッド羽目板 20mm ✦</text>
+    <rect x="0" y="135" width="12" height="8" fill="#b0d0e8" stroke="#6699bb" stroke-width="0.5"/>
+    <text x="17" y="144" font-family="Arial,sans-serif" font-size="9" fill="#444">透湿防水シート 1mm</text>
+    <rect x="0" y="147" width="12" height="8" fill="#c8b880" stroke="#aaa" stroke-width="0.5"/>
+    <text x="17" y="156" font-family="Arial,sans-serif" font-size="9" fill="#444">構造用合板 9mm</text>
+    <rect x="0" y="159" width="12" height="8" fill="#f0d898" stroke="#c8a840" stroke-width="0.5"/>
+    <text x="17" y="168" font-family="Arial,sans-serif" font-size="9" fill="#8a6600">ロックウール 100mm ✦</text>
+    <rect x="0" y="171" width="12" height="8" fill="#99ccee" stroke="#5599bb" stroke-width="0.5"/>
+    <text x="17" y="180" font-family="Arial,sans-serif" font-size="9" fill="#444">防湿シート 1mm</text>
+    <rect x="0" y="183" width="12" height="8" fill="#d4a060" stroke="#a07030" stroke-width="0.5"/>
+    <text x="17" y="192" font-family="Arial,sans-serif" font-size="9" fill="#444">ヒノキ羽目板 15mm</text>
+    <text x="0" y="205" font-family="Arial,sans-serif" font-size="9" fill="#555" font-weight="bold">壁厚 計 146mm ≈ 150mm</text>
+
+    <text x="0" y="225" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#1a4a3a">床（上→下）</text>
+    <rect x="0" y="233" width="12" height="8" fill="#d4a060" stroke="#a07030" stroke-width="0.5"/>
+    <text x="17" y="242" font-family="Arial,sans-serif" font-size="9" fill="#444">ヒノキすのこ / 磁器タイル</text>
+    <rect x="0" y="245" width="12" height="8" fill="#888" stroke="#aaa" stroke-width="0.5"/>
+    <text x="17" y="254" font-family="Arial,sans-serif" font-size="9" fill="#444">SUS304防水パン 1.5mm</text>
+    <rect x="0" y="257" width="12" height="8" fill="#c8a870" stroke="#aaa" stroke-width="0.5"/>
+    <text x="17" y="266" font-family="Arial,sans-serif" font-size="9" fill="#444">木材フレーム 60×90 @303</text>
+
+    <line x1="0" y1="280" x2="260" y2="280" stroke="#ddd" stroke-width="1"/>
+    <text x="0" y="295" font-family="Arial,sans-serif" font-size="8.5" fill="#1a4a3a">✦ 屋外版の主要差別化仕様</text>
+    <text x="0" y="308" font-family="Arial,sans-serif" font-size="8.5" fill="#888">（屋内版：壁断熱25mm / 外装メラミン）</text>
+
+  </g>
+
+  <!-- Footer -->
+  <text x="425" y="585" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#aaa">※ Lサイズ相当（3〜4人用）断面図。正式施工図は CAD にて別途作成してください。接着には耐熱ネタボンド使用。</text>
+</svg>

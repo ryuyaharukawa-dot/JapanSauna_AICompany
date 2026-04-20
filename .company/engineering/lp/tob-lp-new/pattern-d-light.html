@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>施設・ホテル向けサウナ導入 | JapanSauna</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans JP', sans-serif; background: #fff; color: #1a1a1a; line-height: 1.8; }
+    img { max-width: 100%; height: auto; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    :root {
+      --gold: #C49A6C;
+      --gold-dark: #9A7040;
+      --gold-pale: #FBF4EA;
+      --brown: #3D2B1A;
+      --bg: #ffffff;
+      --bg-warm: #FAF8F4;
+      --bg-beige: #F3EDE3;
+      --text: #1a1a1a;
+      --muted: #666;
+      --border: #E8E0D4;
+      --max: 1080px;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* ====== SCROLL REVEAL ====== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+    }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+    .reveal-up {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
+    }
+    .reveal-up.is-visible { opacity: 1; transform: translateY(0); }
+
+    /* stagger delays */
+    .stagger-1 { transition-delay: 0.08s; }
+    .stagger-2 { transition-delay: 0.16s; }
+    .stagger-3 { transition-delay: 0.24s; }
+    .stagger-4 { transition-delay: 0.32s; }
+
+    /* ====== BUTTONS ====== */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 15px; letter-spacing: 0.05em;
+      padding: 14px 36px; border-radius: 9999px; cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.15s, box-shadow 0.15s;
+      border: none;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(61,43,26,0.15); }
+    .btn:active { transform: translateY(0); box-shadow: none; }
+    .btn--gold { background: var(--gold); color: #fff; }
+    .btn--gold:hover { background: var(--gold-dark); }
+    .btn--outline { background: transparent; border: 2px solid var(--gold); color: var(--gold); }
+    .btn--outline:hover { background: var(--gold); color: #fff; box-shadow: 0 6px 20px rgba(196,154,108,0.3); }
+    .btn--white { background: #fff; color: var(--brown); }
+    .btn--white:hover { background: var(--bg-warm); box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
+    .btn--outline-on-dark { background: transparent; border: 2px solid rgba(255,255,255,0.4); color: #fff; border-radius: 9999px; }
+    .btn--outline-on-dark:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.7); box-shadow: none; }
+    .btn--lg { padding: 18px 48px; font-size: 16px; }
+
+    /* ====== HEADER ====== */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: transparent;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      transition: background 0.35s, border-color 0.35s, box-shadow 0.35s;
+    }
+    header.scrolled {
+      background: rgba(255,255,255,0.97); backdrop-filter: blur(8px);
+      border-bottom-color: var(--border);
+      box-shadow: 0 2px 20px rgba(61,43,26,0.08);
+    }
+    .header-inner {
+      max-width: var(--max); margin: 0 auto; padding: 0 2rem;
+      height: 68px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo {
+      font-family: 'Noto Serif JP', serif; font-size: 1.1rem; font-weight: 700;
+      color: #fff; letter-spacing: 0.05em;
+      transition: color 0.35s;
+    }
+    header.scrolled .logo { color: var(--brown); }
+
+    /* ====== HERO ====== */
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      background: #140d06;
+    }
+    .hero-image {
+      position: absolute; inset: 0; z-index: 0; overflow: hidden;
+    }
+    .hero-image img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 40%;
+    }
+    .hero-image::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(
+        105deg,
+        rgba(15,9,4,0.90) 0%,
+        rgba(15,9,4,0.68) 42%,
+        rgba(15,9,4,0.22) 70%,
+        rgba(15,9,4,0.04) 100%
+      );
+    }
+    .hero-text {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 8rem 3rem 5rem 5rem;
+      max-width: 640px;
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--gold);
+      background: rgba(196,154,108,0.18); display: inline-block;
+      padding: 0.4rem 1rem; border-radius: 9999px;
+      margin-bottom: 1.75rem; align-self: flex-start;
+    }
+    h1 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.75rem, 2.8vw, 2.6rem); font-weight: 700; line-height: 1.5;
+      color: #fff; margin-bottom: 1.5rem; letter-spacing: 0.01em;
+    }
+    .hero-desc { font-size: 1rem; color: rgba(255,255,255,0.78); line-height: 2; margin-bottom: 2rem; }
+    .hero-cta { display: flex; flex-direction: row; gap: 0.875rem; align-items: center; flex-wrap: wrap; margin-bottom: 1.25rem; }
+    .hero-cta .btn--outline { border-color: rgba(255,255,255,0.45); color: #fff; }
+    .hero-cta .btn--outline:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.7); box-shadow: none; }
+    .hero-note { font-size: 0.75rem; color: rgba(255,255,255,0.38); letter-spacing: 0.05em; margin-bottom: 2.5rem; }
+
+    /* Hero stats */
+    .hero-stats {
+      display: flex; gap: 0; align-items: stretch;
+      background: rgba(255,255,255,0.08); border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.14);
+      overflow: hidden; align-self: flex-start;
+      backdrop-filter: blur(6px);
+    }
+    .hero-stat { padding: 0.875rem 1.5rem; text-align: center; flex: 1; }
+    .hero-stat + .hero-stat { border-left: 1px solid rgba(255,255,255,0.14); }
+    .hero-stat strong { display: block; font-family: 'Noto Serif JP', serif; font-size: 1.1rem; font-weight: 700; color: #fff; line-height: 1.2; white-space: nowrap; }
+    .hero-stat span { font-size: 0.7rem; color: rgba(255,255,255,0.52); letter-spacing: 0.03em; white-space: nowrap; }
+
+    /* ====== PROOF BAR ====== */
+    .proof-bar { background: var(--brown); padding: 1.25rem 2rem; }
+    .proof-bar-inner {
+      max-width: var(--max); margin: 0 auto;
+      display: flex; align-items: center; justify-content: center;
+      gap: 3rem; flex-wrap: wrap;
+    }
+    .proof-item { text-align: center; }
+    .proof-item strong { display: block; font-size: 1rem; font-weight: 700; color: var(--gold); }
+    .proof-item span { font-size: 0.72rem; color: rgba(255,255,255,0.65); }
+    .proof-sep { color: rgba(255,255,255,0.2); font-size: 1.25rem; }
+
+    /* ====== SECTION BASE ====== */
+    .section { padding: 5rem 2rem; }
+    .section--warm { background: var(--bg-warm); }
+    .section--beige { background: var(--bg-beige); }
+    .inner { max-width: var(--max); margin: 0 auto; }
+    .section-tag {
+      display: inline-block; font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-dark);
+      background: var(--gold-pale); padding: 0.35rem 1rem; border-radius: 9999px;
+      margin-bottom: 1.25rem;
+    }
+    .section-tag--dark { background: rgba(196,154,108,0.18); color: #C49A6C; }
+    h2 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.6rem, 3vw, 2.25rem); font-weight: 700; line-height: 1.4;
+      color: var(--brown); margin-bottom: 1rem; letter-spacing: 0.01em;
+      text-wrap: balance;
+    }
+    .lead { font-size: 0.95rem; color: var(--muted); line-height: 2; margin-bottom: 3.5rem; max-width: 560px; }
+
+    /* ====== PROBLEM ====== */
+    .problem-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+    .problem-card {
+      background: #fff; border-radius: 16px; padding: 2.5rem 2rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 16px rgba(61,43,26,0.04);
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+    .problem-card:hover { box-shadow: 0 12px 40px rgba(61,43,26,0.1); transform: translateY(-3px); }
+    .problem-num {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 2.5rem; font-weight: 700; color: var(--border);
+      line-height: 1; margin-bottom: 1.25rem;
+    }
+    .problem-card h3 { font-size: 1rem; font-weight: 700; color: var(--brown); margin-bottom: 0.75rem; line-height: 1.5; text-wrap: balance; }
+    .problem-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.85; overflow-wrap: break-word; }
+
+    /* ====== SOLUTION ====== */
+    .solution-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem; }
+    .solution-item {
+      background: #fff; border-radius: 16px; padding: 2.5rem;
+      display: flex; gap: 1.5rem; align-items: flex-start;
+      border: 1px solid var(--border);
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+    .solution-item:hover { box-shadow: 0 8px 32px rgba(61,43,26,0.08); transform: translateY(-2px); }
+    .solution-icon {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: var(--gold-pale); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold-dark);
+    }
+    .solution-item h3 { font-size: 1rem; font-weight: 700; color: var(--brown); margin-bottom: 0.5rem; line-height: 1.5; text-wrap: balance; }
+    .solution-item p { font-size: 0.875rem; color: var(--muted); line-height: 1.85; overflow-wrap: break-word; }
+
+    /* ====== CASES ====== */
+    .case-feature {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      align-items: center; margin-bottom: 4rem;
+    }
+    .case-feature:last-of-type { margin-bottom: 0; }
+    .case-feature.reverse > *:first-child { order: 2; }
+    .case-feature.reverse > *:last-child { order: 1; }
+    .case-image { border-radius: 16px; overflow: hidden; aspect-ratio: 4/3; }
+    .case-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s var(--ease-out); }
+    .case-image:hover img { transform: scale(1.03); }
+    .case-tag {
+      display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
+      background: var(--brown); color: #fff; padding: 0.3rem 0.875rem; border-radius: 9999px;
+      margin-bottom: 1rem;
+    }
+    .case-name { font-family: 'Noto Serif JP', serif; font-size: 1.5rem; font-weight: 700; color: var(--brown); margin-bottom: 0.5rem; }
+    .case-location { font-size: 0.8rem; color: var(--muted); margin-bottom: 1.5rem; }
+    .case-body { font-size: 0.875rem; color: #555; line-height: 2; margin-bottom: 1.5rem; }
+    .case-specs { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.75rem; }
+    .case-spec {
+      font-size: 0.7rem; font-weight: 700; background: var(--gold-pale);
+      color: var(--gold-dark); padding: 0.25rem 0.875rem; border-radius: 9999px;
+    }
+    .case-quote {
+      background: var(--bg-warm); border-left: 3px solid var(--gold);
+      border-radius: 0 12px 12px 0; padding: 1.25rem 1.5rem;
+    }
+    .case-quote p { font-size: 0.9rem; color: #444; line-height: 1.9; font-style: italic; margin-bottom: 0.5rem; }
+    .case-quote cite { font-size: 0.75rem; color: var(--muted); font-style: normal; }
+    .case-divider { border: none; border-top: 1px solid var(--border); margin: 4rem 0; }
+
+    /* サムネグリッド */
+    .case-thumbs-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.25rem; font-weight: 700; color: var(--brown);
+      text-align: center; margin-bottom: 2rem;
+    }
+    .case-thumbs-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; }
+    .case-thumb {
+      border-radius: 12px; overflow: hidden; border: 1px solid var(--border); background: #fff;
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+    .case-thumb:hover { box-shadow: 0 8px 28px rgba(61,43,26,0.1); transform: translateY(-3px); }
+    .case-thumb img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
+    .case-thumb-ph { width: 100%; aspect-ratio: 4/3; background: var(--bg-beige); display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.75rem; }
+    .case-thumb-name { font-size: 0.875rem; font-weight: 700; color: var(--brown); padding: 0.875rem 1rem 0.25rem; }
+    .case-thumb-model { font-size: 0.75rem; color: var(--muted); padding: 0 1rem 0.875rem; }
+
+    /* ====== PRODUCTS ====== */
+    .products-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+    .product-card {
+      border-radius: 16px; overflow: hidden; border: 1px solid var(--border); background: #fff;
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+    .product-card:hover { box-shadow: 0 12px 40px rgba(61,43,26,0.1); transform: translateY(-3px); }
+    .product-ph { width: 100%; aspect-ratio: 16/9; background: var(--bg-beige); display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.75rem; }
+    .product-body { padding: 1.5rem; }
+    .product-tag-pill { display: inline-block; font-size: 0.68rem; font-weight: 700; background: var(--gold-pale); color: var(--gold-dark); padding: 0.2rem 0.75rem; border-radius: 9999px; margin-bottom: 0.875rem; letter-spacing: 0.05em; }
+    .product-name { font-family: 'Noto Serif JP', serif; font-size: 1.25rem; font-weight: 700; color: var(--brown); margin-bottom: 0.625rem; }
+    .product-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.8; margin-bottom: 1rem; }
+    .product-features { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.25rem; list-style: none; }
+    .product-features li { font-size: 0.68rem; font-weight: 700; background: var(--bg-warm); color: #666; padding: 0.2rem 0.625rem; border-radius: 9999px; border: 1px solid var(--border); }
+    .product-price { font-family: 'Noto Serif JP', serif; font-size: 1.25rem; font-weight: 700; color: var(--brown); }
+    .product-price span { font-size: 0.78rem; font-weight: 400; color: var(--muted); }
+    .product-card--custom { background: var(--brown); border-color: var(--brown); display: flex; align-items: center; justify-content: center; }
+    .product-custom-body { padding: 2.5rem 2rem; text-align: center; }
+    .product-custom-body h3 { font-family: 'Noto Serif JP', serif; font-size: 1.1rem; color: #fff; margin-bottom: 0.875rem; font-weight: 700; }
+    .product-custom-body p { font-size: 0.83rem; color: rgba(255,255,255,0.65); line-height: 1.85; margin-bottom: 1.75rem; }
+    .subsidy-note { background: #fffbf3; border: 1px solid #e8d8b0; border-radius: 12px; padding: 1.25rem 1.5rem; font-size: 0.85rem; color: #666; line-height: 1.8; }
+
+    /* ====== WHY (light) ====== */
+    .section--why { background: var(--bg-beige); }
+    .why-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+    .why-item {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 16px; padding: 2.25rem 2rem;
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+    .why-item:hover { box-shadow: 0 8px 32px rgba(61,43,26,0.08); transform: translateY(-2px); }
+    .why-num {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 2rem; font-weight: 700; color: var(--border);
+      line-height: 1; margin-bottom: 1.25rem;
+    }
+    .why-item h3 { font-size: 1rem; font-weight: 700; color: var(--brown); margin-bottom: 0.625rem; line-height: 1.5; text-wrap: balance; }
+    .why-item p { font-size: 0.85rem; color: var(--muted); line-height: 1.85; overflow-wrap: break-word; }
+    .why-item-5 { grid-column: 1 / -1; }
+
+    /* ====== COMPLIANCE ====== */
+    .compliance-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-bottom: 1.5rem; }
+    .compliance-card {
+      background: #fff; border-radius: 16px; padding: 2.25rem 2rem;
+      border: 1px solid var(--border); text-align: center;
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+    .compliance-card:hover { box-shadow: 0 8px 32px rgba(61,43,26,0.08); transform: translateY(-2px); }
+    .compliance-icon { display: flex; justify-content: center; margin-bottom: 1rem; color: var(--gold-dark); }
+    .compliance-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--brown); margin-bottom: 0.35rem; }
+    .compliance-badge {
+      display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em;
+      background: var(--gold-pale); color: var(--gold-dark);
+      padding: 0.2rem 0.75rem; border-radius: 9999px; margin-bottom: 0.875rem;
+    }
+    .compliance-card p { font-size: 0.83rem; color: var(--muted); line-height: 1.85; }
+    .compliance-note {
+      background: var(--gold-pale); border-radius: 12px; padding: 1.25rem 1.5rem;
+      font-size: 0.85rem; color: #666; line-height: 1.8;
+    }
+
+    /* ====== MAINTENANCE ====== */
+    .maintenance-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.25rem; margin-bottom: 2rem; }
+    .maintenance-item {
+      background: var(--bg-warm); border-radius: 16px; padding: 2rem 1.5rem;
+      border: 1px solid var(--border);
+      display: flex; flex-direction: column;
+    }
+    .maintenance-icon { display: flex; margin-bottom: 1rem; color: var(--gold-dark); }
+    .maintenance-item h3 { font-size: 1rem; font-weight: 700; color: var(--brown); margin-bottom: 0.5rem; text-wrap: balance; }
+    .maintenance-item p { font-size: 0.8rem; color: var(--muted); line-height: 1.8; margin-bottom: 0.875rem; flex: 1; overflow-wrap: break-word; }
+    .badge-free { display: inline-block; font-size: 0.68rem; font-weight: 700; background: #e8f4ec; color: #2d7a45; padding: 0.2rem 0.75rem; border-radius: 9999px; }
+    .badge-paid { display: inline-block; font-size: 0.68rem; font-weight: 700; background: var(--gold-pale); color: var(--gold-dark); padding: 0.2rem 0.75rem; border-radius: 9999px; }
+
+    /* ====== FLOW ====== */
+    .flow-steps { display: flex; align-items: flex-start; gap: 0; }
+    .flow-step { flex: 1; text-align: center; padding: 0 1rem; }
+    .flow-num {
+      width: 60px; height: 60px; border-radius: 50%;
+      background: var(--gold); color: #fff; font-family: 'Noto Serif JP', serif;
+      font-size: 1.25rem; font-weight: 700; display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.25rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .flow-step:hover .flow-num { transform: scale(1.08); box-shadow: 0 6px 20px rgba(196,154,108,0.35); }
+    .flow-step h3 { font-size: 0.95rem; font-weight: 700; color: var(--brown); margin-bottom: 0.5rem; }
+    .flow-step p { font-size: 0.8rem; color: var(--muted); line-height: 1.8; }
+    .flow-arrow { flex-shrink: 0; font-size: 1.25rem; color: var(--gold); padding-top: 1rem; }
+
+    /* ====== FAQ ====== */
+    .faq-list { max-width: 720px; margin: 0 auto; }
+    details { border-bottom: 1px solid var(--border); }
+    summary {
+      padding: 1.25rem 0; font-size: 0.95rem; font-weight: 700; color: var(--brown);
+      cursor: pointer; list-style: none;
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+      transition: color 0.2s;
+    }
+    summary:hover { color: var(--gold-dark); }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: '+'; font-size: 1.5rem; color: var(--gold); font-weight: 300; flex-shrink: 0; line-height: 1; transition: transform 0.25s var(--ease-out); }
+    details[open] summary::after { content: '−'; }
+    .faq-answer { padding: 0 0 1.25rem; font-size: 0.875rem; color: var(--muted); line-height: 1.9; }
+
+    /* ====== CTA ====== */
+    .cta-section {
+      background: linear-gradient(135deg, #3D2B1A 0%, #5A3E28 100%);
+      padding: 5rem 2rem; text-align: center;
+    }
+    .cta-section h2 { color: #fff; margin-bottom: 1rem; }
+    .cta-section .lead { color: rgba(255,255,255,0.65); margin: 0 auto 2.5rem; }
+    .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .cta-note { margin-top: 1.25rem; font-size: 0.75rem; color: rgba(255,255,255,0.35); letter-spacing: 0.05em; }
+
+    /* ====== FOOTER ====== */
+    footer { background: #1a0f08; padding: 2.5rem 2rem; }
+    .footer-inner {
+      max-width: var(--max); margin: 0 auto;
+      display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 2rem;
+    }
+    .footer-logo { font-family: 'Noto Serif JP', serif; font-size: 1rem; color: rgba(255,255,255,0.6); font-weight: 700; }
+    .footer-links { display: flex; gap: 1.5rem; justify-content: center; }
+    .footer-links a { font-size: 0.75rem; color: rgba(255,255,255,0.35); transition: color 0.2s; }
+    .footer-links a:hover { color: rgba(255,255,255,0.7); }
+    .footer-copy { font-size: 0.72rem; color: rgba(255,255,255,0.25); }
+
+    /* ====== FLOAT CTA (SP) ====== */
+    .float-cta { display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 200; background: #fff; border-top: 1px solid var(--border); padding: 0.875rem 1rem calc(0.875rem + env(safe-area-inset-bottom)); }
+    .float-cta a { display: block; background: var(--gold); color: #fff; font-weight: 700; font-size: 0.95rem; padding: 1rem; border-radius: 9999px; text-align: center; letter-spacing: 0.04em; transition: background 0.2s; }
+    .float-cta a:hover { background: var(--gold-dark); }
+
+    /* ====== PATTERN BADGE ====== */
+    .pattern-badge { position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 999; background: var(--gold); color: #fff; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; padding: 0.5rem 1rem; border-radius: 9999px; }
+
+    /* ====== RESPONSIVE ====== */
+    @media (max-width: 900px) {
+      .why-grid { grid-template-columns: 1fr 1fr; }
+      .compliance-grid { grid-template-columns: 1fr; }
+      .maintenance-grid { grid-template-columns: 1fr 1fr; }
+      .products-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .section { padding: 3.5rem 1.25rem; }
+      .header-inner { padding: 0 1.25rem; }
+
+      /* Hero */
+      .hero { min-height: 100svh; }
+      .hero-image img { object-position: center 55%; }
+      .hero-image::after {
+        background: linear-gradient(to bottom, rgba(15,9,4,0.88) 0%, rgba(15,9,4,0.60) 50%, rgba(15,9,4,0.18) 100%);
+      }
+      .hero-text { padding: 7rem 1.25rem 4rem; max-width: 100%; }
+      .hero-cta { flex-direction: column; align-items: flex-start; }
+
+      /* Proof */
+      .proof-bar-inner { gap: 1.25rem; }
+      .proof-sep { display: none; }
+
+      /* Problem / Solution */
+      .problem-grid { grid-template-columns: 1fr; }
+      .solution-grid { grid-template-columns: 1fr; }
+
+      /* Cases */
+      .case-feature { grid-template-columns: 1fr; gap: 2rem; }
+      .case-feature.reverse > *:first-child { order: unset; }
+      .case-feature.reverse > *:last-child { order: unset; }
+      .case-thumbs-grid { grid-template-columns: 1fr 1fr; }
+
+      /* Why */
+      .why-grid { grid-template-columns: 1fr; }
+      .why-item-5 { grid-column: auto; }
+
+      /* Compliance / Maintenance */
+      .compliance-grid { grid-template-columns: 1fr; }
+      .maintenance-grid { grid-template-columns: 1fr; }
+
+      /* Flow */
+      .flow-steps { flex-direction: column; align-items: stretch; }
+      .flow-step { display: flex; gap: 1.25rem; text-align: left; padding: 1.25rem 0; border-bottom: 1px solid var(--border); }
+      .flow-step:last-child { border-bottom: none; }
+      .flow-num { flex-shrink: 0; width: 48px; height: 48px; font-size: 1rem; margin: 0; }
+      .flow-arrow { display: none; }
+
+      /* Footer */
+      .footer-inner { grid-template-columns: 1fr; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+      .float-cta { display: block; }
+
+      /* CTA */
+      .cta-buttons { flex-direction: column; align-items: center; }
+      .cta-buttons .btn { width: 100%; max-width: 400px; }
+    }
+
+    @media (max-width: 480px) {
+      .case-thumbs-grid { grid-template-columns: 1fr; }
+      .maintenance-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="pattern-badge">D案｜ライト×温かみ</div>
+
+<!-- HEADER -->
+<header id="site-header">
+  <div class="header-inner">
+    <div class="logo">JapanSauna</div>
+    <a href="#cta" class="btn btn--gold" style="padding:0.625rem 1.5rem;font-size:0.85rem;">無料相談を申し込む</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <p class="hero-eyebrow">For Villa / Hotel / Rental</p>
+    <h1>サウナが、あなたの施設の<br>「選ばれる理由」になる。</h1>
+    <p class="hero-desc">
+      客単価を上げ、SNSで話題になり、リピーターが生まれる。<br>
+      サウナ1台が、施設の競争力を根本から変えます。
+    </p>
+    <div class="hero-cta">
+      <a href="#cta" class="btn btn--gold btn--lg">無料相談・現地調査を申し込む</a>
+      <a href="#cta" class="btn btn--outline btn--lg">導入事例資料をダウンロード</a>
+    </div>
+    <p class="hero-note">相談・現地調査・お見積りはすべて無料です</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><strong>最短3週間</strong><span>で設置完了</span></div>
+      <div class="hero-stat"><strong>5年間</strong><span>耐久保証</span></div>
+      <div class="hero-stat"><strong>全国対応</strong><span>現地調査無料</span></div>
+    </div>
+  </div>
+  <div class="hero-image">
+    <img src="assets/hero.jpg" alt="施設向けサウナ導入">
+  </div>
+</section>
+
+<!-- PROOF BAR -->
+<div class="proof-bar">
+  <div class="proof-bar-inner">
+    <div class="proof-item"><strong>導入実績多数</strong><span>ヴィラ・ホテル・民泊</span></div>
+    <div class="proof-sep">|</div>
+    <div class="proof-item"><strong>最短3週間</strong><span>で設置完了</span></div>
+    <div class="proof-sep">|</div>
+    <div class="proof-item"><strong>5年間</strong><span>耐久保証</span></div>
+    <div class="proof-sep">|</div>
+    <div class="proof-item"><strong>相談・調査・見積</strong><span>すべて無料</span></div>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section class="section section--warm">
+  <div class="inner">
+    <p class="section-tag reveal">こんなお悩みはありませんか</p>
+    <h2 class="reveal">近隣施設と、<br>差別化できていますか？</h2>
+    <p class="lead reveal">宿泊施設の競争は激しくなる一方です。価格・立地・内装だけでは、もう差がつかない時代。</p>
+    <div class="problem-grid">
+      <div class="problem-card reveal stagger-1">
+        <p class="problem-num">01</p>
+        <h3>競合施設との差別化ができない</h3>
+        <p>設備・立地・価格での差別化に限界を感じている。「何か一つ、話題になる体験」が欲しいが見つからない。</p>
+      </div>
+      <div class="problem-card reveal stagger-2">
+        <p class="problem-num">02</p>
+        <h3>客単価・稼働率が伸び悩んでいる</h3>
+        <p>部屋を埋めることはできても、単価を上げる手段が見当たらない。プレミアム感の演出が難しい。</p>
+      </div>
+      <div class="problem-card reveal stagger-3">
+        <p class="problem-num">03</p>
+        <h3>SNSで自発的に話題にならない</h3>
+        <p>宿泊客にSNS投稿をしてほしいが、「写真に撮りたくなる体験」が施設内にない。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section class="section">
+  <div class="inner">
+    <p class="section-tag reveal">JapanSaunaが解決します</p>
+    <h2 class="reveal">サウナ1台で、<br>4つの数字が動く。</h2>
+    <p class="lead reveal">「設備投資」ではなく、「経営の打ち手」として導入しているオーナーが増えています。</p>
+    <div class="solution-grid">
+      <div class="solution-item reveal stagger-1">
+        <div class="solution-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div>
+          <h3>客単価・宿泊単価UP</h3>
+          <p>「サウナ付きプラン」として高単価設定が可能に。施設の付加価値として価格交渉力が上がります。</p>
+        </div>
+      </div>
+      <div class="solution-item reveal stagger-2">
+        <div class="solution-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <div>
+          <h3>SNS・口コミで自然な集客</h3>
+          <p>「サウナのある宿」としてInstagram・Xで話題に。宿泊客が自発的に投稿・拡散する体験を提供できます。</p>
+        </div>
+      </div>
+      <div class="solution-item reveal stagger-3">
+        <div class="solution-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+        </div>
+        <div>
+          <h3>リピート率・指名予約の向上</h3>
+          <p>「またあのサウナに入りたい」という理由でリピーターが生まれます。OTAに依存しない指名予約が増えます。</p>
+        </div>
+      </div>
+      <div class="solution-item reveal stagger-4">
+        <div class="solution-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <div>
+          <h3>競合との明確な差別化</h3>
+          <p>近隣に「サウナのある施設」がなければ、市場内で唯一の体験を提供できます。検索での訴求力も上がります。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASES -->
+<section class="section section--warm" id="cases">
+  <div class="inner">
+    <p class="section-tag reveal">導入事例</p>
+    <h2 class="reveal">実際の施設オーナーの、<br>リアルな変化。</h2>
+    <p class="lead reveal">「数」ではなく「変化」で伝えます。</p>
+
+    <div class="case-feature reveal">
+      <div class="case-image">
+        <img src="assets/case-stella-storia.jpg" alt="STELLA STORIA 葉山">
+      </div>
+      <div>
+        <span class="case-tag">一棟貸し・ヴィラ</span>
+        <p class="case-name">STELLA STORIA 葉山</p>
+        <p class="case-location">神奈川県葉山町 · 諏訪海岸まで徒歩10秒 · 富士山ビュー</p>
+        <p class="case-body">築80年の古民家をリノベーションした1日1組限定の一棟貸し施設。JapanSaunaのバレルサウナを導入。ロウリュ可能な本格仕様に、ヒノキ露天風呂とウッドデッキの外気浴スペースを組み合わせた完全プライベートサウナ体験は、施設の代名詞となった。</p>
+        <div class="case-specs">
+          <span class="case-spec">バレルサウナ</span>
+          <span class="case-spec">ロウリュ対応</span>
+          <span class="case-spec">ヒノキ露天風呂併設</span>
+          <span class="case-spec">屋外ウッドデッキ</span>
+        </div>
+        <blockquote class="case-quote">
+          <p>「導入後、サウナ目的で来てくださるお客様が増えました。施設の顔になっています。」</p>
+          <cite>— STELLA STORIA 葉山 オーナー</cite>
+        </blockquote>
+      </div>
+    </div>
+
+    <hr class="case-divider">
+
+    <div class="case-feature reverse reveal">
+      <div class="case-image">
+        <img src="assets/case-chiba.jpg" alt="海辺の民泊施設">
+      </div>
+      <div>
+        <span class="case-tag">民泊 · Airbnb掲載物件</span>
+        <p class="case-name">海辺の民泊施設</p>
+        <p class="case-location">千葉県 · Airbnb掲載物件</p>
+        <p class="case-body">海を一望するデッキにバレルサウナと水風呂を設置。非日常感あふれる体験が宿泊客に支持され、SNS投稿が増加。Airbnbでの評価向上にも貢献した。</p>
+        <div class="case-specs">
+          <span class="case-spec">バレルサウナ</span>
+          <span class="case-spec">水風呂併設</span>
+          <span class="case-spec">海ビューデッキ</span>
+        </div>
+        <blockquote class="case-quote">
+          <p>「お客様がSNSに投稿してくださることが増え、自然な集客につながっています。」</p>
+          <cite>— 施設オーナー</cite>
+        </blockquote>
+      </div>
+    </div>
+
+    <hr class="case-divider">
+
+    <p class="case-thumbs-title reveal">その他の導入施設</p>
+    <div class="case-thumbs-grid">
+      <div class="case-thumb reveal stagger-1">
+        <img src="assets/case-thumb-01.jpg" alt="Js STAY OTARU" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;">
+        <p class="case-thumb-name">Js STAY OTARU</p>
+        <p class="case-thumb-model">キャビンサウナ · 北海道小樽市</p>
+      </div>
+      <div class="case-thumb reveal stagger-2">
+        <img src="assets/case-thumb-02.jpg" alt="岬の湯しゃこたん" style="width:100%;aspect-ratio:4/3;object-fit:cover;object-position:center 40%;display:block;">
+        <p class="case-thumb-name">岬の湯しゃこたん</p>
+        <p class="case-thumb-model">キャビンサウナ · 北海道積丹町</p>
+      </div>
+      <div class="case-thumb reveal stagger-3">
+        <div class="case-thumb-ph">📷 準備中</div>
+        <p class="case-thumb-name">施設名（準備中）</p>
+        <p class="case-thumb-model">バレルサウナ</p>
+      </div>
+      <div class="case-thumb reveal stagger-4">
+        <div class="case-thumb-ph">📷 準備中</div>
+        <p class="case-thumb-name">施設名（準備中）</p>
+        <p class="case-thumb-model">バレルサウナ</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="section" id="products">
+  <div class="inner">
+    <p class="section-tag reveal">商品・プラン</p>
+    <h2 class="reveal">施設の規模・用途に合わせて<br>選べるラインナップ。</h2>
+    <p class="lead reveal">屋内・屋外・バレルの3タイプ。施設のコンセプトに合わせてご提案します。</p>
+    <div class="products-grid">
+      <div class="product-card reveal stagger-1">
+        <div class="product-ph">📷 バレルサウナ</div>
+        <div class="product-body">
+          <span class="product-tag-pill">屋外設置</span>
+          <p class="product-name">バレルサウナ</p>
+          <p class="product-desc">露天・庭・デッキへの設置に最適。圧倒的なビジュアルでSNS映えも抜群。ロウリュ可能な本格仕様。</p>
+          <ul class="product-features"><li>屋外設置対応</li><li>ロウリュ可能</li><li>2〜6名対応</li></ul>
+          <p class="product-price">¥1,300,000〜<span>（税込）</span></p>
+        </div>
+      </div>
+      <div class="product-card reveal stagger-2">
+        <div class="product-ph">📷 キャビンサウナ</div>
+        <div class="product-body">
+          <span class="product-tag-pill">屋内設置</span>
+          <p class="product-name">キャビンサウナ</p>
+          <p class="product-desc">客室・別荘・ヴィラの屋内に設置可能。省スペースで導入できる定番モデル。カスタマイズ対応。</p>
+          <ul class="product-features"><li>屋内・屋外対応</li><li>1畳〜設置可能</li><li>カスタマイズ対応</li></ul>
+          <p class="product-price">¥863,500〜<span>（税込）</span></p>
+        </div>
+      </div>
+      <div class="product-card product-card--custom reveal stagger-3">
+        <div class="product-custom-body">
+          <h3>複数台・大型<br>カスタマイズ</h3>
+          <p>施設の規模・コンセプトに合わせた特注対応。まずはご相談ください。</p>
+          <a href="#cta" class="btn btn--gold">相談する</a>
+        </div>
+      </div>
+    </div>
+    <p class="subsidy-note reveal">💡 <strong>補助金・税制優遇のご相談も承ります</strong>　施設設備への投資として活用できる制度があります。個別にご相談ください。</p>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="section section--why">
+  <div class="inner">
+    <p class="section-tag reveal">なぜJapanSaunaか</p>
+    <h2 class="reveal">施設導入を、<br>安心して任せられる理由。</h2>
+    <p class="lead reveal">「導入したいけど、何から調べればいいかわからない」<br>そのすべてに、JapanSaunaが答えます。</p>
+    <div class="why-grid">
+      <div class="why-item reveal stagger-1"><p class="why-num">01</p><h3>施設向け導入の実績がある</h3><p>ヴィラ・ホテル・民泊への導入実績を持つ。設置条件・用途の違いを熟知した提案ができます</p></div>
+      <div class="why-item reveal stagger-2"><p class="why-num">02</p><h3>法規対応までサポート</h3><p>消防法・建築基準法・保健所への届け出など、法的手続きの確認・対応をサポートします</p></div>
+      <div class="why-item reveal stagger-3"><p class="why-num">03</p><h3>工事も含め一社完結</h3><p>電気・基礎工事・搬入設置まで窓口を一本化。複数業者の手配は不要です</p></div>
+      <div class="why-item reveal stagger-1"><p class="why-num">04</p><h3>設置後も長期サポート</h3><p>商業施設の利用頻度を想定した5年間の耐久保証。定期メンテ・修理にも対応</p></div>
+      <div class="why-item why-item-5 reveal stagger-2"><p class="why-num">05</p><h3>営業中施設にも対応可能</h3><p>営業スケジュールに合わせて工期を調整。稼働への影響を最小限に抑えます</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPLIANCE -->
+<section class="section" id="compliance">
+  <div class="inner">
+    <p class="section-tag reveal">法規対応</p>
+    <h2 class="reveal">法規対応も、<br>JapanSaunaがサポートします。</h2>
+    <p class="lead reveal">サウナ導入には消防・保健所・建築基準法など複数の法規確認が必要です。届出サポート・代行まで一貫して対応します。</p>
+    <div class="compliance-grid">
+      <div class="compliance-card reveal stagger-1">
+        <div class="compliance-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c0 6-6 6-6 12a6 6 0 0 0 12 0c0-6-6-6-6-12z"/><path d="M12 12c0 3-2 4-2 6a2 2 0 0 0 4 0c0-2-2-3-2-6z"/></svg>
+        </div>
+        <h3>消防法</h3>
+        <span class="compliance-badge">届出サポート・代行</span>
+        <p>サウナストーブの出力・設置場所に応じた消防署への届出を代行します。設置前の事前相談から完了まで対応。</p>
+      </div>
+      <div class="compliance-card reveal stagger-2">
+        <div class="compliance-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg>
+        </div>
+        <h3>保健所対応</h3>
+        <span class="compliance-badge">届出サポート・代行</span>
+        <p>施設規模・利用形態による公衆浴場法の適用確認および保健所への届出を代行します。</p>
+      </div>
+      <div class="compliance-card reveal stagger-3">
+        <div class="compliance-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 3 11 3 11 11 3 11"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/><polygon points="3 13 11 21 3 21"/></svg>
+        </div>
+        <h3>建築基準法</h3>
+        <span class="compliance-badge">届出サポート・代行</span>
+        <p>工作物確認申請・増築申請など、建築基準法に基づく各種申請手続きをサポート・代行します。</p>
+      </div>
+    </div>
+    <p class="compliance-note reveal">⚠️ 法規対応は施設の種別・規模・設置場所によって異なります。現地調査時に必要な対応を確認し、費用・スケジュールを含めてご提案します。</p>
+  </div>
+</section>
+
+<!-- MAINTENANCE -->
+<section class="section section--warm" id="maintenance">
+  <div class="inner">
+    <p class="section-tag reveal">アフターサポート</p>
+    <h2 class="reveal">導入後も、ずっとサポートします。</h2>
+    <p class="lead reveal">設置して終わりではありません。施設の運営を止めないために、JapanSaunaが継続してサポートします。</p>
+    <div class="maintenance-grid">
+      <div class="maintenance-item reveal stagger-1"><div class="maintenance-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><h3>定期点検</h3><p>ストーブ・電気系統・木材の状態を定期的に点検。不具合を早期発見します。</p><span class="badge-free">保証期間内：無償</span></div>
+      <div class="maintenance-item reveal stagger-2"><div class="maintenance-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 2 13 9 20 9"/><path d="M21 3L13 9"/><path d="M12 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9"/></svg></div><h3>ストーブ交換</h3><p>経年劣化や故障によるストーブ交換に対応。営業スケジュールに合わせて迅速に対応します。</p><span class="badge-paid">保証期間後：有償</span></div>
+      <div class="maintenance-item reveal stagger-3"><div class="maintenance-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div><h3>部品修理</h3><p>ドア・ベンチ・照明など各部品の修理・交換に対応。純正部品での対応で品質を維持します。</p><span class="badge-paid">保証期間後：有償</span></div>
+      <div class="maintenance-item reveal stagger-4"><div class="maintenance-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.28h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><h3>緊急対応</h3><p>突発的な不具合・トラブル時の緊急対応も承ります。施設の営業に影響が出ないよう優先対応します。</p><span class="badge-paid">保証期間後：有償</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FLOW -->
+<section class="section section--beige" id="flow">
+  <div class="inner">
+    <p class="section-tag reveal">導入の流れ</p>
+    <h2 class="reveal">相談から設置まで、<br>最短3週間。</h2>
+    <p class="lead reveal">相談から設置完了まで、JapanSaunaが一貫してサポートします。</p>
+    <div class="flow-steps">
+      <div class="flow-step reveal stagger-1"><div class="flow-num">01</div><h3>無料相談</h3><p>施設の概要・ご要望をヒアリング。最適なモデルをご提案します。</p></div>
+      <div class="flow-arrow reveal">→</div>
+      <div class="flow-step reveal stagger-2"><div class="flow-num">02</div><h3>現地調査</h3><p>設置場所の採寸・電気容量・基礎の確認を無料で行います。</p></div>
+      <div class="flow-arrow reveal">→</div>
+      <div class="flow-step reveal stagger-3"><div class="flow-num">03</div><h3>提案・見積</h3><p>工事費含めた総費用を明示した見積書をご提出します。</p></div>
+      <div class="flow-arrow reveal">→</div>
+      <div class="flow-step reveal stagger-4"><div class="flow-num">04</div><h3>設置工事</h3><p>最短3週間で設置完了。電気・基礎工事も対応可能です。</p></div>
+      <div class="flow-arrow reveal">→</div>
+      <div class="flow-step reveal stagger-4"><div class="flow-num">05</div><h3>アフターサポート</h3><p>設置後のメンテナンス・修理にも対応。5年間の耐久保証付き。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="inner">
+    <p class="section-tag reveal">よくある質問</p>
+    <h2 class="reveal">FAQ — よくあるご質問</h2>
+    <div class="faq-list reveal" style="margin-top:3rem;">
+      <details><summary>消防法・建築基準法などの法規への対応は必要ですか？</summary><p class="faq-answer">施設の種別・設置場所・使用用途によって、消防署への届け出や建築基準法上の確認が必要なケースがあります。現地調査の際に一緒に確認し、必要な手続きをご案内します。</p></details>
+      <details><summary>設置工事の規模と工期はどのくらいですか？</summary><p class="faq-answer">モデルや設置環境によりますが、最短3週間が目安です。電気工事・基礎工事が必要な場合は別途工期を確認します。現地調査の際に詳しくご説明します。</p></details>
+      <details><summary>電気工事・基礎工事は必要ですか？</summary><p class="faq-answer">設置環境によって異なります。200Vの専用回路が必要になるケースが多く、屋外設置の場合は基礎工事が必要なことも。現地調査で確認し、費用を見積もりに含めてご提案します。</p></details>
+      <details><summary>設置後のメンテナンス・保守はどのように対応してもらえますか？</summary><p class="faq-answer">設置後5年間の耐久保証付きです。定期メンテナンスのご相談や、故障・不具合時の修理対応も承っています。</p></details>
+      <details><summary>複数台の導入はできますか？</summary><p class="faq-answer">可能です。複数室・複数棟への導入実績もあります。台数に応じたご提案・お見積もりをいたします。</p></details>
+      <details><summary>運営中の施設でも設置できますか？</summary><p class="faq-answer">施設を長期間止めることなく設置できます。工事規模によって一部を一時的に使用制限する場合がありますが、スケジュールは事前に調整します。</p></details>
+      <details><summary>補助金・税制優遇は使えますか？</summary><p class="faq-answer">施設設備投資として活用できる制度がある場合があります。個別にご相談いただければ最新情報をご案内します。</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="cta">
+  <div class="inner">
+    <p class="section-tag section-tag--dark reveal">お問い合わせ</p>
+    <h2 class="reveal" style="color:#fff;">まず、相談だけでも構いません。</h2>
+    <p class="lead reveal" style="color:rgba(255,255,255,0.65);margin:0 auto 2.5rem;">「うちの施設に合うか分からない」という段階でも大丈夫です。<br>現地調査・お見積もりまで、すべて無料でご対応します。</p>
+    <div class="cta-buttons reveal">
+      <a href="#" class="btn btn--white btn--lg">無料相談・現地調査を申し込む</a>
+      <a href="#" class="btn btn--outline-on-dark btn--lg">導入事例資料をダウンロード</a>
+    </div>
+    <p class="cta-note reveal">平日10:00〜18:00 · お問い合わせ後、1営業日以内にご連絡します</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">JapanSauna</div>
+    <div class="footer-links">
+      <a href="#">プライバシーポリシー</a>
+      <a href="#">特定商取引法に基づく表示</a>
+      <a href="#">会社概要</a>
+    </div>
+    <p class="footer-copy">© 2026 JapanSauna. All rights reserved.</p>
+  </div>
+</footer>
+
+<div class="float-cta">
+  <a href="#cta">無料相談・現地調査を申し込む</a>
+</div>
+
+<script>
+  // Header shadow on scroll
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal, .reveal-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
