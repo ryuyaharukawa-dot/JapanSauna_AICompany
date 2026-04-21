@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>黄皓 × JapanSauna アンバサダーキャンペーン提案 — 2026.04</title>
+  <style>
+    body {
+      font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+      color: #1a1a1a;
+      background: #fff;
+      line-height: 1.7;
+      margin: 0;
+    }
+    html { font-size: 15px; }
+    #sticky-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.97);
+      border-bottom: 1px solid #ccc;
+      padding: 12px 20px;
+      display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    }
+    #sticky-nav .nav-label {
+      font-size: 0.72rem; font-weight: 700; color: #777;
+      letter-spacing: 0.05em; margin-right: 4px; white-space: nowrap;
+    }
+    .pill {
+      display: inline-block; padding: 5px 16px;
+      font-size: 0.78rem; font-weight: 600; color: #555;
+      text-decoration: none; border: 1px solid #ccc;
+      border-radius: 999px; transition: all 0.2s ease; white-space: nowrap;
+    }
+    .pill:hover, .pill.active {
+      background: #1a1a1a; color: #fff; border-color: #1a1a1a;
+    }
+    #main { max-width: 920px; margin: 0 auto; padding: 40px 48px 80px; }
+    .report-header { border-bottom: 2px solid #1a1a1a; padding-bottom: 20px; margin-bottom: 32px; }
+    .report-header h1 { font-size: 1.6rem; font-weight: 700; line-height: 1.3; margin-bottom: 4px; }
+    .report-header .subtitle { font-size: 0.9rem; color: #555; margin-bottom: 16px; }
+    .report-header .summary-box {
+      background: #f7f7f7; border: 1px solid #ddd; padding: 16px 20px; margin-top: 16px;
+    }
+    .report-header .summary-box h3 { font-size: 0.85rem; font-weight: 700; margin-bottom: 10px; }
+    .report-header .summary-box ul {
+      padding-left: 20px; font-size: 0.82rem;
+    }
+    .report-header .summary-box li { margin-bottom: 4px; }
+    h2.section-title {
+      font-size: 1.2rem; font-weight: 700;
+      border-bottom: 1px solid #999; padding-bottom: 6px;
+      margin-top: 48px; margin-bottom: 20px;
+    }
+    h3.subsection-title {
+      font-size: 1.0rem; font-weight: 700;
+      margin-top: 32px; margin-bottom: 12px;
+      padding-left: 10px; border-left: 3px solid #555;
+    }
+    h4 { font-size: 0.9rem; font-weight: 700; margin-top: 20px; margin-bottom: 8px; }
+    table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: 0.82rem; }
+    table th, table td { border: 1px solid #bbb; padding: 7px 10px; text-align: left; vertical-align: top; }
+    table th { background: #f0f0f0; font-weight: 700; white-space: nowrap; }
+    table td { background: #fff; }
+    table tr:nth-child(even) td { background: #fafafa; }
+    p { margin-bottom: 10px; font-size: 0.88rem; }
+    ul, ol { margin-bottom: 10px; padding-left: 22px; font-size: 0.88rem; }
+    ul li, ol li { margin-bottom: 3px; }
+    .highlight-box {
+      background: #f7f7f7; border: 1px solid #ddd;
+      padding: 14px 18px; margin: 12px 0 20px; font-size: 0.85rem;
+    }
+    .note-box {
+      background: #fffbeb; border-left: 4px solid #f59e0b;
+      padding: 10px 16px; margin: 12px 0 20px; font-size: 0.82rem; color: #78350f;
+    }
+    .info-box {
+      background: #eff6ff; border-left: 4px solid #3b82f6;
+      padding: 10px 16px; margin: 12px 0 20px; font-size: 0.82rem; color: #1e3a5f;
+    }
+    .confirm-box {
+      background: #f0fdf4; border-left: 4px solid #22c55e;
+      padding: 10px 16px; margin: 12px 0 20px; font-size: 0.82rem; color: #14532d;
+    }
+    .badge {
+      display: inline-block; padding: 2px 10px;
+      font-size: 0.72rem; font-weight: 700;
+      border-radius: 999px; letter-spacing: 0.03em;
+    }
+    .badge-ok { background: #d4edda; color: #155724; }
+    .badge-warn { background: #fff3cd; color: #856404; }
+    .badge-info { background: #d1ecf1; color: #0c5460; }
+    .badge-pending { background: #e2e3e5; color: #383d41; }
+    .badge-ng { background: #f8d7da; color: #721c24; }
+    .flow {
+      display: flex; align-items: center; gap: 0;
+      margin: 20px 0; flex-wrap: wrap; justify-content: center;
+    }
+    .flow-step {
+      background: #f0f0f0; border: 1px solid #ccc;
+      padding: 10px 18px; font-size: 0.82rem; font-weight: 600;
+      text-align: center; min-width: 120px;
+    }
+    .flow-step.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
+    .flow-step.done { background: #d4edda; color: #155724; border-color: #155724; }
+    .flow-arrow { font-size: 1.2rem; color: #999; padding: 0 4px; }
+    .phase-label {
+      display: inline-block; padding: 2px 10px; font-size: 0.72rem; font-weight: 700;
+      border-radius: 999px; letter-spacing: 0.03em; margin-bottom: 8px;
+    }
+    .phase-1 { background: #1a1a1a; color: #fff; }
+    .phase-2 { background: #555; color: #fff; }
+    .phase-3 { background: #999; color: #fff; }
+    .star { color: #f59e0b; }
+    .report-footer {
+      border-top: 1px solid #999; margin-top: 48px; padding-top: 16px;
+      font-size: 0.78rem; color: #777;
+    }
+    .kpi-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 16px 0 24px;
+    }
+    .kpi-card {
+      border: 1px solid #ddd; padding: 16px 20px; background: #fafafa;
+    }
+    .kpi-card .kpi-label { font-size: 0.75rem; color: #777; font-weight: 700; margin-bottom: 4px; }
+    .kpi-card .kpi-value { font-size: 1.4rem; font-weight: 700; color: #1a1a1a; }
+    .kpi-card .kpi-sub { font-size: 0.75rem; color: #555; margin-top: 4px; }
+    @media (max-width: 640px) {
+      #main { padding: 24px 20px 60px; }
+      .report-header h1 { font-size: 1.3rem; }
+      h2.section-title { font-size: 1.05rem; }
+      table { font-size: 0.78rem; }
+      table th, table td { padding: 5px 7px; }
+      #sticky-nav { padding: 10px 12px; gap: 6px; }
+      .pill { padding: 4px 12px; font-size: 0.72rem; }
+      .kpi-grid { grid-template-columns: 1fr; }
+    }
+    @media print {
+      #sticky-nav { display: none; }
+      #main { padding: 0; max-width: 100%; }
+      body { font-size: 10pt; }
+      .report-header h1 { font-size: 16pt; }
+      h2.section-title { font-size: 13pt; page-break-after: avoid; }
+      h3.subsection-title { font-size: 11pt; page-break-after: avoid; }
+      table { font-size: 8pt; page-break-inside: avoid; }
+      table th, table td { padding: 3px 5px; }
+      .highlight-box, .note-box, .info-box, .confirm-box {
+        -webkit-print-color-adjust: exact; print-color-adjust: exact;
+      }
+      table th { background: #f0f0f0 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="sticky-nav">
+  <span class="nav-label">SECTIONS</span>
+  <a class="pill" href="#background">背景</a>
+  <a class="pill" href="#campaign">キャンペーン概要</a>
+  <a class="pill" href="#proposal">黄皓さんへの提案</a>
+  <a class="pill" href="#return">返品保証設計</a>
+  <a class="pill" href="#action">アクションプラン</a>
+  <a class="pill" href="#kpi">KPI</a>
+  <a class="pill" href="#schedule">スケジュール</a>
+  <a class="pill" href="#checklist">要確認</a>
+</nav>
+
+<div id="main">
+
+  <!-- ===== HEADER ===== -->
+  <header class="report-header">
+    <h1>黄皓 × JapanSauna<br>アンバサダー＆返品保証キャンペーン提案</h1>
+    <div class="subtitle">JapanSauna Sales / Marketing — 2026年4月21日</div>
+    <div class="summary-box">
+      <h3>サマリー</h3>
+      <ul>
+        <li><strong>背景：</strong>バチェラーJapan出演・黄皓さんが JapanSaunaのサウナキャビンを購入済み。「周りにも広めたい」と意思表示</li>
+        <li><strong>施策：</strong>黄皓さんをアンバサダーとして活用し、紹介ネットワーク＋SNS発信で導入を拡大</li>
+        <li><strong>購入ハードル解消：</strong>「1ヶ月返品無料キャンペーン」を組み合わせ、高額商品の意思決定を後押し</li>
+        <li><strong>まず動くこと：</strong>黄皓さんへの打診（紹介料型インセンティブ提案）→ 返品条件の社内整理 → キャンペーンLP準備</li>
+        <li><strong>期待効果：</strong>1ヶ月で問い合わせ10件・成約3〜6台・売上 ¥5,000,000〜¥10,000,000</li>
+      </ul>
+    </div>
+  </header>
+
+
+  <!-- ===== SECTION 1: 背景・前提 ===== -->
+  <h2 class="section-title" id="background">1. 背景・前提</h2>
+
+  <table>
+    <tr>
+      <th>項目</th>
+      <th>内容</th>
+    </tr>
+    <tr>
+      <td><strong>黄皓さんとは</strong></td>
+      <td>バチェラー Japan 出演者。SNSフォロワーが多く、富裕層・起業家・美意識の高いビジネスパーソン層への影響力を持つ</td>
+    </tr>
+    <tr>
+      <td><strong>現在の関係性</strong></td>
+      <td>JapanSaunaのサウナキャビンを購入済み。既存の信頼関係あり</td>
+    </tr>
+    <tr>
+      <td><strong>発言内容</strong></td>
+      <td>「周りにも広めたい」と意思表示 → インセンティブ次第でアンバサダー化が現実的</td>
+    </tr>
+    <tr>
+      <td><strong>ターゲット層との親和性</strong></td>
+      <td>黄皓さんのフォロワー層（富裕層・起業家・ライフスタイル重視層）は JapanSaunaの BtoC ターゲット（新築戸建30代男性）と高い親和性</td>
+    </tr>
+  </table>
+
+  <div class="confirm-box">
+    <strong>なぜ今動くべきか：</strong>「広めたい」という発言が出ているうちに形にする。熱量があるタイミングを逃すと自然消滅しやすい。
+  </div>
+
+
+  <!-- ===== SECTION 2: キャンペーン概要 ===== -->
+  <h2 class="section-title" id="campaign">2. キャンペーン概要</h2>
+
+  <div class="highlight-box" style="text-align:center; font-size:1.05rem; font-weight:700; padding: 20px;">
+    「黄皓おすすめ｜1ヶ月お試し返品無料キャンペーン」
+  </div>
+
+  <h3 class="subsection-title">コンセプト</h3>
+  <ul>
+    <li><strong>黄皓さんの実体験</strong>に基づく推薦で信頼性を最大化</li>
+    <li><strong>返品保証</strong>でリスクゼロを訴求 →「気になっていたけど高くて踏み出せない」層のハードルを一気に下げる</li>
+    <li>黄皓さんが紹介する側としても「返品できるから勧めやすい」という心理的メリットがある</li>
+  </ul>
+
+  <h3 class="subsection-title">2つの施策の関係</h3>
+  <table>
+    <tr>
+      <th>施策</th>
+      <th>役割</th>
+      <th>効果</th>
+    </tr>
+    <tr>
+      <td><strong>黄皓さんアンバサダー化</strong></td>
+      <td>認知・信頼獲得</td>
+      <td>リーチできない層へのアプローチ。「黄皓さんが使っている」という権威付け</td>
+    </tr>
+    <tr>
+      <td><strong>1ヶ月返品無料</strong></td>
+      <td>購入ハードルの解消</td>
+      <td>高額商品特有の「失敗したらどうしよう」という不安を取り除く</td>
+    </tr>
+  </table>
+
+
+  <!-- ===== SECTION 3: 黄皓さんへの提案内容 ===== -->
+  <h2 class="section-title" id="proposal">3. 黄皓さんへの提案内容</h2>
+
+  <h3 class="subsection-title">依頼する協力内容</h3>
+  <table>
+    <tr>
+      <th>内容</th>
+      <th>詳細</th>
+      <th>負担感</th>
+    </tr>
+    <tr>
+      <td><strong>紹介ネットワーク活用</strong></td>
+      <td>周囲の起業家・富裕層・インフルエンサーへの口コミ紹介</td>
+      <td><span class="badge badge-ok">低い（会話ベース）</span></td>
+    </tr>
+    <tr>
+      <td><strong>SNS投稿</strong>（Instagram / TikTok）</td>
+      <td>サウナ体験・日常への取り込み方を自然なかたちで発信。投稿頻度・内容は黄皓さんに委ねる</td>
+      <td><span class="badge badge-warn">中程度</span></td>
+    </tr>
+    <tr>
+      <td><strong>イベント・コラボ</strong>（任意）</td>
+      <td>導入施設でのサウナ体験会の共催など。関係が深まった段階で相談</td>
+      <td><span class="badge badge-info">将来対応</span></td>
+    </tr>
+  </table>
+
+  <h3 class="subsection-title">インセンティブ設計（提案オプション）</h3>
+
+  <div class="note-box">
+    <strong>推奨方針：</strong> まずオプションAで話を切り出す。シンプルで合意しやすく、成果が出た後にオプションCへのアップグレードを提案しやすい。
+  </div>
+
+  <table>
+    <tr>
+      <th>オプション</th>
+      <th>内容</th>
+      <th>支払い条件</th>
+      <th>推奨度</th>
+    </tr>
+    <tr>
+      <td><strong>A. 紹介料型</strong></td>
+      <td>成約1件につき <strong>¥30,000〜¥50,000</strong> の紹介料を支払う</td>
+      <td>入金確認後に振込</td>
+      <td><span class="badge badge-ok">◎ まず提案</span></td>
+    </tr>
+    <tr>
+      <td><strong>B. 製品アップグレード型</strong></td>
+      <td>追加オプション（ストーブ・アクセサリー・メンテナンス等）を無償提供</td>
+      <td>成約都度</td>
+      <td><span class="badge badge-info">○ 追加提案</span></td>
+    </tr>
+    <tr>
+      <td><strong>C. アンバサダー契約型</strong></td>
+      <td>月額固定費（¥50,000〜）＋ 成果報酬の契約。継続的なSNS発信・イベント出演込み</td>
+      <td>月払い＋成約連動</td>
+      <td><span class="badge badge-pending">△ 関係深化後</span></td>
+    </tr>
+  </table>
+
+  <h3 class="subsection-title">黄皓さんへの持っていき方</h3>
+  <ul>
+    <li>「いつもありがとうございます。広めたいとおっしゃっていただいていたので、具体的な形にしてみました」と、押しつけがましくなく切り出す</li>
+    <li>A4 1枚のシンプルな提案書を見せる（本資料から抜粋）</li>
+    <li><strong>ゴール：紹介料型（オプションA）への合意を得ること</strong></li>
+    <li>「まずやってみて、うまくいったらより深い形で一緒にやりましょう」という段階的な提案が自然</li>
+  </ul>
+
+  <div class="info-box">
+    <strong>黄皓さん専用の体験を用意する：</strong> 専用紹介コードや紹介ページを作成し、「あなた経由での問い合わせがわかる仕組みを用意しています」と伝えることで信頼感が増す。
+  </div>
+
+
+  <!-- ===== SECTION 4: 1ヶ月返品無料キャンペーン設計 ===== -->
+  <h2 class="section-title" id="return">4. 1ヶ月返品無料キャンペーン設計</h2>
+
+  <table>
+    <tr>
+      <th>項目</th>
+      <th>内容</th>
+      <th>備考</th>
+    </tr>
+    <tr>
+      <td><strong>キャンペーン名</strong></td>
+      <td>1ヶ月お試し返品保証</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td><strong>対象商品</strong></td>
+      <td>サウナキャビン全モデル（要確認・絞り込み検討）</td>
+      <td>高額商品は返品コスト大。モデル限定も検討</td>
+    </tr>
+    <tr>
+      <td><strong>保証内容</strong></td>
+      <td>設置後30日以内に申請で<strong>全額返金</strong></td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td><strong>返品条件</strong></td>
+      <td>商品に著しい損傷がないこと</td>
+      <td>損傷の定義を明確にする必要あり</td>
+    </tr>
+    <tr>
+      <td><strong>返送費用</strong></td>
+      <td>要検討（顧客負担 or JapanSauna負担）</td>
+      <td>顧客負担にすることで返品率を抑制可能</td>
+    </tr>
+    <tr>
+      <td><strong>申し込み経路</strong></td>
+      <td>黄皓さん専用紹介コード or キャンペーンLP経由</td>
+      <td>効果測定のためにトラッキング必須</td>
+    </tr>
+    <tr>
+      <td><strong>対象期間</strong></td>
+      <td>期間限定（例：2026-05-01〜05-31 購入分のみ）</td>
+      <td>期間限定にすることでリスクコントロール</td>
+    </tr>
+  </table>
+
+  <h3 class="subsection-title">リスク管理</h3>
+  <table>
+    <tr>
+      <th>リスク</th>
+      <th>想定値</th>
+      <th>対策</th>
+    </tr>
+    <tr>
+      <td>返品率</td>
+      <td>5〜10%（高額家具・設備業界の平均）</td>
+      <td>返送費用を顧客負担にする / 対象期間を限定する</td>
+    </tr>
+    <tr>
+      <td>再販不可商品の発生</td>
+      <td>損傷があった場合にリスクあり</td>
+      <td>返品条件・損傷定義を規約に明記。写真による状態確認フロー整備</td>
+    </tr>
+    <tr>
+      <td>特商法・返品規定の記載</td>
+      <td>法的リスク</td>
+      <td>キャンペーン前に法務確認必須。LPに返品規定を明記</td>
+    </tr>
+  </table>
+
+  <div class="note-box">
+    <strong>キャンペーン実施前に確認すべきこと：</strong> 特定商取引法上の返品規定の記載方法、返品時の配送コスト・再設置コストの計算、対象商品の在庫状況。
+  </div>
+
+
+  <!-- ===== SECTION 5: アクションプラン ===== -->
+  <h2 class="section-title" id="action">5. アクションプラン</h2>
+
+  <div class="flow">
+    <div class="flow-step active">STEP 1<br>黄皓さんへ<br>打診</div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-step">STEP 2<br>社内条件<br>整理</div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-step">STEP 3<br>LP・コード<br>準備</div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-step">STEP 4<br>SNS連携<br>設計</div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-step">STEP 5<br>効果測定<br>・振り返り</div>
+  </div>
+
+  <table>
+    <tr>
+      <th>STEP</th>
+      <th>アクション</th>
+      <th>担当</th>
+      <th>ゴール</th>
+    </tr>
+    <tr>
+      <td><span class="phase-label phase-1">STEP 1</span></td>
+      <td><strong>黄皓さんへの打診</strong><br>「具体的な形にしたので見てほしい」とカジュアルに連絡。A4 1枚の簡易提案書を持参</td>
+      <td>Hal</td>
+      <td>オプションA（紹介料型）への合意</td>
+    </tr>
+    <tr>
+      <td><span class="phase-label phase-2">STEP 2</span></td>
+      <td><strong>社内条件の整理</strong><br>返品コスト・負担割合・対象商品の確定。特商法の法務確認</td>
+      <td>Hal / 岡村</td>
+      <td>返品保証の条件を確定</td>
+    </tr>
+    <tr>
+      <td><span class="phase-label phase-2">STEP 3</span></td>
+      <td><strong>キャンペーンLP・紹介コード準備</strong><br>黄皓さん専用LP or 紹介コードを engineering に依頼。効果測定タグの設置</td>
+      <td>engineering</td>
+      <td>専用経路からの問い合わせをトラッキング可能に</td>
+    </tr>
+    <tr>
+      <td><span class="phase-label phase-3">STEP 4</span></td>
+      <td><strong>SNS連携設計</strong><br>黄皓さんの投稿スタイルに合わせたクリエイティブ方針を marketing / creative と連携。投稿タイミングを相談</td>
+      <td>marketing / creative</td>
+      <td>自然な発信ができる素材・方針の合意</td>
+    </tr>
+    <tr>
+      <td><span class="phase-label phase-3">STEP 5</span></td>
+      <td><strong>効果測定・振り返り</strong><br>黄皓さん経由の問い合わせ・成約・返品率を計測。ROI算出し次フェーズ（オプションC）の提案判断材料にする</td>
+      <td>Hal</td>
+      <td>施策の継続・拡大・終了判断</td>
+    </tr>
+  </table>
+
+  <div class="confirm-box">
+    <strong>今週中にやること（Hal）：</strong> 黄皓さんへの打診メッセージを送る。返品コスト・条件の社内試算を始める。
+  </div>
+
+
+  <!-- ===== SECTION 6: KPI ===== -->
+  <h2 class="section-title" id="kpi">6. KPI・期待効果</h2>
+
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-label">黄皓さん経由の問い合わせ</div>
+      <div class="kpi-value">10件</div>
+      <div class="kpi-sub">1ヶ月のキャンペーン期間中</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">成約率</div>
+      <div class="kpi-value">30%以上</div>
+      <div class="kpi-sub">推薦効果で通常より高め設定</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">返品率</div>
+      <div class="kpi-value">10%以下</div>
+      <div class="kpi-sub">条件設計で抑制</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">純増売上（目標）</div>
+      <div class="kpi-value">500〜1,000万円</div>
+      <div class="kpi-sub">3〜6台成約相当</div>
+    </div>
+  </div>
+
+  <h3 class="subsection-title">ROI試算（参考）</h3>
+  <table>
+    <tr>
+      <th>項目</th>
+      <th>前提</th>
+      <th>金額</th>
+    </tr>
+    <tr>
+      <td>成約想定</td>
+      <td>問い合わせ10件 × 成約率30% = 3台</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>売上貢献</td>
+      <td>平均単価 ¥1,800,000 × 3台</td>
+      <td><strong>¥5,400,000</strong></td>
+    </tr>
+    <tr>
+      <td>紹介料コスト</td>
+      <td>¥40,000 × 3件</td>
+      <td>¥120,000</td>
+    </tr>
+    <tr>
+      <td>返品コスト（想定）</td>
+      <td>返品率10% = 0.3台分（配送・再販コスト）</td>
+      <td>¥50,000〜¥100,000</td>
+    </tr>
+    <tr>
+      <td><strong>純増売上（試算）</strong></td>
+      <td>売上 - 紹介料 - 返品コスト</td>
+      <td><strong>約 ¥5,180,000〜¥5,230,000</strong></td>
+    </tr>
+  </table>
+
+  <div class="info-box">
+    <strong>さらに波及する可能性：</strong> 黄皓さんのSNS投稿による認知拡大は定量化が難しいが、JapanSaunaのブランド露出・問い合わせ母数の増加という中長期効果が期待できる。
+  </div>
+
+
+  <!-- ===== SECTION 7: スケジュール ===== -->
+  <h2 class="section-title" id="schedule">7. スケジュール</h2>
+
+  <table>
+    <tr>
+      <th>時期</th>
+      <th>アクション</th>
+      <th>担当</th>
+      <th>ステータス</th>
+    </tr>
+    <tr>
+      <td><strong>2026-04-21〜04-30</strong></td>
+      <td>黄皓さんへの打診・合意 / 社内条件整理 / LP・紹介コード準備</td>
+      <td>Hal / engineering</td>
+      <td><span class="badge badge-warn">着手中</span></td>
+    </tr>
+    <tr>
+      <td><strong>2026-05-01</strong></td>
+      <td>キャンペーン開始・黄皓さんSNS発信解禁</td>
+      <td>Hal / marketing</td>
+      <td><span class="badge badge-pending">未着手</span></td>
+    </tr>
+    <tr>
+      <td><strong>2026-05-01〜05-31</strong></td>
+      <td>問い合わせ対応・見積もり・成約フォロー</td>
+      <td>Hal / 岡村</td>
+      <td><span class="badge badge-pending">未着手</span></td>
+    </tr>
+    <tr>
+      <td><strong>2026-05-31</strong></td>
+      <td>キャンペーン終了（返品申請の締め切り：6-30まで）</td>
+      <td>—</td>
+      <td><span class="badge badge-pending">未着手</span></td>
+    </tr>
+    <tr>
+      <td><strong>2026-06-15</strong></td>
+      <td>効果測定・ROI算出・次フェーズ検討（オプションCへの移行判断）</td>
+      <td>Hal</td>
+      <td><span class="badge badge-pending">未着手</span></td>
+    </tr>
+  </table>
+
+
+  <!-- ===== SECTION 8: 要確認事項 ===== -->
+  <h2 class="section-title" id="checklist">8. 要確認・未検討事項</h2>
+
+  <table>
+    <tr>
+      <th>#</th>
+      <th>確認事項</th>
+      <th>担当</th>
+      <th>優先度</th>
+    </tr>
+    <tr>
+      <td>①</td>
+      <td>返品費用の負担割合（顧客 or JapanSauna）</td>
+      <td>Hal</td>
+      <td><span class="badge badge-ng">高</span></td>
+    </tr>
+    <tr>
+      <td>②</td>
+      <td>対象商品の絞り込み（全モデル vs 特定モデル）</td>
+      <td>Hal</td>
+      <td><span class="badge badge-ng">高</span></td>
+    </tr>
+    <tr>
+      <td>③</td>
+      <td>特商法上の返品規定の記載方法（法務確認）</td>
+      <td>Hal</td>
+      <td><span class="badge badge-ng">高</span></td>
+    </tr>
+    <tr>
+      <td>④</td>
+      <td>紹介料の支払い条件（成約時 or 入金確認後）</td>
+      <td>Hal</td>
+      <td><span class="badge badge-warn">中</span></td>
+    </tr>
+    <tr>
+      <td>⑤</td>
+      <td>黄皓さんのSNSアカウントのフォロワー数・エンゲージメント率の確認</td>
+      <td>marketing</td>
+      <td><span class="badge badge-warn">中</span></td>
+    </tr>
+    <tr>
+      <td>⑥</td>
+      <td>返品時の損傷判定フロー（写真確認・基準の明文化）</td>
+      <td>Hal / 岡村</td>
+      <td><span class="badge badge-warn">中</span></td>
+    </tr>
+    <tr>
+      <td>⑦</td>
+      <td>黄皓さんへのA4提案書（1枚もの）の作成</td>
+      <td>Hal / creative</td>
+      <td><span class="badge badge-warn">中</span></td>
+    </tr>
+  </table>
+
+  <div class="report-footer">
+    作成：JapanSauna sales / marketing 部門 — 2026年4月21日（v1）
+  </div>
+
+</div>
+</body>
+</html>
