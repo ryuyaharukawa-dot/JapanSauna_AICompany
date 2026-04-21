@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>サウナ設備と宿泊施設パフォーマンス調査レポート — JapanSauna</title>
+  <style>
+    body {
+      font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+      color: #1a1a1a;
+      background: #fff;
+      line-height: 1.7;
+      margin: 0;
+    }
+    html { font-size: 15px; }
+    #sticky-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.97);
+      border-bottom: 1px solid #ccc;
+      padding: 12px 20px;
+      display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    }
+    #sticky-nav .nav-label {
+      font-size: 0.72rem; font-weight: 700; color: #777;
+      letter-spacing: 0.05em; margin-right: 4px; white-space: nowrap;
+    }
+    .pill {
+      display: inline-block; padding: 5px 16px;
+      font-size: 0.78rem; font-weight: 600; color: #555;
+      text-decoration: none; border: 1px solid #ccc;
+      border-radius: 999px; transition: all 0.2s ease; white-space: nowrap;
+    }
+    .pill:hover, .pill.active {
+      background: #1a1a1a; color: #fff; border-color: #1a1a1a;
+    }
+    #main { max-width: 920px; margin: 0 auto; padding: 40px 48px 80px; }
+    .report-header { border-bottom: 2px solid #1a1a1a; padding-bottom: 20px; margin-bottom: 32px; }
+    .report-header h1 { font-size: 1.6rem; font-weight: 700; line-height: 1.3; margin-bottom: 4px; }
+    .report-header .subtitle { font-size: 0.9rem; color: #555; margin-bottom: 16px; }
+    .report-header .summary-box {
+      background: #f7f7f7; border: 1px solid #ddd; padding: 16px 20px; margin-top: 16px;
+    }
+    .report-header .summary-box h3 { font-size: 0.85rem; font-weight: 700; margin-bottom: 10px; }
+    .report-header .summary-box ul, .report-header .summary-box ol {
+      padding-left: 20px; font-size: 0.82rem;
+    }
+    .report-header .summary-box li { margin-bottom: 4px; }
+    h2.section-title {
+      font-size: 1.2rem; font-weight: 700;
+      border-bottom: 1px solid #999; padding-bottom: 6px;
+      margin-top: 48px; margin-bottom: 20px;
+    }
+    h3.subsection-title {
+      font-size: 1.0rem; font-weight: 700;
+      margin-top: 32px; margin-bottom: 12px;
+      padding-left: 10px; border-left: 3px solid #555;
+    }
+    h4 { font-size: 0.9rem; font-weight: 700; margin-top: 20px; margin-bottom: 8px; }
+    table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: 0.82rem; }
+    table th, table td { border: 1px solid #bbb; padding: 7px 10px; text-align: left; vertical-align: top; }
+    table th { background: #f0f0f0; font-weight: 700; white-space: nowrap; }
+    table td { background: #fff; }
+    table tr:nth-child(even) td { background: #fafafa; }
+    p { margin-bottom: 10px; font-size: 0.88rem; }
+    ul, ol { margin-bottom: 10px; padding-left: 22px; font-size: 0.88rem; }
+    ul li, ol li { margin-bottom: 3px; }
+    .highlight-box {
+      background: #f7f7f7; border: 1px solid #ddd;
+      padding: 14px 18px; margin: 12px 0 20px; font-size: 0.85rem;
+    }
+    .note-box {
+      background: #fffbeb; border-left: 4px solid #f59e0b;
+      padding: 10px 16px; margin: 12px 0 20px; font-size: 0.82rem; color: #78350f;
+    }
+    .info-box {
+      background: #eff6ff; border-left: 4px solid #3b82f6;
+      padding: 10px 16px; margin: 12px 0 20px; font-size: 0.82rem; color: #1e3a5f;
+    }
+    .confirm-box {
+      background: #f0fdf4; border-left: 4px solid #22c55e;
+      padding: 10px 16px; margin: 12px 0 20px; font-size: 0.82rem; color: #14532d;
+    }
+    .badge {
+      display: inline-block; padding: 2px 10px;
+      font-size: 0.72rem; font-weight: 700;
+      border-radius: 999px; letter-spacing: 0.03em;
+    }
+    .badge-ok { background: #d4edda; color: #155724; }
+    .badge-warn { background: #fff3cd; color: #856404; }
+    .badge-info { background: #d1ecf1; color: #0c5460; }
+    .badge-pending { background: #e2e3e5; color: #383d41; }
+    .badge-ng { background: #f8d7da; color: #721c24; }
+    .evidence-rank {
+      display: flex; gap: 12px; flex-wrap: wrap; margin: 16px 0 24px;
+    }
+    .evidence-card {
+      border: 1px solid #ddd; padding: 14px 18px; flex: 1; min-width: 180px;
+      font-size: 0.82rem;
+    }
+    .evidence-card .rank { font-size: 1.2rem; font-weight: 700; margin-bottom: 6px; }
+    .evidence-card .rank-1 { color: #1a1a1a; }
+    .evidence-card .rank-2 { color: #333; }
+    .evidence-card .rank-3 { color: #555; }
+    .evidence-card .rank-4 { color: #999; }
+    .report-footer {
+      border-top: 1px solid #999; margin-top: 48px; padding-top: 16px;
+      font-size: 0.78rem; color: #777;
+    }
+    @media (max-width: 640px) {
+      #main { padding: 24px 20px 60px; }
+      .report-header h1 { font-size: 1.3rem; }
+      h2.section-title { font-size: 1.05rem; }
+      table { font-size: 0.78rem; }
+      table th, table td { padding: 5px 7px; }
+      #sticky-nav { padding: 10px 12px; gap: 6px; }
+      .pill { padding: 4px 12px; font-size: 0.72rem; }
+      .evidence-rank { flex-direction: column; }
+    }
+    @media print {
+      #sticky-nav { display: none; }
+      #main { padding: 0; max-width: 100%; }
+      body { font-size: 10pt; }
+      .report-header h1 { font-size: 16pt; }
+      h2.section-title { font-size: 13pt; page-break-after: avoid; }
+      h3.subsection-title { font-size: 11pt; page-break-after: avoid; }
+      table { font-size: 8pt; page-break-inside: avoid; }
+      table th, table td { padding: 3px 5px; }
+      .highlight-box, .note-box, .info-box, .confirm-box {
+        -webkit-print-color-adjust: exact; print-color-adjust: exact;
+      }
+      table th {
+        background: #f0f0f0 !important;
+        -webkit-print-color-adjust: exact; print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="sticky-nav">
+  <span class="nav-label">SECTIONS</span>
+  <a class="pill" href="#summary">サマリー</a>
+  <a class="pill" href="#room-sauna">客室サウナ</a>
+  <a class="pill" href="#bath-sauna">大浴場サウナ</a>
+  <a class="pill" href="#cases">事例</a>
+  <a class="pill" href="#evidence">エビデンス評価</a>
+  <a class="pill" href="#limits">調査の限界</a>
+  <a class="pill" href="#sources">出典</a>
+</nav>
+
+<div id="main">
+
+  <!-- ===== HEADER ===== -->
+  <header class="report-header">
+    <h1>サウナ設備と宿泊施設パフォーマンス調査レポート</h1>
+    <div class="subtitle">BtoB営業用エビデンス収集 — ホテル・旅館へのサウナ導入提案資料</div>
+    <div class="summary-box">
+      <h3>エグゼクティブサマリー</h3>
+      <ul>
+        <li><strong>調査目的:</strong> サウナ導入により稼働率・単価が改善するエビデンスの収集（ホテル・旅館向け営業活用）</li>
+        <li><strong>調査対象:</strong> 客室サウナ付き施設 / 大浴場サウナ付き施設 ×エリア別9区分</li>
+        <li><strong>主要発見:</strong> 導入施設では稼働率+13pt・単価+20〜80%の改善実績あり。コロナ禍でも業界平均の約2倍の稼働率を維持した事例が複数確認</li>
+        <li><strong>データの限界:</strong> 観光庁統計はサウナ有無別の分類なし。エリア別定量比較データは現時点で非公開</li>
+        <li><strong>調査日:</strong> 2026年4月21日</li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ===== SECTION 1: 客室サウナ ===== -->
+  <h2 class="section-title" id="room-sauna">1. 客室サウナ付き施設の稼働率・単価</h2>
+
+  <h3 class="subsection-title">全国傾向</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>指標</th>
+        <th>数値</th>
+        <th>出典</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>中高所得層（年収600万+）で客室サウナを「魅力に感じる」</td>
+        <td><strong>49%</strong>（サウナ利用者に限定すると71〜91%）</td>
+        <td>totonoü市場調査 2025年2月</td>
+      </tr>
+      <tr>
+        <td>サウナ愛好家が「客室サウナのみに魅力」と回答</td>
+        <td><strong>63.1%</strong>（大浴場含めると84.0%）</td>
+        <td>同上</td>
+      </tr>
+      <tr>
+        <td>宿泊料アップを許容できると回答したサウナ愛好家</td>
+        <td><strong>98%</strong></td>
+        <td>totonoü 2024年12月ウェビナー</td>
+      </tr>
+      <tr>
+        <td>月1回以上サウナ付き宿に宿泊したいサウナ愛好家</td>
+        <td><strong>約50%</strong></td>
+        <td>同上</td>
+      </tr>
+      <tr>
+        <td>客室サウナのADRプレミアム（推定）</td>
+        <td>通常客室比 <strong>+20〜30%</strong></td>
+        <td>ホテル・旅館利益向上PJ</td>
+      </tr>
+      <tr>
+        <td>単価改善実績例（4〜11月平均）</td>
+        <td><strong>+8,332円/人</strong></td>
+        <td>Relo Vacations事例</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="confirm-box">
+    <strong>定性トレンド：</strong> サウナ付き客室への予約集中が顕著で「予約が取りづらい」状態になる施設が増加。サウナ付き特別室は通常室と明確に差別化でき、レートコントロールの余地が拡大する。
+  </div>
+
+  <h3 class="subsection-title">エリア別データ</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>エリア</th>
+        <th>施設名・事例</th>
+        <th>稼働率</th>
+        <th>客室単価（ADR）</th>
+        <th>備考</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>北海道</strong></td>
+        <td>森のスパリゾート 北海道ホテル（帯広）</td>
+        <td><span class="badge badge-ok">年間90%</span>（2021年）</td>
+        <td>約1万7〜8千円<br><small>導入前：約1万円強</small></td>
+        <td>日帰り入浴売上も約6倍に増加</td>
+      </tr>
+      <tr>
+        <td><strong>関東（静岡・熱海）</strong></td>
+        <td>味と湯の宿 ニューとみよし</td>
+        <td><span class="badge badge-ok">65%</span>（導入後）</td>
+        <td>—</td>
+        <td>全国旅館平均20%前後を大幅上回る</td>
+      </tr>
+      <tr>
+        <td><strong>関東（静岡・熱海）</strong></td>
+        <td>ゆとりろ熱海</td>
+        <td>予約困難（増設決定）</td>
+        <td>1名25,410円〜（2025年新客室）</td>
+        <td>2025年6月に3室増室</td>
+      </tr>
+      <tr>
+        <td><strong>中部（伊豆）</strong></td>
+        <td>旅館しずく（富士山周辺）</td>
+        <td>—</td>
+        <td>—</td>
+        <td>totonoü導入実績。全室個室サウナ付き</td>
+      </tr>
+      <tr>
+        <td><strong>近畿（神戸）</strong></td>
+        <td>神戸ポートピアホテル</td>
+        <td>—</td>
+        <td>—</td>
+        <td>totonoü導入実績</td>
+      </tr>
+      <tr>
+        <td>東北・北陸・四国・九州・沖縄</td>
+        <td colspan="3"><span class="badge badge-pending">データなし・要追加調査</span></td>
+        <td>エリア別の比較統計なし</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ===== SECTION 2: 大浴場サウナ ===== -->
+  <h2 class="section-title" id="bath-sauna">2. 大浴場サウナ付き施設の稼働率・単価</h2>
+
+  <h3 class="subsection-title">全国傾向</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>指標</th>
+        <th>数値</th>
+        <th>出典</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>「サウナがあることが施設選びの決め手」と回答した人</td>
+        <td><strong>67%</strong></td>
+        <td>サウナ市場調査レポート2023年</td>
+      </tr>
+      <tr>
+        <td>業界平均客室稼働率（2024年年間）</td>
+        <td>全体：<strong>60.5%</strong>　旅館：36.8%　ビジネス：73.9%</td>
+        <td>観光庁 宿泊旅行統計調査2024年</td>
+      </tr>
+      <tr>
+        <td>ドーミーイン（サウナ付き大浴場チェーン）2021年稼働率</td>
+        <td><strong>63.7%（4〜6月）→ 87%（10〜12月）</strong><br>2022年3月には90%超も</td>
+        <td>日経ビジネス2022年</td>
+      </tr>
+      <tr>
+        <td>2021年 日本ホテル協会会員ホテル平均稼働率（コロナ禍）</td>
+        <td><strong>34.7%</strong>（過去最低水準）</td>
+        <td>日本ホテル協会</td>
+      </tr>
+      <tr>
+        <td>北海道の旅館A（大浴場+サウナ導入事例）稼働率変化</td>
+        <td>72% → <strong>85%（+13pt）</strong></td>
+        <td>カナディアン・サウナ</td>
+      </tr>
+      <tr>
+        <td>北海道の旅館A 単価変化</td>
+        <td>18,200円 → <strong>21,800円（+3,600円）</strong></td>
+        <td>同上</td>
+      </tr>
+      <tr>
+        <td>都内ビジネスホテルB 単価変化</td>
+        <td>8,900円 → <strong>10,500円（+1,600円）</strong></td>
+        <td>カナディアン・サウナ</td>
+      </tr>
+      <tr>
+        <td>都内ビジネスホテルB 朝食売上変化</td>
+        <td><strong>+120%</strong></td>
+        <td>同上</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="info-box">
+    <strong>ドーミーインの示す競争優位：</strong> コロナ禍（業界平均稼働率34.7%）において、サウナ付き大浴場を標準装備するドーミーインは63〜87%を維持。業界平均の約2倍の稼働率を記録。「お風呂・サウナを選びの決め手にする客が圧倒的に多い」（共立メンテナンス副本部長談）
+  </div>
+
+  <h3 class="subsection-title">エリア別データ</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>エリア</th>
+        <th>稼働率（参考値）</th>
+        <th>データ概況</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>全国（観光庁統計）</strong></td>
+        <td>旅館36.8%／ビジネスホテル73.9%（2024年年間）</td>
+        <td>サウナ有無別の内訳は非公開</td>
+      </tr>
+      <tr>
+        <td><strong>東京都</strong></td>
+        <td>73.4%（全国都道府県上位）</td>
+        <td>ドーミーイン系列が多数展開。稼働率差分は非公開</td>
+      </tr>
+      <tr>
+        <td><strong>大阪府</strong></td>
+        <td>75.4%（2024年全国最高水準）</td>
+        <td>インバウンド需要が牽引。サウナ有無別は非公開</td>
+      </tr>
+      <tr>
+        <td><strong>福岡県</strong></td>
+        <td>64.8%</td>
+        <td>ドーミーイン系複数展開</td>
+      </tr>
+      <tr>
+        <td><strong>北海道</strong></td>
+        <td>帯広・札幌等にサウナ付き施設が集積</td>
+        <td>エリア全体の稼働率統計はなし。帯広・北海道ホテルの個別実績あり</td>
+      </tr>
+      <tr>
+        <td>東北・北陸・中部・四国・九州・沖縄</td>
+        <td colspan="2"><span class="badge badge-pending">データなし・要追加調査</span>　観光庁統計では施設タイプ別のみ公開でサウナ有無での分類なし</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ===== SECTION 3: 事例 ===== -->
+  <h2 class="section-title" id="cases">3. 事例・ケーススタディ</h2>
+
+  <h3 class="subsection-title">ケース①：森のスパリゾート 北海道ホテル（帯広・北海道）</h3>
+  <div class="highlight-box">
+    <table>
+      <tr><th>施設種別</th><td>リゾートホテル（大浴場サウナ＋客室サウナ両方）</td></tr>
+      <tr><th>初期投資</th><td>約200万円〜</td></tr>
+      <tr><th>ADR変化</th><td>約1万円強 → <strong>約1万7〜8千円（+70〜80%）</strong></td></tr>
+      <tr><th>稼働率</th><td>コロナ禍2021年に年間 <strong>約90%</strong> 維持</td></tr>
+      <tr><th>その他</th><td>日帰り入浴売上 <strong>約6倍</strong>。客層が50代以上中心 → 若年層・カップル・友人グループに転換</td></tr>
+    </table>
+    <p style="margin-top:8px;margin-bottom:0;font-size:0.78rem;color:#555;">出典：PRESIDENT Online「赤字続きの老舗ホテルを救った逆転策」/ SUMAHIRO インタビュー記事</p>
+  </div>
+
+  <h3 class="subsection-title">ケース②：味と湯の宿 ニューとみよし（熱海市下多賀・静岡）</h3>
+  <div class="highlight-box">
+    <table>
+      <tr><th>施設種別</th><td>旅館（客室サウナ2室に改修）</td></tr>
+      <tr><th>改修費</th><td>数百万円</td></tr>
+      <tr><th>稼働率</th><td>客室サウナ部屋の稼働率 <strong>65%</strong></td></tr>
+      <tr><th>比較</th><td>観光庁調査の全国旅館・リゾートホテル平均 20%前後の <strong>約3倍超</strong></td></tr>
+    </table>
+    <p style="margin-top:8px;margin-bottom:0;font-size:0.78rem;color:#555;">出典：東京新聞デジタル「熱海・伊豆 サウナで復活」</p>
+  </div>
+
+  <h3 class="subsection-title">ケース③：ゆとりろ熱海（熱海市伊豆山・静岡）</h3>
+  <div class="highlight-box">
+    <table>
+      <tr><th>施設種別</th><td>旅館（客室サウナ＋露天水風呂）</td></tr>
+      <tr><th>料金</th><td>1名25,410円〜（2名1室）</td></tr>
+      <tr><th>実績</th><td>1室スタート → 人気継続により <strong>2025年6月に3室増設</strong> 決定</td></tr>
+    </table>
+    <p style="margin-top:8px;margin-bottom:0;font-size:0.78rem;color:#555;">出典：PR TIMES プレスリリース</p>
+  </div>
+
+  <h3 class="subsection-title">ケース④：ドーミーイン（全国・大浴場+サウナチェーン）</h3>
+  <div class="highlight-box">
+    <table>
+      <tr><th>施設種別</th><td>ビジネスホテル（大浴場サウナ標準装備・全95ホテル）</td></tr>
+      <tr><th>コロナ禍稼働率</th><td><strong>63.7〜87%</strong>（業界平均34.7%の約2倍）</td></tr>
+      <tr><th>2022年3月</th><td>稼働率 <strong>90%超</strong> も出現</td></tr>
+      <tr><th>差別化ポイント</th><td>「お風呂・サウナを選びの決め手にする客が圧倒的に多い」（共立メンテナンス副本部長談）</td></tr>
+    </table>
+    <p style="margin-top:8px;margin-bottom:0;font-size:0.78rem;color:#555;">出典：日経ビジネス「コロナ禍どこ吹く風のドーミーイン」</p>
+  </div>
+
+  <h3 class="subsection-title">ケース⑤：北海道 旅館A / 都内 ビジネスホテルB（匿名事例）</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>施設</th>
+        <th>稼働率変化</th>
+        <th>単価変化</th>
+        <th>その他</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>北海道 旅館A</strong></td>
+        <td>72% → <strong>85%（+13pt）</strong></td>
+        <td>18,200円 → <strong>21,800円（+3,600円）</strong></td>
+        <td>一人あたり消費も+2,600円</td>
+      </tr>
+      <tr>
+        <td><strong>都内 ビジネスホテルB</strong></td>
+        <td>—</td>
+        <td>8,900円 → <strong>10,500円（+1,600円）</strong></td>
+        <td>朝食売上+120%</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="font-size:0.78rem;color:#555;">出典：カナディアン・サウナ「サウナ導入で集客&稼働率アップ」※サウナ販売会社によるコンテンツのため独立した第三者検証なし</p>
+
+  <!-- ===== SECTION 4: エビデンス評価 ===== -->
+  <h2 class="section-title" id="evidence">4. 営業資料としてのエビデンス強度評価</h2>
+
+  <p>各データの信頼性と営業資料への活用適性を整理します。</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ランク</th>
+        <th>データ</th>
+        <th>数値</th>
+        <th>出典の信頼性</th>
+        <th>活用推奨度</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>★★★★</strong><br>最強</td>
+        <td>ドーミーイン vs 業界平均（コロナ禍）</td>
+        <td>63.7〜87% vs 34.7%</td>
+        <td>日経ビジネス（業界誌）</td>
+        <td><span class="badge badge-ok">強く推奨</span></td>
+      </tr>
+      <tr>
+        <td><strong>★★★☆</strong><br>強</td>
+        <td>北海道ホテル帯広 ADR・稼働率</td>
+        <td>ADR +70〜80%、稼働率90%</td>
+        <td>PRESIDENT Online（実名記事）</td>
+        <td><span class="badge badge-ok">推奨</span></td>
+      </tr>
+      <tr>
+        <td><strong>★★★☆</strong><br>強</td>
+        <td>熱海ニューとみよし稼働率</td>
+        <td>65% vs 全国平均20%</td>
+        <td>東京新聞デジタル（実名記事）</td>
+        <td><span class="badge badge-ok">推奨</span></td>
+      </tr>
+      <tr>
+        <td><strong>★★☆☆</strong><br>参考値</td>
+        <td>北海道旅館A（稼働率+13pt、単価+3,600円）</td>
+        <td>72%→85%、18,200→21,800円</td>
+        <td>サウナ販売会社のコンテンツ（匿名）</td>
+        <td><span class="badge badge-warn">参考値として活用可</span></td>
+      </tr>
+      <tr>
+        <td><strong>★★☆☆</strong><br>参考値</td>
+        <td>ADRプレミアム+20〜30%</td>
+        <td>推定値</td>
+        <td>一次出典不明確（コンサル系サイト）</td>
+        <td><span class="badge badge-warn">「推定値」として注記要</span></td>
+      </tr>
+      <tr>
+        <td><strong>★★★☆</strong><br>強（需要側）</td>
+        <td>サウナ愛好家の98%が料金アップ許容</td>
+        <td>98%（月1回以上宿泊希望50%）</td>
+        <td>totonoü市場調査（業界調査会社）</td>
+        <td><span class="badge badge-ok">需要証明として推奨</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ===== SECTION 5: 調査の限界 ===== -->
+  <h2 class="section-title" id="limits">5. 調査の限界・注意点</h2>
+
+  <div class="note-box">
+    <strong>⚠️ エリア別比較統計は存在しない：</strong> 観光庁の宿泊旅行統計は「施設タイプ別（旅館・ビジネス・シティ等）」で集計されており、「サウナ有無別」の分類がないため、北海道〜沖縄の9エリア別で「サウナ有無での稼働率差」を定量比較できるデータは現時点で公開されていない。
+  </div>
+
+  <ul>
+    <li><strong>事例データの出典の性質：</strong> 北海道旅館Aや都内ビジネスホテルBの数値は、サウナ販売事業者（カナディアン・サウナ）のマーケティングコンテンツに掲載されたもの。独立した第三者検証なし。</li>
+    <li><strong>「20〜30%単価上昇」の一次出典が不明確：</strong> コンサル系・施設支援系サイトで多用されているが、調査機関・統計データへの参照が確認できていない。引用時は「推定・目安」として扱うことを推奨。</li>
+    <li><strong>北海道ホテルの稼働率数値に微差：</strong> 「90%」（SUMAHIRO）と「80%」（Wikipedia）で出典間の差異あり。最大値は90%だが、年間平均値は80%台の可能性もある。</li>
+    <li><strong>東北・北陸・四国・九州・沖縄：</strong> エリア固有のサウナ効果データは今回の調査では取得不可。追加調査（じゃらん・楽天トラベルのレポート、各県の観光統計）が必要。</li>
+    <li><strong>「サウナが決め手67%」の一次ソースが未特定：</strong> 複数サイトで引用されているが、調査機関・レポート名が検索結果から確認できなかった。</li>
+  </ul>
+
+  <div class="info-box">
+    <strong>追加調査で取得できる可能性があるデータ：</strong><br>
+    ①じゃらんリサーチセンター・楽天インサイトへの問い合わせ　②観光庁「宿泊旅行統計調査」の都道府県別データ詳細版　③STR（CoStar）の日本ホテルパフォーマンスレポート（有料）　④各都道府県観光連盟の統計
+  </div>
+
+  <!-- ===== SECTION 6: 出典 ===== -->
+  <h2 class="section-title" id="sources">6. 出典一覧</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>出典名</th>
+        <th>URL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>totonoü「客室サウナに関する市場調査結果」（2025年2月）</td>
+        <td><a href="https://totonou.co/blogs/news/guest-room-sauna-research" target="_blank">totonou.co</a></td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>totonoü プレスリリース（PR TIMES）</td>
+        <td><a href="https://prtimes.jp/main/html/rd/p/000000060.000067595.html" target="_blank">prtimes.jp</a></td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>totonoü「サウナ×ホテル ウェビナー2024年12月」</td>
+        <td><a href="https://totonou.co/blogs/news/hotel-webinar-2024-december" target="_blank">totonou.co</a></td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>カナディアン・サウナ「サウナ導入で集客＆稼働率アップ」</td>
+        <td><a href="https://can-sauna.jp/en/%E3%82%B5%E3%82%A6%E3%83%8A%E5%B0%8E%E5%85%A5%E3%81%A7%E9%9B%86%E5%AE%A2%EF%BC%86%E7%A8%BC%E5%83%8D%E7%8E%87%E3%82%A2%E3%83%83%E3%83%97%EF%BC%81%E3%81%9D%E3%81%AE%E7%90%86%E7%94%B1%E3%81%A8%E3%81%AF/" target="_blank">can-sauna.jp</a></td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>観光庁「宿泊旅行統計調査」（2024年年間値）</td>
+        <td><a href="https://www.mlit.go.jp/kankocho/tokei_hakusyo/shukuhakutokei.html" target="_blank">mlit.go.jp</a></td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>日経ビジネス「コロナ禍どこ吹く風のドーミーイン」</td>
+        <td><a href="https://business.nikkei.com/atcl/gen/19/00439/050200011/" target="_blank">business.nikkei.com</a></td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>PRESIDENT Online「赤字続きの老舗ホテルを救った逆転策」（北海道ホテル）</td>
+        <td><a href="https://president.jp/articles/-/65848" target="_blank">president.jp</a></td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>SUMAHIRO「十勝帯広をサウナの聖地にした立役者インタビュー」</td>
+        <td><a href="https://sumahiro.com/sumahiro-economy-special-feature/interview-with-the-president-of-hokkaido-hotel.html" target="_blank">sumahiro.com</a></td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td>東京新聞デジタル「熱海・伊豆 サウナで復活」</td>
+        <td><a href="https://www.tokyo-np.co.jp/article/209865" target="_blank">tokyo-np.co.jp</a></td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td>PR TIMES「ゆとりろ熱海 新サウナ客室2025年6月オープン」</td>
+        <td><a href="https://prtimes.jp/main/html/rd/p/000000543.000010207.html" target="_blank">prtimes.jp</a></td>
+      </tr>
+      <tr>
+        <td>11</td>
+        <td>ホテル・旅館利益向上プロジェクト（グランピング×サウナ）</td>
+        <td><a href="https://www.489ban.net/column/postid_1425/" target="_blank">489ban.net</a></td>
+      </tr>
+      <tr>
+        <td>12</td>
+        <td>Relo Vacations「サウナ改装で施設バリューと単価をアップ」</td>
+        <td><a href="https://relovacations.com/lp/sauna/" target="_blank">relovacations.com</a></td>
+      </tr>
+      <tr>
+        <td>13</td>
+        <td>STR / CoStar「Japan Hotel ADR Growth Trends」</td>
+        <td><a href="https://str.com/data-insights-blog/deep-dive-japans-hotel-adr-growth-trends" target="_blank">str.com</a></td>
+      </tr>
+      <tr>
+        <td>14</td>
+        <td>東洋経済「ドーミーインのサウナが妙にととのう納得の訳」</td>
+        <td><a href="https://toyokeizai.net/articles/-/727184" target="_blank">toyokeizai.net</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <footer class="report-footer">
+    research — サウナ設備と宿泊施設パフォーマンス調査 — Generated 2026-04-21 — JapanSauna / Kiuas
+  </footer>
+
+</div>
+</body>
+</html>
