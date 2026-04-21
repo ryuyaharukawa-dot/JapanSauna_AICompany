@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>サウナキャビン導入提案書 — JapanSauna</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css">
+  <style>
+    :root {
+      --js-gold: #c9a84c;
+      --js-dark: #0d0d0d;
+      --js-charcoal: #1a1a1a;
+      --js-gray: #888;
+      --js-light: #f5f0e8;
+    }
+
+    .reveal-viewport { background: var(--js-dark); }
+
+    .reveal .slides section {
+      text-align: left;
+      font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+    }
+
+    /* 共通 */
+    .reveal h1, .reveal h2, .reveal h3 {
+      font-family: "Noto Sans JP", sans-serif;
+      font-weight: 700;
+      text-align: left;
+      color: #fff;
+      text-transform: none;
+      letter-spacing: 0.02em;
+    }
+    .reveal p, .reveal li { color: #ddd; font-size: 0.85em; line-height: 1.8; }
+    .reveal strong { color: #fff; }
+
+    /* ゴールドライン */
+    .gold-line {
+      width: 48px; height: 3px;
+      background: var(--js-gold);
+      margin: 12px 0 24px;
+    }
+
+    /* 表紙 */
+    .slide-cover {
+      background: linear-gradient(135deg, #0d0d0d 60%, #1c1408 100%);
+    }
+    .slide-cover .logo {
+      font-size: 0.75em;
+      color: var(--js-gold);
+      letter-spacing: 0.15em;
+      font-weight: 700;
+      margin-bottom: 32px;
+    }
+    .slide-cover h1 {
+      font-size: 1.8em;
+      line-height: 1.3;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .slide-cover .subtitle {
+      font-size: 0.85em;
+      color: #aaa;
+      margin-top: 8px;
+    }
+    .slide-cover .confidential {
+      position: absolute;
+      bottom: 20px; right: 20px;
+      font-size: 0.6em;
+      color: #555;
+      letter-spacing: 0.1em;
+    }
+
+    /* セクションタイトル */
+    .section-label {
+      font-size: 0.6em;
+      color: var(--js-gold);
+      letter-spacing: 0.15em;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    /* データカード */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .cards.two { grid-template-columns: repeat(2, 1fr); }
+    .card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-top: 2px solid var(--js-gold);
+      padding: 20px 18px;
+    }
+    .card .num {
+      font-size: 2em;
+      font-weight: 700;
+      color: var(--js-gold);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .card .label {
+      font-size: 0.72em;
+      color: #aaa;
+      line-height: 1.5;
+    }
+
+    /* スペックテーブル */
+    .spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.75em;
+      margin-top: 20px;
+    }
+    .spec-table th {
+      background: rgba(201,168,76,0.15);
+      color: var(--js-gold);
+      font-weight: 700;
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 1px solid rgba(201,168,76,0.3);
+      white-space: nowrap;
+    }
+    .spec-table td {
+      padding: 10px 14px;
+      color: #ddd;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      vertical-align: top;
+    }
+    .spec-table tr:last-child td { border-bottom: none; }
+
+    /* 価格プラン */
+    .plan-wrap {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .plan {
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 24px 20px;
+      position: relative;
+    }
+    .plan.featured {
+      border-color: var(--js-gold);
+    }
+    .plan .plan-label {
+      font-size: 0.65em;
+      color: var(--js-gold);
+      letter-spacing: 0.1em;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .plan h3 {
+      font-size: 1.1em;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .plan .price {
+      font-size: 1.6em;
+      font-weight: 700;
+      color: #fff;
+      margin: 12px 0 4px;
+    }
+    .plan .price-note {
+      font-size: 0.65em;
+      color: #888;
+      margin-bottom: 16px;
+    }
+    .plan ul { margin: 0; padding-left: 18px; }
+    .plan ul li {
+      font-size: 0.72em;
+      color: #bbb;
+      margin-bottom: 4px;
+    }
+    .plan .badge {
+      position: absolute;
+      top: -1px; right: -1px;
+      background: var(--js-gold);
+      color: #000;
+      font-size: 0.6em;
+      font-weight: 700;
+      padding: 4px 12px;
+      letter-spacing: 0.08em;
+    }
+
+    /* スケジュール */
+    .timeline {
+      margin-top: 20px;
+      position: relative;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 80px;
+      top: 0; bottom: 0;
+      width: 1px;
+      background: rgba(201,168,76,0.3);
+    }
+    .tl-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 24px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .tl-period {
+      width: 68px;
+      text-align: right;
+      font-size: 0.65em;
+      color: var(--js-gold);
+      font-weight: 700;
+      padding-top: 2px;
+      flex-shrink: 0;
+      letter-spacing: 0.05em;
+    }
+    .tl-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--js-gold);
+      flex-shrink: 0;
+      margin-top: 4px;
+      position: relative;
+      z-index: 1;
+    }
+    .tl-content .tl-title {
+      font-size: 0.8em;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 2px;
+    }
+    .tl-content .tl-desc {
+      font-size: 0.68em;
+      color: #888;
+    }
+
+    /* サポート */
+    .support-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 20px;
+    }
+    .support-item {
+      background: rgba(255,255,255,0.04);
+      border-left: 3px solid var(--js-gold);
+      padding: 16px 16px;
+    }
+    .support-item .s-icon {
+      font-size: 1.4em;
+      margin-bottom: 8px;
+    }
+    .support-item .s-title {
+      font-size: 0.78em;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .support-item .s-desc {
+      font-size: 0.67em;
+      color: #999;
+      line-height: 1.6;
+    }
+
+    /* イメージパース（プレースホルダー） */
+    .image-placeholder {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+      border: 1px solid rgba(201,168,76,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 8px;
+      color: rgba(201,168,76,0.5);
+      font-size: 0.7em;
+      letter-spacing: 0.1em;
+    }
+    .image-placeholder-half {
+      height: 200px;
+      background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+      border: 1px solid rgba(201,168,76,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(201,168,76,0.4);
+      font-size: 0.65em;
+      letter-spacing: 0.08em;
+    }
+
+    /* 2カラムレイアウト */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+    .two-col.ratio-6-4 { grid-template-columns: 6fr 4fr; }
+    .two-col.ratio-4-6 { grid-template-columns: 4fr 6fr; }
+
+    /* CTA */
+    .cta-box {
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.4);
+      padding: 24px 28px;
+      margin-top: 20px;
+    }
+    .cta-box .cta-title {
+      font-size: 0.85em;
+      font-weight: 700;
+      color: var(--js-gold);
+      margin-bottom: 12px;
+    }
+    .cta-box .cta-info {
+      font-size: 0.78em;
+      color: #ccc;
+      line-height: 2;
+    }
+
+    /* ページ番号 */
+    .reveal .slide-number {
+      color: #555;
+      font-size: 0.6em;
+    }
+
+    .text-gold { color: var(--js-gold) !important; }
+    .text-muted { color: #777 !important; font-size: 0.75em; }
+  </style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+  <!-- ===== 1. 表紙 ===== -->
+  <section class="slide-cover" data-background-color="#0d0d0d">
+    <div class="logo">JAPANSAUNA</div>
+    <h1>施設の価値を高める<br>プライベートサウナ<br>導入のご提案</h1>
+    <div class="gold-line"></div>
+    <p class="subtitle">ヴィラ・民泊・ホテル向け サウナキャビン 導入プラン</p>
+    <div class="confidential">CONFIDENTIAL</div>
+  </section>
+
+  <!-- ===== 2. なぜ今、施設にサウナか ===== -->
+  <section data-background-color="#111">
+    <div class="section-label">MARKET BACKGROUND</div>
+    <h2>なぜ今、施設に<br>サウナが必要か</h2>
+    <div class="gold-line"></div>
+    <div class="cards">
+      <div class="card">
+        <div class="num">49%</div>
+        <div class="label">「客室にプライベートサウナがあれば魅力に感じる」と回答した宿泊者</div>
+      </div>
+      <div class="card">
+        <div class="num">91%</div>
+        <div class="label">サウナヘビーユーザーが「客室サウナ」を宿泊施設の魅力と評価</div>
+      </div>
+      <div class="card">
+        <div class="num">ADR<span style="font-size:0.5em;margin-left:4px">向上</span></div>
+        <div class="label">サウナ付き客室は平均客室単価・稼働率（OCC）の改善に直結</div>
+      </div>
+    </div>
+    <p style="margin-top:20px; font-size:0.72em; color:#666;">出典：国内サウナ利用者調査（2023年）/ 業界レポートより</p>
+  </section>
+
+  <!-- ===== 3. 商品紹介 ===== -->
+  <section data-background-color="#111">
+    <div class="section-label">PRODUCT</div>
+    <h2>JapanSauna キャビン</h2>
+    <div class="gold-line"></div>
+    <div class="two-col ratio-6-4">
+      <div>
+        <div class="image-placeholder">
+          <div style="font-size:2em; opacity:0.3">▣</div>
+          <div>外観イメージパース</div>
+          <div style="font-size:0.85em; opacity:0.6">（実物写真・CGに差し替え）</div>
+        </div>
+      </div>
+      <div>
+        <p style="font-size:0.78em; color:#bbb; line-height:2;">自社OEM製造による品質管理。国内アフターサービス体制を整え、導入後の運営まで一貫してサポートします。</p>
+        <div style="margin-top:16px;">
+          <div style="font-size:0.72em; color:var(--js-gold); font-weight:700; margin-bottom:8px;">MADE IN JAPAN 品質</div>
+          <ul style="padding-left:18px;">
+            <li style="font-size:0.72em; color:#bbb; margin-bottom:4px;">精度・耐久性の高い自社OEM製造</li>
+            <li style="font-size:0.72em; color:#bbb; margin-bottom:4px;">国内施工・アフターサポート対応</li>
+            <li style="font-size:0.72em; color:#bbb; margin-bottom:4px;">IoT遠隔監視システム対応</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 4. 外観・内観イメージ ===== -->
+  <section data-background-color="#111">
+    <div class="section-label">DESIGN</div>
+    <h2>外観・内観イメージ</h2>
+    <div class="gold-line"></div>
+    <div class="two-col">
+      <div>
+        <div class="image-placeholder-half">外観パース（差し替え）</div>
+        <p style="font-size:0.65em; color:#666; margin-top:8px; text-align:center;">外観 / Exterior</p>
+      </div>
+      <div>
+        <div class="image-placeholder-half">内観パース（差し替え）</div>
+        <p style="font-size:0.65em; color:#666; margin-top:8px; text-align:center;">内観 / Interior</p>
+      </div>
+    </div>
+    <p style="margin-top:16px; font-size:0.72em; color:#777;">※ 設置環境・ご要望に合わせたカスタマイズが可能です。詳細はご相談ください。</p>
+  </section>
+
+  <!-- ===== 5. スペック ===== -->
+  <section data-background-color="#111">
+    <div class="section-label">SPECIFICATION</div>
+    <h2>スペック詳細</h2>
+    <div class="gold-line"></div>
+    <table class="spec-table">
+      <tr>
+        <th>項目</th>
+        <th>仕様</th>
+        <th>備考</th>
+      </tr>
+      <tr>
+        <td>外寸（目安）</td>
+        <td>W2,000 × D2,000 × H2,400mm〜</td>
+        <td>カスタムサイズ対応可</td>
+      </tr>
+      <tr>
+        <td>定員</td>
+        <td>2〜6名</td>
+        <td>モデルにより異なる</td>
+      </tr>
+      <tr>
+        <td>ヒーター</td>
+        <td>電気式サウナヒーター（6〜12kW）</td>
+        <td>薪焚きオプションあり</td>
+      </tr>
+      <tr>
+        <td>設定温度</td>
+        <td>最高100℃</td>
+        <td>コントローラーで調整</td>
+      </tr>
+      <tr>
+        <td>加熱時間</td>
+        <td>約30〜45分</td>
+        <td>外気温・断熱仕様により変動</td>
+      </tr>
+      <tr>
+        <td>使用木材</td>
+        <td>アスペン / ヒノキ（オプション）</td>
+        <td>内装材。耐湿性に優れる</td>
+      </tr>
+      <tr>
+        <td>窓・ドア</td>
+        <td>強化ガラス（8mm）</td>
+        <td>大開口パノラマ窓オプションあり</td>
+      </tr>
+      <tr>
+        <td>電源</td>
+        <td>単相200V / 三相200V</td>
+        <td>設置環境に合わせて選択</td>
+      </tr>
+      <tr>
+        <td>設置方式</td>
+        <td>屋外設置（基礎工事込み）</td>
+        <td>屋内設置プランも相談可</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- ===== 6. 概算金額 ===== -->
+  <section data-background-color="#111">
+    <div class="section-label">PRICING</div>
+    <h2>概算金額</h2>
+    <div class="gold-line"></div>
+    <div class="plan-wrap">
+      <div class="plan">
+        <div class="plan-label">STANDARD PLAN</div>
+        <h3>スタンダード</h3>
+        <div class="price">160万円〜</div>
+        <div class="price-note">本体価格（税別）/ 設置工事費・搬入費別途</div>
+        <ul>
+          <li>2〜4名用キャビン</li>
+          <li>電気式ヒーター（6〜9kW）</li>
+          <li>強化ガラスドア・窓</li>
+          <li>基本コントローラー付き</li>
+          <li>1年間の製品保証</li>
+        </ul>
+      </div>
+      <div class="plan featured">
+        <div class="badge">RECOMMENDED</div>
+        <div class="plan-label">PREMIUM PLAN</div>
+        <h3>プレミアム</h3>
+        <div class="price">200万円〜</div>
+        <div class="price-note">本体価格（税別）/ 設置工事費・搬入費別途</div>
+        <ul>
+          <li>4〜6名用キャビン</li>
+          <li>電気式ヒーター（9〜12kW）</li>
+          <li>パノラマ大開口窓</li>
+          <li>IoTスマートコントロール対応</li>
+          <li>2年間の製品保証</li>
+          <li>IoT遠隔監視サービス（初年度無料）</li>
+        </ul>
+      </div>
+    </div>
+    <p style="font-size:0.65em; color:#555; margin-top:16px;">※ 設置工事費は現地調査後にお見積もりします。搬入経路・基礎工事内容により変動します。</p>
+  </section>
+
+  <!-- ===== 7. 導入サポート ===== -->
+  <section data-background-color="#111">
+    <div class="section-label">SUPPORT</div>
+    <h2>導入後のサポート体制</h2>
+    <div class="gold-line"></div>
+    <p style="font-size:0.78em; color:#aaa;">ハードの納品で終わりではなく、<strong>施設の運営まで一貫してサポート</strong>します。</p>
+    <div class="support-grid">
+      <div class="support-item">
+        <div class="s-icon">📡</div>
+        <div class="s-title">IoT遠隔監視</div>
+        <div class="s-desc">温度・稼働状況をリアルタイムでモニタリング。スマートフォンで予熱・温度設定が可能。</div>
+      </div>
+      <div class="support-item">
+        <div class="s-icon">🔧</div>
+        <div class="s-title">保守・メンテナンス</div>
+        <div class="s-desc">異常検知時の遠隔サポート。定期点検プランにより施設の稼働率を最大化。</div>
+      </div>
+      <div class="support-item">
+        <div class="s-icon">📊</div>
+        <div class="s-title">複数拠点管理</div>
+        <div class="s-desc">複数施設を運営するオーナー向けに、一元管理ダッシュボードを提供。</div>
+      </div>
+      <div class="support-item">
+        <div class="s-icon">📞</div>
+        <div class="s-title">専任担当サポート</div>
+        <div class="s-desc">導入から運営まで専任担当者が対応。トラブル時も迅速にサポートします。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 8. 導入スケジュール ===== -->
+  <section data-background-color="#111">
+    <div class="section-label">SCHEDULE</div>
+    <h2>導入までの流れ</h2>
+    <div class="gold-line"></div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-period">STEP 1</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="tl-title">ヒアリング・現地調査</div>
+          <div class="tl-desc">設置場所・電源環境・ご要望の確認。現地にて搬入経路・基礎工事の有無を調査します。</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-period">STEP 2</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="tl-title">お見積もり・仕様確定</div>
+          <div class="tl-desc">現地調査をもとに詳細お見積もりを提出。仕様・カスタマイズ内容を確定します。（目安：1〜2週間）</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-period">STEP 3</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="tl-title">ご契約・製造着手</div>
+          <div class="tl-desc">契約後、製造を開始します。製造期間の目安は6〜10週間です。</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-period">STEP 4</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="tl-title">搬入・設置工事</div>
+          <div class="tl-desc">基礎工事・搬入・電気工事・組み立てを実施。施工期間の目安は2〜3日です。</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-period">STEP 5</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="tl-title">検査・引き渡し・運用開始</div>
+          <div class="tl-desc">動作確認・使い方レクチャー後、引き渡し。IoT設定・サポート体制も同日に整えます。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 9. お問い合わせ ===== -->
+  <section data-background-color="#0d0d0d">
+    <div class="section-label">CONTACT</div>
+    <h2>ご相談・お問い合わせ</h2>
+    <div class="gold-line"></div>
+    <p style="font-size:0.82em; color:#bbb;">まずはお気軽にご相談ください。現地調査・お見積もりは<strong>無料</strong>で対応いたします。</p>
+    <div class="cta-box">
+      <div class="cta-title">JapanSauna — 担当窓口</div>
+      <div class="cta-info">
+        会社名：株式会社JapanSauna<br>
+        担当：<br>
+        Email：<br>
+        TEL：<br>
+        Web：japansauna.jp
+      </div>
+    </div>
+    <div style="margin-top:24px; text-align:center;">
+      <div style="font-size:0.6em; color:#444; letter-spacing:0.15em;">JAPANSAUNA — TOTONOU EXPERIENCE</div>
+    </div>
+  </section>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: true,
+    transition: 'fade',
+    transitionSpeed: 'fast',
+    controls: true,
+    progress: true,
+    center: false,
+    margin: 0.06,
+  });
+</script>
+</body>
+</html>
