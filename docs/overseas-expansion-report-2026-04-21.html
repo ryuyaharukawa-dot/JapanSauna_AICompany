@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>海外サウナ市場調査レポート — JapanSauna 2026.04</title>
+  <style>
+    body {
+      font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+      color: #1a1a1a;
+      background: #fff;
+      line-height: 1.7;
+      margin: 0;
+    }
+    html { font-size: 15px; }
+    #sticky-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.97);
+      border-bottom: 1px solid #ccc;
+      padding: 12px 20px;
+      display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    }
+    #sticky-nav .nav-label {
+      font-size: 0.72rem; font-weight: 700; color: #777;
+      letter-spacing: 0.05em; margin-right: 4px; white-space: nowrap;
+    }
+    .pill {
+      display: inline-block; padding: 5px 16px;
+      font-size: 0.78rem; font-weight: 600; color: #555;
+      text-decoration: none; border: 1px solid #ccc;
+      border-radius: 999px; transition: all 0.2s ease; white-space: nowrap;
+    }
+    .pill:hover, .pill.active {
+      background: #1a1a1a; color: #fff; border-color: #1a1a1a;
+    }
+    #main { max-width: 920px; margin: 0 auto; padding: 40px 48px 80px; }
+    .report-header { border-bottom: 2px solid #1a1a1a; padding-bottom: 20px; margin-bottom: 32px; }
+    .report-header h1 { font-size: 1.6rem; font-weight: 700; line-height: 1.3; margin-bottom: 4px; }
+    .report-header .subtitle { font-size: 0.9rem; color: #555; margin-bottom: 16px; }
+    .report-header .summary-box {
+      background: #f7f7f7; border: 1px solid #ddd; padding: 16px 20px; margin-top: 16px;
+    }
+    .report-header .summary-box h3 { font-size: 0.85rem; font-weight: 700; margin-bottom: 10px; }
+    .report-header .summary-box ul {
+      padding-left: 20px; font-size: 0.82rem;
+    }
+    .report-header .summary-box li { margin-bottom: 4px; }
+    h2.section-title {
+      font-size: 1.2rem; font-weight: 700;
+      border-bottom: 1px solid #999; padding-bottom: 6px;
+      margin-top: 48px; margin-bottom: 20px;
+    }
+    h3.subsection-title {
+      font-size: 1.0rem; font-weight: 700;
+      margin-top: 32px; margin-bottom: 12px;
+      padding-left: 10px; border-left: 3px solid #555;
+    }
+    h4 { font-size: 0.9rem; font-weight: 700; margin-top: 20px; margin-bottom: 8px; }
+    table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: 0.82rem; }
+    table th, table td { border: 1px solid #bbb; padding: 7px 10px; text-align: left; vertical-align: top; }
+    table th { background: #f0f0f0; font-weight: 700; white-space: nowrap; }
+    table td { background: #fff; }
+    table tr:nth-child(even) td { background: #fafafa; }
+    p { margin-bottom: 10px; font-size: 0.88rem; }
+    ul, ol { margin-bottom: 10px; padding-left: 22px; font-size: 0.88rem; }
+    ul li, ol li { margin-bottom: 3px; }
+    .highlight-box {
+      background: #f7f7f7; border: 1px solid #ddd;
+      padding: 14px 18px; margin: 12px 0 20px; font-size: 0.85rem;
+    }
+    .note-box {
+      background: #fffbeb; border-left: 4px solid #f59e0b;
+      padding: 10px 16px; margin: 12px 0 20px; font-size: 0.82rem; color: #78350f;
+    }
+    .info-box {
+      background: #eff6ff; border-left: 4px solid #3b82f6;
+      padding: 10px 16px; margin: 12px 0 20px; font-size: 0.82rem; color: #1e3a5f;
+    }
+    .confirm-box {
+      background: #f0fdf4; border-left: 4px solid #22c55e;
+      padding: 10px 16px; margin: 12px 0 20px; font-size: 0.82rem; color: #14532d;
+    }
+    .badge {
+      display: inline-block; padding: 2px 10px;
+      font-size: 0.72rem; font-weight: 700;
+      border-radius: 999px; letter-spacing: 0.03em;
+    }
+    .badge-ok { background: #d4edda; color: #155724; }
+    .badge-warn { background: #fff3cd; color: #856404; }
+    .badge-info { background: #d1ecf1; color: #0c5460; }
+    .badge-pending { background: #e2e3e5; color: #383d41; }
+    .badge-ng { background: #f8d7da; color: #721c24; }
+    .flow {
+      display: flex; align-items: center; gap: 0;
+      margin: 20px 0; flex-wrap: wrap; justify-content: center;
+    }
+    .flow-step {
+      background: #f0f0f0; border: 1px solid #ccc;
+      padding: 10px 18px; font-size: 0.82rem; font-weight: 600;
+      text-align: center; min-width: 120px;
+    }
+    .flow-step.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
+    .flow-step.done { background: #d4edda; color: #155724; border-color: #155724; }
+    .flow-arrow { font-size: 1.2rem; color: #999; padding: 0 4px; }
+    .phase-label {
+      display: inline-block; padding: 2px 10px; font-size: 0.72rem; font-weight: 700;
+      border-radius: 999px; letter-spacing: 0.03em; margin-bottom: 8px;
+    }
+    .phase-1 { background: #1a1a1a; color: #fff; }
+    .phase-2 { background: #555; color: #fff; }
+    .phase-3 { background: #999; color: #fff; }
+    .star { color: #f59e0b; }
+    .report-footer {
+      border-top: 1px solid #999; margin-top: 48px; padding-top: 16px;
+      font-size: 0.78rem; color: #777;
+    }
+    @media (max-width: 640px) {
+      #main { padding: 24px 20px 60px; }
+      .report-header h1 { font-size: 1.3rem; }
+      h2.section-title { font-size: 1.05rem; }
+      table { font-size: 0.78rem; }
+      table th, table td { padding: 5px 7px; }
+      #sticky-nav { padding: 10px 12px; gap: 6px; }
+      .pill { padding: 4px 12px; font-size: 0.72rem; }
+    }
+    @media print {
+      #sticky-nav { display: none; }
+      #main { padding: 0; max-width: 100%; }
+      body { font-size: 10pt; }
+      .report-header h1 { font-size: 16pt; }
+      h2.section-title { font-size: 13pt; page-break-after: avoid; }
+      h3.subsection-title { font-size: 11pt; page-break-after: avoid; }
+      table { font-size: 8pt; page-break-inside: avoid; }
+      table th, table td { padding: 3px 5px; }
+      .highlight-box, .note-box, .info-box, .confirm-box {
+        -webkit-print-color-adjust: exact; print-color-adjust: exact;
+      }
+      table th { background: #f0f0f0 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="sticky-nav">
+  <span class="nav-label">SECTIONS</span>
+  <a class="pill" href="#overview">市場概況</a>
+  <a class="pill" href="#countries">注目市場</a>
+  <a class="pill" href="#makers">メーカー一覧</a>
+  <a class="pill" href="#strategy">参入戦略</a>
+  <a class="pill" href="#positioning">差別化</a>
+  <a class="pill" href="#next">Next</a>
+</nav>
+
+<div id="main">
+
+  <!-- ===== HEADER ===== -->
+  <header class="report-header">
+    <h1>海外サウナ市場調査レポート</h1>
+    <div class="subtitle">JapanSauna 海外展開PJ — 2026年4月21日</div>
+    <div class="summary-box">
+      <h3>サマリー</h3>
+      <ul>
+        <li><strong>世界市場規模（2024年）:</strong> 約9〜10億ドル（CAGR 6〜7%）。2030年に12.7億ドルへ拡大予測</li>
+        <li><strong>最速成長地域:</strong> アジア太平洋（CAGR 9%超）— 韓国・中国・日本が牽引</li>
+        <li><strong>調査メーカー数:</strong> 20社以上（フィンランド・エストニア・ドイツ・米国・カナダ・英国）</li>
+        <li><strong>最注目競合:</strong> Auroom（エストニア）— 熱処理木材×ハンドクラフト。屋外$39,000〜55,000</li>
+        <li><strong>推奨第1市場:</strong> 韓国（チムジルバン文化定着、プレミアムシフト進行中、KC認証3〜6ヶ月で取得可）</li>
+        <li><strong>JapanSaunaの強み:</strong> 自社OEM × ととのい文化 × IoT保守サポート × 160〜200万円の価格競争力</li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ===== SECTION 1: 世界市場概況 ===== -->
+  <h2 class="section-title" id="overview">1. 世界サウナ市場の概況</h2>
+
+  <div class="highlight-box">
+    <table style="margin:0;">
+      <tr>
+        <th>2024年市場規模</th>
+        <th>2030年予測</th>
+        <th>CAGR</th>
+        <th>住宅用シェア</th>
+        <th>最成長地域</th>
+      </tr>
+      <tr>
+        <td><strong>約9〜10億ドル</strong></td>
+        <td><strong>約12.7億ドル</strong></td>
+        <td><strong>6〜7%</strong></td>
+        <td><strong>約60%</strong></td>
+        <td><strong>アジア太平洋 9%超</strong></td>
+      </tr>
+    </table>
+  </div>
+
+  <h3 class="subsection-title">市場成長のドライバー</h3>
+  <ul>
+    <li>健康・ウェルネスへの世界的関心の高まり</li>
+    <li>アジア新興国の中産階級拡大と可処分所得の増加</li>
+    <li>ウェルネスツーリズムの急拡大（高級ホテル・リゾートへの需要）</li>
+    <li>スマートサウナ・赤外線技術の普及（新規導入の34%がスマート対応型）</li>
+  </ul>
+
+  <div class="info-box">
+    <strong>日本市場の参考値:</strong> サウナ人口1,570〜1,680万人（2023年）。2019年のドラマ「サ道」以降、文化として定着。HARVIA（フィンランド）が2023年に日本法人を設立し、海外勢も本格参入済み。
+  </div>
+
+
+  <!-- ===== SECTION 2: 注目市場 ===== -->
+  <h2 class="section-title" id="countries">2. 注目市場：どの国が熱いか</h2>
+
+  <table>
+    <tr>
+      <th>地域・国</th>
+      <th>市場シェア/成長率</th>
+      <th>特性</th>
+      <th>JapanSaunaとの相性</th>
+    </tr>
+    <tr>
+      <td><strong>アジア太平洋</strong><br>（韓国・中国・日本）</td>
+      <td>CAGR <strong>9%超</strong>（世界最速）</td>
+      <td>健康意識・中産階級・都市化が成長ドライバー。中国・日本でアジア総需要の58%</td>
+      <td><span class="badge badge-ok">最高</span></td>
+    </tr>
+    <tr>
+      <td><strong>欧州</strong><br>（フィンランド・ドイツ）</td>
+      <td>市場シェア約38〜42%</td>
+      <td>成熟市場。フィンランド普及率90%超。ドイツ施設数2,000超・売上シェア20%</td>
+      <td><span class="badge badge-info">中長期</span></td>
+    </tr>
+    <tr>
+      <td><strong>北米</strong><br>（米国）</td>
+      <td>市場シェア約35%<br>CAGR 5.3%</td>
+      <td>個人宅需要が強い。赤外線・スマートサウナの採用が最も進む地域</td>
+      <td><span class="badge badge-info">中長期</span></td>
+    </tr>
+    <tr>
+      <td><strong>オーストラリア</strong></td>
+      <td>成長中</td>
+      <td>英語圏。高級グランピング・リゾート市場が成長中。アジア系競合が少ない</td>
+      <td><span class="badge badge-warn">第2フェーズ</span></td>
+    </tr>
+  </table>
+
+  <h3 class="subsection-title">韓国を最初の市場として選ぶ理由</h3>
+  <ul>
+    <li><strong>チムジルバン文化が根付いている</strong> — 顧客教育コストが低い</li>
+    <li><strong>個室・プレミアムサウナへのシフトが進行中</strong> — ヴィラ・グランピング需要急増</li>
+    <li><strong>日本製品へのブランド信頼性が高い</strong> — 品質・デザインで評価される</li>
+    <li><strong>地理的近さ</strong> — 施工・アフターサポートが現実的</li>
+    <li><strong>「ととのい体験」への関心が高まっている</strong> — 日本のサウナ文化の輸出がしやすい</li>
+  </ul>
+
+
+  <!-- ===== SECTION 3: メーカー一覧 ===== -->
+  <h2 class="section-title" id="makers">3. 主要サウナキャビンメーカー一覧</h2>
+
+  <h3 class="subsection-title">グローバル大手</h3>
+  <table>
+    <tr><th>メーカー</th><th>国</th><th>設立</th><th>価格帯</th><th>特徴</th><th>展開</th></tr>
+    <tr>
+      <td><strong>HARVIA</strong></td>
+      <td>フィンランド</td>
+      <td>1950年</td>
+      <td>200万円〜</td>
+      <td>世界No.1シェア。ヒーター〜完成キャビンまで全ライン。Almost Heaven（米）傘下。<strong>2023年日本法人設立済み</strong></td>
+      <td><span class="badge badge-ok">グローバル</span></td>
+    </tr>
+    <tr>
+      <td><strong>TylöHelo</strong></td>
+      <td>スウェーデン/フィンランド</td>
+      <td>1919年</td>
+      <td>中〜高価格帯</td>
+      <td>90ヵ国以上展開。高級スパ・5つ星ホテルに強い。欧州市場の雄</td>
+      <td><span class="badge badge-ok">グローバル</span></td>
+    </tr>
+  </table>
+
+  <h3 class="subsection-title">注目：エストニア勢 <span class="star">★</span></h3>
+  <div class="note-box">
+    エストニアは人口130万人の小国ながら、Auroom・HUUM・totonoüなど世界トップクラスのサウナブランドを複数輩出。デザイン性・技術力・BtoB展開力で要注目。
+  </div>
+  <table>
+    <tr><th>メーカー</th><th>設立</th><th>価格帯</th><th>特徴</th><th>JapanSaunaとの関係</th></tr>
+    <tr>
+      <td><strong>Auroom</strong> <span class="star">★</span></td>
+      <td>2021年</td>
+      <td>屋外：$39,000〜55,000<br>屋内：$7,000〜22,000</td>
+      <td>Thermoryから独立。熱処理ノルディック材×ハンドクラフト。ヨット・航空機への搭載実績あり。圧倒的なデザイン性</td>
+      <td><span class="badge badge-ng">最注目競合</span></td>
+    </tr>
+    <tr>
+      <td><strong>HUUM</strong> <span class="star">★</span></td>
+      <td>—</td>
+      <td>ヒーター$1,900〜3,200</td>
+      <td>デザイン賞受賞。WiFiスマートコントロール（UKU）搭載。蓄熱性能が高く柔らかいロウリュができる</td>
+      <td><span class="badge badge-info">OEM候補</span></td>
+    </tr>
+    <tr>
+      <td><strong>totonoü</strong> <span class="star">★</span></td>
+      <td>—</td>
+      <td>要見積もり</td>
+      <td>エストニア×日本で運営。<strong>日本国内で約500件導入済み。</strong>バレルサウナ専門。BtoB実績豊富</td>
+      <td><span class="badge badge-ng">直接競合</span></td>
+    </tr>
+    <tr>
+      <td><strong>Thermory</strong></td>
+      <td>1997年</td>
+      <td>DIYキット$5,300〜9,000</td>
+      <td>世界最大の熱処理木材メーカー。50ヵ国以上に輸出。Auroomの親会社</td>
+      <td><span class="badge badge-pending">素材仕入れ候補</span></td>
+    </tr>
+  </table>
+
+  <h3 class="subsection-title">高級カスタム（ドイツ・欧州）</h3>
+  <table>
+    <tr><th>メーカー</th><th>国</th><th>設立</th><th>価格帯</th><th>特徴</th></tr>
+    <tr>
+      <td><strong>KLAFS</strong></td>
+      <td>ドイツ</td>
+      <td>1928年</td>
+      <td>$12,500〜</td>
+      <td>超高級カスタム特化。2024年Kohlerが買収。ホテル・スパ施設向けに強い</td>
+    </tr>
+    <tr>
+      <td><strong>Corso</strong></td>
+      <td>ドイツ</td>
+      <td>1968年</td>
+      <td>$15,000〜50,000</td>
+      <td>職人手作り・量産なし。Golden Wave Award受賞</td>
+    </tr>
+    <tr>
+      <td><strong>RUKU</strong></td>
+      <td>ドイツ</td>
+      <td>1852年</td>
+      <td>高級カスタム</td>
+      <td>170年超の木工職人企業。完全カスタムメイド</td>
+    </tr>
+  </table>
+
+  <h3 class="subsection-title">テクノロジー・ヒーター特化</h3>
+  <table>
+    <tr><th>メーカー</th><th>国</th><th>設立</th><th>価格帯</th><th>特徴</th></tr>
+    <tr>
+      <td><strong>EOS Saunatechnik</strong></td>
+      <td>ドイツ</td>
+      <td>80年超</td>
+      <td>高価格帯（施設向け）</td>
+      <td>サウナヒーター・制御システムの権威。BtoB施設向けに強い</td>
+    </tr>
+    <tr>
+      <td><strong>KASTOR</strong></td>
+      <td>フィンランド</td>
+      <td>1916年</td>
+      <td>要問合せ</td>
+      <td>フィンランド最古のサウナブランド。薪焚きストーブに定評</td>
+    </tr>
+    <tr>
+      <td><strong>TULIKIVI</strong></td>
+      <td>フィンランド</td>
+      <td>1980年</td>
+      <td>要問合せ</td>
+      <td>カレリア産ソープストーン使用。柔らかく均一な熱が数時間持続</td>
+    </tr>
+    <tr>
+      <td><strong>Narvi</strong></td>
+      <td>フィンランド</td>
+      <td>1937年</td>
+      <td>$1,800〜10,000</td>
+      <td>フィンランド100%製造認定。電気・薪・ハイブリッド対応</td>
+    </tr>
+  </table>
+
+  <h3 class="subsection-title">北米・個人宅向け</h3>
+  <table>
+    <tr><th>メーカー</th><th>国</th><th>設立</th><th>価格帯</th><th>特徴</th></tr>
+    <tr>
+      <td><strong>Almost Heaven Saunas</strong></td>
+      <td>米国</td>
+      <td>1977年</td>
+      <td>$3,000〜15,000</td>
+      <td>HARVIAが2019年に買収。米国製・年間1万台製造</td>
+    </tr>
+    <tr>
+      <td><strong>Clearlight Saunas</strong></td>
+      <td>米国</td>
+      <td>1998年</td>
+      <td>$7,000〜9,600</td>
+      <td>赤外線専門。FDA登録。医療・ウェルネス施設にも納入実績</td>
+    </tr>
+    <tr>
+      <td><strong>Sunlighten</strong></td>
+      <td>米国</td>
+      <td>1999年</td>
+      <td>$4,600〜</td>
+      <td>臨床グレード赤外線。30以上の特許。16ヵ国以上で販売</td>
+    </tr>
+    <tr>
+      <td><strong>HigherDOSE</strong></td>
+      <td>米国</td>
+      <td>2016年</td>
+      <td>$1,000〜9,000</td>
+      <td>セレブ・インフルエンサー推奨。ウェルネス文脈での訴求が強い</td>
+    </tr>
+    <tr>
+      <td><strong>HealthMate</strong></td>
+      <td>カナダ</td>
+      <td>1979年</td>
+      <td>中価格帯</td>
+      <td>北米初の赤外線ホームサウナ。スマートアプリ連動</td>
+    </tr>
+    <tr>
+      <td><strong>Dundalk Leisurecraft</strong></td>
+      <td>カナダ</td>
+      <td>2004年</td>
+      <td>$5,000〜20,000</td>
+      <td>Eastern White Cedar使用の屋外キャビン。北米・欧州で流通</td>
+    </tr>
+    <tr>
+      <td><strong>Finnmark Sauna</strong></td>
+      <td>イギリス</td>
+      <td>2016年</td>
+      <td>中〜高価格帯</td>
+      <td>本物の北欧体験訴求。プレミアリーグクラブ等BtoB実績多数</td>
+    </tr>
+    <tr>
+      <td><strong>Kirami</strong></td>
+      <td>フィンランド</td>
+      <td>2001年</td>
+      <td>中価格帯</td>
+      <td>ホットタブ世界最大メーカー。オフグリッド型「Zero」が2024年に注目</td>
+    </tr>
+  </table>
+
+
+  <!-- ===== SECTION 4: 参入戦略 ===== -->
+  <h2 class="section-title" id="strategy">4. JapanSaunaが攻めるべき市場と参入戦略</h2>
+
+  <h3 class="subsection-title">市場優先度</h3>
+  <table>
+    <tr><th>フェーズ</th><th>市場</th><th>理由</th><th>必要認証</th><th>費用目安</th></tr>
+    <tr>
+      <td><span class="phase-label phase-1">第1フェーズ</span></td>
+      <td><strong>韓国</strong></td>
+      <td>チムジルバン文化・日本製品信頼性・地理的近さ・プレミアムシフト進行中</td>
+      <td>KC認証</td>
+      <td>50〜150万円 / 3〜6ヶ月</td>
+    </tr>
+    <tr>
+      <td><span class="phase-label phase-2">第2フェーズ</span></td>
+      <td><strong>オーストラリア</strong></td>
+      <td>英語圏で北米への布石、高級グランピング市場成長、アジア系競合少</td>
+      <td>RCM認証</td>
+      <td>CE認証後に流用可</td>
+    </tr>
+    <tr>
+      <td><span class="phase-label phase-3">中長期</span></td>
+      <td><strong>中国・北米・欧州</strong></td>
+      <td>参入障壁・競合強度が高い。実績を積んだ後に検討</td>
+      <td>CE / UL等</td>
+      <td>100〜300万円</td>
+    </tr>
+  </table>
+
+  <h3 class="subsection-title">参入ステップ</h3>
+
+  <div class="flow">
+    <div class="flow-step active">STEP 1<br>商社経由<br>パートナー開拓</div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-step">STEP 2<br>認証取得<br>KC認証</div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-step">STEP 3<br>パイロット案件<br>1〜3件獲得</div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-step">STEP 4<br>事例化・スケール<br>BtoC展開</div>
+  </div>
+
+  <div class="confirm-box">
+    <strong>近道：政治家→商社ルートを最優先で動かす</strong><br>
+    CE/KC認証未取得の現状でも、商社経由なら認証取得サポートを含めて動いてもらえる可能性が高い。今期最大のアセットとして今週中にコンタクトを。
+  </div>
+
+  <h3 class="subsection-title">認証取得ロードマップ</h3>
+  <table>
+    <tr><th>認証</th><th>対象市場</th><th>取得期間</th><th>費用目安</th><th>備考</th></tr>
+    <tr>
+      <td><strong>KC認証</strong></td>
+      <td>韓国</td>
+      <td>3〜6ヶ月</td>
+      <td>50〜150万円</td>
+      <td>電気ヒーターが主な対象。OEM先が既に保有している場合はコスト大幅削減可能</td>
+    </tr>
+    <tr>
+      <td><strong>CE認証</strong></td>
+      <td>欧州・豪・NZ</td>
+      <td>6〜12ヶ月</td>
+      <td>100〜300万円</td>
+      <td>取得後にRCM（豪）へ流用可。KCとの試験データ共用も可能な場合あり</td>
+    </tr>
+  </table>
+
+  <div class="note-box">
+    <strong>最初に確認すべきこと：</strong> OEM製造先がすでにKC認証またはCE認証を保有しているか確認する。保有済みであれば取得コスト・期間を大幅に削減できる。
+  </div>
+
+
+  <!-- ===== SECTION 5: 差別化ポジション ===== -->
+  <h2 class="section-title" id="positioning">5. JapanSaunaの差別化ポジション</h2>
+
+  <div class="highlight-box" style="text-align:center; font-size:1.0rem; font-weight:700; padding: 20px;">
+    「TOTONOU EXPERIENCE. — 日本発、アジアのサウナ体験を再定義する」
+  </div>
+
+  <h3 class="subsection-title">競合との比較</h3>
+  <table>
+    <tr><th>メーカー</th><th>価格帯（屋外キャビン）</th><th>ポジション</th><th>JapanSaunaとの比較</th></tr>
+    <tr>
+      <td><strong>Auroom</strong>（エストニア）</td>
+      <td>580〜820万円</td>
+      <td>超高級ハンドクラフト</td>
+      <td>JapanSaunaより高価格。「Auroomより手の届きやすいプレミアム」として訴求可</td>
+    </tr>
+    <tr>
+      <td><strong>totonoü</strong>（エストニア×日本）</td>
+      <td>要見積もり（推定100万円台〜）</td>
+      <td>バレルサウナ専門・BtoB</td>
+      <td>最も近い直接競合。キャビン型・IoT保守・日本品質で差別化</td>
+    </tr>
+    <tr>
+      <td><strong>HARVIA完成キャビン</strong></td>
+      <td>200万円〜</td>
+      <td>グローバル標準</td>
+      <td>ほぼ同価格帯。ブランド力では劣るが「ととのい文化」と保守サポートで差別化</td>
+    </tr>
+    <tr>
+      <td><strong>JapanSauna</strong></td>
+      <td><strong>160〜200万円</strong></td>
+      <td><strong>プレミアムBtoB</strong></td>
+      <td>—</td>
+    </tr>
+  </table>
+
+  <h3 class="subsection-title">差別化の4軸</h3>
+  <table>
+    <tr><th>軸</th><th>内容</th><th>競合にない理由</th></tr>
+    <tr>
+      <td><strong>Made in Japan品質</strong></td>
+      <td>自社OEM製造による精度・耐久性の保証</td>
+      <td>中国製OEMとの明確な差。アジア市場での「日本製」ブランドは強力</td>
+    </tr>
+    <tr>
+      <td><strong>ととのい文化</strong></td>
+      <td>「TOTONOU」コンセプトの体験訴求</td>
+      <td>欧米メーカーは「北欧文化」を訴求。日本文化は独自の差別化軸</td>
+    </tr>
+    <tr>
+      <td><strong>IoT × 運営サポート</strong></td>
+      <td>稼働率管理・遠隔保守・複数拠点ダッシュボード</td>
+      <td>競合はほぼハード売り切り。アフター・運営支援まで踏み込むプレイヤーは皆無</td>
+    </tr>
+    <tr>
+      <td><strong>BtoBカスタマイズ</strong></td>
+      <td>ヴィラ・リゾートの空間に合わせた設計提案力</td>
+      <td>汎用品を押し付けない。施設オーナーとの共同設計</td>
+    </tr>
+  </table>
+
+
+  <!-- ===== SECTION 6: 次のアクション ===== -->
+  <h2 class="section-title" id="next">6. 次のアクション</h2>
+
+  <table>
+    <tr><th>#</th><th>アクション</th><th>担当</th><th>期限</th><th>ステータス</th></tr>
+    <tr>
+      <td>①</td>
+      <td><strong>商社アプローチ</strong>：政治家ルート経由でコンタクト。韓国・豪への輸出代理を打診</td>
+      <td>Hal</td>
+      <td>今週中</td>
+      <td><span class="badge badge-warn">未着手</span></td>
+    </tr>
+    <tr>
+      <td>②</td>
+      <td><strong>KC認証の取得着手</strong>：OEM先の認証保有状況を確認。KTL/KCLへ見積もり取得</td>
+      <td>Hal / 岡村</td>
+      <td>〜1ヶ月以内</td>
+      <td><span class="badge badge-warn">未着手</span></td>
+    </tr>
+    <tr>
+      <td>③</td>
+      <td><strong>製品資料の英語・韓国語版作成</strong>：日本語資料をローカライズ。代理店商談の初期ツールとして活用</td>
+      <td>bizdev / engineering</td>
+      <td>〜1ヶ月以内</td>
+      <td><span class="badge badge-warn">未着手</span></td>
+    </tr>
+    <tr>
+      <td>④</td>
+      <td><strong>韓国現地代理店リストアップ</strong>：グランピング・ヴィラ向け建材・設備商社を10社ピックアップ</td>
+      <td>research部門</td>
+      <td>〜2ヶ月以内</td>
+      <td><span class="badge badge-pending">未定</span></td>
+    </tr>
+    <tr>
+      <td>⑤</td>
+      <td><strong>Auroom / totonoüの動向調査</strong>：韓国・豪への展開状況・代理店契約の有無を調べる</td>
+      <td>research部門</td>
+      <td>〜2ヶ月以内</td>
+      <td><span class="badge badge-pending">未定</span></td>
+    </tr>
+  </table>
+
+  <div class="report-footer">
+    作成：JapanSauna bizdev部門 — 2026年4月21日（v2：メーカー情報を拡充）
+  </div>
+
+</div>
+</body>
+</html>
