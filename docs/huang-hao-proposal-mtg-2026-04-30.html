@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JapanSauna × 黄皓 アンバサダー提案書</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+      color: #1a1a1a;
+      background: #f5f5f0;
+      padding: 40px 20px;
+    }
+
+    .page {
+      max-width: 760px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 56px 64px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    }
+
+    /* ヘッダー */
+    .header {
+      border-bottom: 3px solid #1a1a1a;
+      padding-bottom: 24px;
+      margin-bottom: 36px;
+    }
+    .header-meta {
+      font-size: 11px;
+      color: #888;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .header h1 {
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: 0.02em;
+    }
+    .header h1 span {
+      color: #8B4513;
+    }
+    .header-sub {
+      margin-top: 8px;
+      font-size: 13px;
+      color: #555;
+    }
+
+    /* セクション */
+    .section {
+      margin-bottom: 36px;
+    }
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #8B4513;
+      border-left: 3px solid #8B4513;
+      padding-left: 10px;
+      margin-bottom: 16px;
+    }
+
+    /* リード文 */
+    .lead {
+      font-size: 14px;
+      line-height: 1.9;
+      color: #333;
+    }
+
+    /* ハイライトボックス */
+    .highlight-box {
+      background: #faf7f4;
+      border: 1px solid #e8ddd5;
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin-bottom: 16px;
+    }
+    .highlight-box .label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #8B4513;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+    .highlight-box .value {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+    .highlight-box .note {
+      font-size: 12px;
+      color: #777;
+      margin-top: 4px;
+    }
+
+    .highlight-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    /* テーブル */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th {
+      background: #1a1a1a;
+      color: #fff;
+      padding: 9px 14px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+    }
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #eee;
+      line-height: 1.6;
+      vertical-align: top;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    tr:nth-child(even) td {
+      background: #fafafa;
+    }
+
+    /* 2カラム */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* メリットカード */
+    .merit-card {
+      background: #faf7f4;
+      border-radius: 6px;
+      padding: 18px 20px;
+      border: 1px solid #e8ddd5;
+    }
+    .merit-card .who {
+      font-size: 11px;
+      font-weight: 700;
+      color: #8B4513;
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+    }
+    .merit-card ul {
+      list-style: none;
+      padding: 0;
+    }
+    .merit-card ul li {
+      font-size: 13px;
+      line-height: 1.7;
+      padding-left: 16px;
+      position: relative;
+      color: #333;
+    }
+    .merit-card ul li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #8B4513;
+      font-weight: 700;
+    }
+
+    /* タイムライン */
+    .timeline {
+      list-style: none;
+      position: relative;
+      padding-left: 24px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 6px;
+      bottom: 6px;
+      width: 2px;
+      background: #e0d5cc;
+    }
+    .timeline li {
+      position: relative;
+      padding: 0 0 18px 20px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .timeline li::before {
+      content: '';
+      position: absolute;
+      left: -17px;
+      top: 5px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #8B4513;
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 2px #8B4513;
+    }
+    .timeline li:last-child {
+      padding-bottom: 0;
+    }
+    .timeline .date {
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-right: 8px;
+    }
+    .timeline .desc {
+      color: #444;
+    }
+
+    /* 条件テーブル */
+    .condition-table td:first-child {
+      font-weight: 600;
+      color: #1a1a1a;
+      width: 38%;
+      white-space: nowrap;
+    }
+
+    /* フッター */
+    .footer {
+      margin-top: 48px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .footer-company {
+      font-size: 12px;
+      color: #888;
+      line-height: 1.7;
+    }
+    .footer-date {
+      font-size: 11px;
+      color: #bbb;
+    }
+
+    /* 区切り */
+    hr.divider {
+      border: none;
+      border-top: 1px solid #eee;
+      margin: 28px 0;
+    }
+
+    /* バッジ */
+    .badge {
+      display: inline-block;
+      background: #8B4513;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 2px 8px;
+      border-radius: 3px;
+      vertical-align: middle;
+      margin-left: 6px;
+    }
+
+    @media print {
+      body { background: #fff; padding: 0; }
+      .page { box-shadow: none; padding: 40px 48px; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="header-meta">Confidential · 2026.04.30</div>
+    <h1>JapanSauna × <span>黄皓</span><br>アンバサダー ＆ 返品保証キャンペーン 提案書</h1>
+    <div class="header-sub">株式会社セブンリッチ（JapanSauna事業部）　春川龍也</div>
+  </div>
+
+  <!-- 背景・趣旨 -->
+  <div class="section">
+    <div class="section-title">Background</div>
+    <p class="lead">
+      黄皓さんはすでに JapanSauna のサウナキャビンをご自身でご購入いただいており、「周りにも広めたい」とのお言葉をいただいています。この熱量と信頼を起点に、<strong>黄さんのネットワーク・発信力を活かしたアンバサダー契約</strong>と、購入ハードルを下げる<strong>「1ヶ月お試し返品保証」</strong>を組み合わせたキャンペーンを提案します。
+    </p>
+  </div>
+
+  <!-- KPI -->
+  <div class="section">
+    <div class="section-title">Expected Outcome</div>
+    <div class="highlight-row">
+      <div class="highlight-box">
+        <div class="label">問い合わせ目標</div>
+        <div class="value">10 件</div>
+        <div class="note">キャンペーン期間中</div>
+      </div>
+      <div class="highlight-box">
+        <div class="label">成約目標</div>
+        <div class="value">3〜6 台</div>
+        <div class="note">成約率 30%以上</div>
+      </div>
+      <div class="highlight-box">
+        <div class="label">純増売上試算</div>
+        <div class="value">約 520万円</div>
+        <div class="note">3台成約時・紹介料・返品コスト控除後</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 黄さんへのお願い -->
+  <div class="section">
+    <div class="section-title">黄さんへお願いしたいこと</div>
+    <table>
+      <tr>
+        <th style="width:30%">内容</th>
+        <th style="width:45%">具体的なアクション</th>
+        <th style="width:25%">負担感</th>
+      </tr>
+      <tr>
+        <td><strong>① 紹介ネットワーク活用</strong></td>
+        <td>起業家・富裕層の知人への口コミ推薦<br><small>専用紹介コードを発行しご紹介いただく</small></td>
+        <td>低（自然な会話の中で）</td>
+      </tr>
+      <tr>
+        <td><strong>② SNS 発信</strong></td>
+        <td>Instagram / TikTok での体験投稿<br><small>ご自身のペース・スタイルで OK</small></td>
+        <td>中（月1〜2回程度）</td>
+      </tr>
+      <tr>
+        <td><strong>③ 将来的なコラボ</strong><span class="badge">任意</span></td>
+        <td>サウナ体験会・イベント共催など</td>
+        <td>都合の合うときのみ</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- 条件 -->
+  <div class="section">
+    <div class="section-title">条件・インセンティブ</div>
+    <table class="condition-table">
+      <tr>
+        <td>紹介料（推奨案）</td>
+        <td>成約 1 件につき <strong>30,000〜50,000 円</strong><br><small>金額は今回 MTG で合意。入金確認後に支払い。</small></td>
+      </tr>
+      <tr>
+        <td>支払いタイミング</td>
+        <td>顧客の入金確認後（返品期間終了後に確定）</td>
+      </tr>
+      <tr>
+        <td>専用紹介コード</td>
+        <td>トラッキング用コードを発行・効果測定可能</td>
+      </tr>
+      <tr>
+        <td>契約形態</td>
+        <td>まずキャンペーン単発での契約。成果に応じて継続・月額契約に移行可</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- 返品保証 -->
+  <div class="section">
+    <div class="section-title">1ヶ月お試し返品保証（概要）</div>
+    <table class="condition-table">
+      <tr>
+        <td>キャンペーン期間</td>
+        <td><strong>2026年 5月 1日〜31日</strong>（この期間中の購入が対象）</td>
+      </tr>
+      <tr>
+        <td>返品受付期限</td>
+        <td>設置後 30 日以内（申請締切：6月30日）</td>
+      </tr>
+      <tr>
+        <td>返金方式</td>
+        <td>全額返金</td>
+      </tr>
+      <tr>
+        <td>返品条件</td>
+        <td>著しい損傷がないこと（判定基準は別途明文化）</td>
+      </tr>
+      <tr>
+        <td>返品送料</td>
+        <td>顧客負担（抑止効果のため）</td>
+      </tr>
+    </table>
+    <p style="margin-top:12px; font-size:12px; color:#888;">※ 返品率は 5〜10% を想定。リスク管理のためキャンペーン期間限定での実施とします。</p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- お互いのメリット -->
+  <div class="section">
+    <div class="section-title">お互いのメリット</div>
+    <div class="two-col">
+      <div class="merit-card">
+        <div class="who">黄皓さん にとって</div>
+        <ul>
+          <li>自分が好きなものを自然に広められる</li>
+          <li>「返品保証があるから安心して勧められる」</li>
+          <li>成約ごとにインセンティブが発生</li>
+          <li>将来的なブランド・事業コラボの可能性</li>
+        </ul>
+      </div>
+      <div class="merit-card">
+        <div class="who">JapanSauna にとって</div>
+        <ul>
+          <li>信頼できる既存顧客の熱量を活用</li>
+          <li>富裕層・起業家ネットワークへのリーチ</li>
+          <li>返品保証で購入ハードルを低減</li>
+          <li>効果測定しやすい紹介コード設計</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- スケジュール -->
+  <div class="section">
+    <div class="section-title">スケジュール</div>
+    <ul class="timeline">
+      <li>
+        <span class="date">4月30日（明日）</span>
+        <span class="desc">本日 MTG にて条件合意・細部すり合わせ</span>
+      </li>
+      <li>
+        <span class="date">4月30日〜5月1日</span>
+        <span class="desc">専用 LP・紹介コード準備、特商法表記確認（法務）</span>
+      </li>
+      <li>
+        <span class="date">5月1日</span>
+        <span class="desc">キャンペーン開始・黄さん SNS 発信解禁</span>
+      </li>
+      <li>
+        <span class="date">5月1〜31日</span>
+        <span class="desc">問い合わせ対応・成約フォロー・進捗共有</span>
+      </li>
+      <li>
+        <span class="date">6月15日</span>
+        <span class="desc">効果測定・ROI 算出・次フェーズ（継続契約）検討</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 本日 MTG での確認事項 -->
+  <div class="section">
+    <div class="section-title">本日 MTG での確認事項</div>
+    <table>
+      <tr>
+        <th style="width:8%">#</th>
+        <th style="width:55%">確認事項</th>
+        <th>優先度</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>紹介料の金額（3万 or 5万 or その他）・支払タイミング</td>
+        <td>🔴 必須</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>対象商品の絞り込み（全モデル or 特定モデル）</td>
+        <td>🔴 必須</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>SNS 投稿の頻度・スタイル（無理のない形を確認）</td>
+        <td>🟡 重要</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>黄さんのフォロワー数・エンゲージメント率の確認</td>
+        <td>🟡 重要</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>将来的なイベント・コラボへの関心度</td>
+        <td>🟢 任意</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- フッター -->
+  <div class="footer">
+    <div class="footer-company">
+      株式会社セブンリッチ　JapanSauna 事業部<br>
+      春川龍也　｜　ryuya.harukawa@sevenrich.jp
+    </div>
+    <div class="footer-date">2026.04.30 版</div>
+  </div>
+
+</div>
+</body>
+</html>
