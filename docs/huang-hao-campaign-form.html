@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>サウナキャビン 1ヶ月お試しキャンペーン｜JapanSauna</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+      font-size: 15px;
+      color: #1a1a1a;
+      background: #f7f4f0;
+      min-height: 100vh;
+    }
+
+    /* ヘッダー */
+    .hero {
+      background: #1a1a1a;
+      color: #fff;
+      padding: 48px 24px 40px;
+      text-align: center;
+    }
+    .hero .eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      color: #c8a882;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .hero h1 {
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1.45;
+      margin-bottom: 14px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: #c8a882;
+    }
+    .hero p {
+      font-size: 13px;
+      color: #aaa;
+      line-height: 1.8;
+    }
+
+    /* バッジ帯 */
+    .badges {
+      background: #c8a882;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .badge-item {
+      font-size: 12px;
+      font-weight: 700;
+      color: #1a1a1a;
+      letter-spacing: 0.04em;
+    }
+    .badge-item::before {
+      content: '✓ ';
+    }
+
+    /* フォームエリア */
+    .container {
+      max-width: 560px;
+      margin: 40px auto;
+      padding: 0 20px 60px;
+    }
+
+    .form-card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 36px 40px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+    }
+
+    .form-card h2 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .form-card .form-desc {
+      font-size: 13px;
+      color: #777;
+      margin-bottom: 28px;
+      line-height: 1.7;
+    }
+
+    /* フォームフィールド */
+    .field {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #333;
+    }
+    label .required {
+      color: #c0392b;
+      margin-left: 4px;
+      font-size: 11px;
+    }
+    label .optional {
+      color: #aaa;
+      margin-left: 4px;
+      font-size: 11px;
+      font-weight: 400;
+    }
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 11px 14px;
+      font-size: 14px;
+      font-family: inherit;
+      color: #1a1a1a;
+      background: #fafafa;
+      transition: border-color 0.15s;
+      appearance: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #8B4513;
+      background: #fff;
+    }
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    /* 2カラム */
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    /* 紹介コード */
+    .referral-field {
+      background: #faf7f4;
+      border: 1px solid #e8ddd5;
+      border-radius: 6px;
+      padding: 14px 16px;
+      margin-bottom: 20px;
+    }
+    .referral-field label {
+      color: #8B4513;
+    }
+    .referral-field input {
+      background: #fff;
+    }
+
+    /* チェックボックス */
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .checkbox-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 400;
+      color: #444;
+      line-height: 1.6;
+    }
+    .checkbox-label input[type="checkbox"] {
+      width: 17px;
+      height: 17px;
+      min-width: 17px;
+      accent-color: #8B4513;
+      margin-top: 2px;
+    }
+
+    /* 区切り */
+    .divider {
+      border: none;
+      border-top: 1px solid #eee;
+      margin: 24px 0;
+    }
+
+    /* 送信ボタン */
+    .btn-submit {
+      width: 100%;
+      background: #8B4513;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 16px;
+      font-size: 15px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+      transition: background 0.15s;
+      margin-top: 8px;
+    }
+    .btn-submit:hover {
+      background: #7a3b10;
+    }
+
+    .form-note {
+      font-size: 11px;
+      color: #aaa;
+      text-align: center;
+      margin-top: 12px;
+      line-height: 1.7;
+    }
+
+    /* キャンペーン概要 */
+    .summary-card {
+      background: #1a1a1a;
+      color: #fff;
+      border-radius: 8px;
+      padding: 24px 28px;
+      margin-bottom: 24px;
+    }
+    .summary-card h3 {
+      font-size: 13px;
+      color: #c8a882;
+      letter-spacing: 0.1em;
+      margin-bottom: 14px;
+    }
+    .summary-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .summary-list li {
+      font-size: 13px;
+      color: #ccc;
+      line-height: 1.6;
+      padding-left: 16px;
+      position: relative;
+    }
+    .summary-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: #c8a882;
+    }
+
+    @media (max-width: 480px) {
+      .form-card { padding: 28px 22px; }
+      .field-row { grid-template-columns: 1fr; gap: 0; }
+      .badges { gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ヒーロー -->
+  <div class="hero">
+    <div class="eyebrow">黄皓さん紹介キャンペーン</div>
+    <h1>サウナキャビン<br><em>1ヶ月お試し</em>返品保証</h1>
+    <p>2026年5月1日〜31日の期間限定。<br>気に入らなければ全額返金いたします。</p>
+  </div>
+
+  <div class="badges">
+    <span class="badge-item">設置後30日以内 全額返金</span>
+    <span class="badge-item">送料・工事費別途</span>
+    <span class="badge-item">期間限定受付</span>
+  </div>
+
+  <!-- フォーム -->
+  <div class="container">
+
+    <!-- キャンペーン概要 -->
+    <div class="summary-card">
+      <h3>CAMPAIGN OVERVIEW</h3>
+      <ul class="summary-list">
+        <li>対象期間：2026年5月1日〜31日のご購入分</li>
+        <li>返品申請期限：設置後30日以内（6月30日まで）</li>
+        <li>返金方式：商品代金 全額返金</li>
+        <li>返品条件：著しい損傷がないこと</li>
+        <li>返品送料：お客様ご負担</li>
+      </ul>
+    </div>
+
+    <div class="form-card">
+      <h2>お問い合わせ・資料請求</h2>
+      <p class="form-desc">内容確認後、担当よりご連絡いたします（通常1営業日以内）。</p>
+
+      <!-- 紹介コード -->
+      <div class="referral-field">
+        <label>紹介コード<span class="optional">（黄さんからご紹介の方）</span></label>
+        <input type="text" name="referral_code" placeholder="例：HUANG-2026" autocomplete="off">
+      </div>
+
+      <!-- 氏名 -->
+      <div class="field field-row">
+        <div>
+          <label>姓<span class="required">*</span></label>
+          <input type="text" name="last_name" placeholder="山田" required>
+        </div>
+        <div>
+          <label>名<span class="required">*</span></label>
+          <input type="text" name="first_name" placeholder="太郎" required>
+        </div>
+      </div>
+
+      <!-- 連絡先 -->
+      <div class="field">
+        <label>電話番号<span class="required">*</span></label>
+        <input type="tel" name="phone" placeholder="090-0000-0000" required>
+      </div>
+      <div class="field">
+        <label>メールアドレス<span class="required">*</span></label>
+        <input type="email" name="email" placeholder="example@email.com" required>
+      </div>
+
+      <!-- 設置場所 -->
+      <div class="field">
+        <label>設置予定場所<span class="required">*</span></label>
+        <select name="location_type" required>
+          <option value="" disabled selected>選択してください</option>
+          <option value="house">自宅（戸建て）</option>
+          <option value="villa">別荘・セカンドハウス</option>
+          <option value="hotel">ホテル・旅館</option>
+          <option value="villa_rental">一棟貸しヴィラ・民泊</option>
+          <option value="other">その他</option>
+        </select>
+      </div>
+
+      <!-- 興味のある商品 -->
+      <div class="field">
+        <label>興味のある商品<span class="optional">任意</span></label>
+        <select name="product">
+          <option value="" disabled selected>選択してください</option>
+          <option value="undecided">まだ決まっていない</option>
+          <option value="small">小型モデル（〜2名）</option>
+          <option value="medium">中型モデル（〜4名）</option>
+          <option value="large">大型モデル（5名以上）</option>
+        </select>
+      </div>
+
+      <!-- ご予算 -->
+      <div class="field">
+        <label>ご予算感<span class="optional">任意</span></label>
+        <select name="budget">
+          <option value="" disabled selected>選択してください</option>
+          <option value="under_1m">〜100万円</option>
+          <option value="1m_2m">100〜200万円</option>
+          <option value="2m_3m">200〜300万円</option>
+          <option value="over_3m">300万円〜</option>
+          <option value="undecided">未定</option>
+        </select>
+      </div>
+
+      <!-- メッセージ -->
+      <div class="field">
+        <label>ご質問・ご要望<span class="optional">任意</span></label>
+        <textarea name="message" placeholder="設置スペースの広さや、使用シーンなどお気軽にご記入ください。"></textarea>
+      </div>
+
+      <hr class="divider">
+
+      <!-- 同意チェック -->
+      <div class="field">
+        <div class="checkbox-group">
+          <label class="checkbox-label">
+            <input type="checkbox" name="agree_return" required>
+            返品保証の条件（設置後30日以内・著しい損傷なし・返品送料お客様負担）を確認しました。
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" name="agree_privacy" required>
+            <span><a href="#" style="color:#8B4513;">プライバシーポリシー</a>に同意します。</span>
+          </label>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-submit">送信する</button>
+      <p class="form-note">通常1営業日以内にご連絡いたします。<br>お急ぎの場合はお電話にてお問い合わせください。</p>
+    </div>
+
+  </div>
+
+</body>
+</html>
