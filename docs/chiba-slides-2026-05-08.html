@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JapanSauna × 千葉久義氏 提案スライド</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+      background: #111;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .slide-container {
+      width: 100%;
+      max-width: 960px;
+      aspect-ratio: 16 / 9;
+      position: relative;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    }
+
+    .slide {
+      display: none;
+      width: 100%;
+      height: 100%;
+      background: #fff;
+      position: absolute;
+      top: 0; left: 0;
+      padding: 52px 64px 44px;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .slide.active { display: flex; }
+
+    /* 表紙 */
+    .slide-cover {
+      background: #1a1a1a;
+      color: #fff;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 12px;
+    }
+    .slide-cover .meta {
+      font-size: 11px;
+      color: #666;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .slide-cover h1 {
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 1.45;
+      letter-spacing: 0.02em;
+    }
+    .slide-cover h1 span { color: #c07a50; }
+    .slide-cover .sub {
+      font-size: 14px;
+      color: #777;
+      margin-top: 4px;
+    }
+    .slide-cover .presenter {
+      font-size: 12px;
+      color: #555;
+      margin-top: 16px;
+      border-top: 1px solid #2a2a2a;
+      padding-top: 16px;
+    }
+
+    /* テーマバッジ */
+    .theme-badge {
+      display: inline-block;
+      background: #8B4513;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 4px 12px;
+      border-radius: 2px;
+      margin-bottom: 14px;
+      align-self: flex-start;
+    }
+
+    /* スライドタイトル */
+    .slide-title {
+      font-size: 21px;
+      font-weight: 700;
+      color: #1a1a1a;
+      border-left: 4px solid #8B4513;
+      padding-left: 14px;
+      margin-bottom: 24px;
+      line-height: 1.3;
+    }
+
+    /* コンテンツ領域 */
+    .content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0;
+    }
+
+    /* ポイントリスト */
+    .point-list {
+      list-style: none;
+      padding: 0;
+    }
+    .point-list li {
+      font-size: 14px;
+      line-height: 1.6;
+      padding: 10px 0 10px 22px;
+      position: relative;
+      border-bottom: 1px solid #f0f0f0;
+      color: #222;
+    }
+    .point-list li:last-child { border-bottom: none; }
+    .point-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 18px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #8B4513;
+    }
+    .point-list li strong { color: #1a1a1a; }
+    .point-list li .note {
+      font-size: 11px;
+      color: #888;
+      display: block;
+      margin-top: 2px;
+    }
+
+    /* 強調ボックス */
+    .highlight {
+      background: #1a1a1a;
+      color: #fff;
+      padding: 14px 20px;
+      border-radius: 4px;
+      font-size: 13px;
+      line-height: 1.7;
+      margin-top: 18px;
+    }
+    .highlight strong { color: #c07a50; }
+
+    /* 3カラム数字 */
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .stat-box {
+      background: #faf7f4;
+      border: 1px solid #e8ddd5;
+      border-radius: 6px;
+      padding: 14px 16px;
+      text-align: center;
+    }
+    .stat-label {
+      font-size: 10px;
+      color: #8B4513;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      margin-bottom: 6px;
+    }
+    .stat-value {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+    .stat-note {
+      font-size: 10px;
+      color: #999;
+      margin-top: 3px;
+    }
+
+    /* 2カラム */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      flex: 1;
+    }
+    .col-card {
+      background: #faf7f4;
+      border: 1px solid #e8ddd5;
+      border-radius: 6px;
+      padding: 18px 20px;
+    }
+    .col-title {
+      font-size: 10px;
+      font-weight: 700;
+      color: #8B4513;
+      letter-spacing: 0.09em;
+      margin-bottom: 12px;
+    }
+    .col-card ul { list-style: none; }
+    .col-card ul li {
+      font-size: 12px;
+      line-height: 1.7;
+      padding-left: 14px;
+      position: relative;
+      color: #333;
+      padding-bottom: 4px;
+    }
+    .col-card ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: #8B4513;
+    }
+
+    /* スライド番号 */
+    .slide-num {
+      position: absolute;
+      bottom: 16px;
+      right: 28px;
+      font-size: 11px;
+      color: #ccc;
+    }
+
+    /* ナビゲーション */
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 14px;
+    }
+    .nav button {
+      background: #333;
+      color: #ccc;
+      border: none;
+      padding: 8px 22px;
+      cursor: pointer;
+      font-size: 13px;
+      border-radius: 4px;
+      font-family: inherit;
+      transition: background 0.15s;
+    }
+    .nav button:hover { background: #555; }
+    .nav-label {
+      font-size: 12px;
+      color: #666;
+      min-width: 48px;
+      text-align: center;
+      font-family: 'Hiragino Sans', sans-serif;
+    }
+
+    .hint {
+      margin-top: 8px;
+      font-size: 11px;
+      color: #444;
+      font-family: 'Hiragino Sans', sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+<div class="slide-container">
+
+  <!-- 表紙 -->
+  <div class="slide slide-cover active">
+    <div class="meta">Confidential · 2026.05.08</div>
+    <h1>JapanSauna × <span>千葉久義</span> 氏<br>ご協力のご相談</h1>
+    <div class="sub">3つのテーマについて、壁打ちをお願いしたい</div>
+    <div class="presenter">株式会社セブンリッチ　JapanSauna事業部　春川龍也</div>
+    <div class="slide-num">1 / 7</div>
+  </div>
+
+  <!-- テーマ1-1：現状と課題 -->
+  <div class="slide">
+    <div class="theme-badge">THEME 1 — マーケティング戦略</div>
+    <div class="slide-title">現状と課題</div>
+    <div class="content">
+      <div class="stat-row">
+        <div class="stat-box">
+          <div class="stat-label">今期目標</div>
+          <div class="stat-value">2.4億円</div>
+          <div class="stat-note">サウナキャビン販売</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">集客チャネル</div>
+          <div class="stat-value">3軸</div>
+          <div class="stat-note">Meta / Google / SEO</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">チーム規模</div>
+          <div class="stat-value">少数精鋭</div>
+          <div class="stat-note">Hal + 岡村 + 採用中</div>
+        </div>
+      </div>
+      <ul class="point-list">
+        <li>
+          <strong>リードの質が課題</strong>
+          <span class="note">潜在層が多く、顕在層（今すぐ買いたい層）へのリーチが弱い</span>
+        </li>
+        <li>
+          <strong>競合との差別化が曖昧</strong>
+          <span class="note">商品・価格・訴求軸をどこで勝負するか整理できていない</span>
+        </li>
+        <li>
+          <strong>BtoBリードの打ち手が薄い</strong>
+          <span class="note">ホテル・ヴィラ向けの能動的なアプローチがまだ少ない</span>
+        </li>
+      </ul>
+    </div>
+    <div class="slide-num">2 / 7</div>
+  </div>
+
+  <!-- テーマ1-2：壁打ち -->
+  <div class="slide">
+    <div class="theme-badge">THEME 1 — マーケティング戦略</div>
+    <div class="slide-title">壁打ちしたいこと</div>
+    <div class="content">
+      <ul class="point-list">
+        <li>
+          <strong>顕在層へのリーチ、どこから手をつけるべきか？</strong>
+          <span class="note">広告・SEO・チャネル、優先順位の付け方</span>
+        </li>
+        <li>
+          <strong>BtoB（ホテル・ヴィラ）、有効な獲得打ち手は？</strong>
+          <span class="note">インバウンド vs アウトバウンド、最初の一手</span>
+        </li>
+        <li>
+          <strong>ブランドとパフォーマンスをどう両立させるか</strong>
+          <span class="note">少ないリソースで両方やるコツ、メルカリ時代の経験から聞きたい</span>
+        </li>
+      </ul>
+      <div class="highlight">
+        聞きたいこと：<strong>「今のJapanSaunaの状況で、最初の1ヶ月で何をやりますか？」</strong>
+      </div>
+    </div>
+    <div class="slide-num">3 / 7</div>
+  </div>
+
+  <!-- テーマ2-1：中古マーケット背景 -->
+  <div class="slide">
+    <div class="theme-badge">THEME 2 — サウナ中古マーケット</div>
+    <div class="slide-title">なぜ中古マーケットをやるか</div>
+    <div class="content">
+      <ul class="point-list">
+        <li>
+          <strong>日本に中古サウナ専門マーケットは存在しない</strong>
+          <span class="note">競合ゼロ。ファーストペンギン戦略でSEO先行者優位を狙える</span>
+        </li>
+        <li>
+          <strong>「将来下取りします」が新品購入の後押しになる</strong>
+          <span class="note">高額商品（100〜300万円）の購入ハードルを下げる独自の安心軸</span>
+        </li>
+        <li>
+          <strong>既存オーナーへの下取り → リプレイス提案でLTV向上</strong>
+          <span class="note">一度売った顧客と継続的な関係を作れる</span>
+        </li>
+      </ul>
+      <div class="highlight">
+        現状：<strong>アイデア段階。</strong>事業モデル・買取フロー・査定基準・販売チャネルは未定。
+      </div>
+    </div>
+    <div class="slide-num">4 / 7</div>
+  </div>
+
+  <!-- テーマ2-2：壁打ち -->
+  <div class="slide">
+    <div class="theme-badge">THEME 2 — サウナ中古マーケット</div>
+    <div class="slide-title">壁打ちしたいこと</div>
+    <div class="content">
+      <ul class="point-list">
+        <li>
+          <strong>最初の需給マッチング、どうやって作るか？</strong>
+          <span class="note">売り手と買い手の鶏卵問題。メルカリ立ち上げ期はどう解いたか</span>
+        </li>
+        <li>
+          <strong>「安心して買える・売れる」を伝えるコミュニケーション設計</strong>
+          <span class="note">中古商品の信頼設計、査定・保証の見せ方</span>
+        </li>
+        <li>
+          <strong>ページ先行 vs サービス設計先行、どちらが正しいか</strong>
+          <span class="note">まずLPを作って需要検証するアプローチは有効か</span>
+        </li>
+      </ul>
+      <div class="highlight">
+        聞きたいこと：<strong>「メルカリの視点で、この中古マーケットのリスクと勝ち筋を教えてください」</strong>
+      </div>
+    </div>
+    <div class="slide-num">5 / 7</div>
+  </div>
+
+  <!-- テーマ3-1：HIDATEモデルとアセット -->
+  <div class="slide">
+    <div class="theme-badge">THEME 3 — 温浴施設 × 企業 広告タイアップ</div>
+    <div class="slide-title">参考モデルとJapanSaunaのアセット</div>
+    <div class="content">
+      <div class="two-col">
+        <div class="col-card">
+          <div class="col-title">HIDANE（株式会社HIDANE）モデル</div>
+          <ul>
+            <li>温浴施設を「体験型メディア」として企業に提供</li>
+            <li>浴室内での商品サンプリング・空間演出</li>
+            <li>全国500施設以上のネットワーク</li>
+            <li>花王・資生堂・ブレインスリープ等と実績</li>
+          </ul>
+        </div>
+        <div class="col-card">
+          <div class="col-title">JapanSaunaのアセット</div>
+          <ul>
+            <li>「The・のサウナ」自社施設の運営</li>
+            <li>サウナキャビン販売を通じた施設ネットワーク</li>
+            <li>健康意識・購買力が高いサウナ層へのリーチ</li>
+            <li>スマホ離れした空間での高密度な接触機会</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="slide-num">6 / 7</div>
+  </div>
+
+  <!-- テーマ3-2：壁打ち -->
+  <div class="slide">
+    <div class="theme-badge">THEME 3 — 温浴施設 × 企業 広告タイアップ</div>
+    <div class="slide-title">壁打ちしたいこと</div>
+    <div class="content">
+      <ul class="point-list">
+        <li>
+          <strong>先行するHIDATEとの差別化軸をどう作るか</strong>
+          <span class="note">HIDATEが「量・ネットワーク」なら、JapanSaunaはどこで勝負するか</span>
+        </li>
+        <li>
+          <strong>大企業マーケターへのアプローチ、最初のドアはどこか</strong>
+          <span class="note">営業先の選び方・刺さる提案の切り口</span>
+        </li>
+        <li>
+          <strong>そもそも事業として成立するか、率直な意見を聞きたい</strong>
+          <span class="note">参入タイミング・市場規模・収益性の観点から</span>
+        </li>
+      </ul>
+      <div class="highlight">
+        聞きたいこと：<strong>「大企業マーケターとして、この提案を受けたら"刺さる"か、正直に教えてください」</strong>
+      </div>
+    </div>
+    <div class="slide-num">7 / 7</div>
+  </div>
+
+</div>
+
+<!-- ナビゲーション -->
+<div class="nav">
+  <button onclick="changeSlide(-1)">← 前へ</button>
+  <span class="nav-label" id="nav-label">1 / 7</span>
+  <button onclick="changeSlide(1)">次へ →</button>
+</div>
+<div class="hint">← → キーでも切り替えられます</div>
+
+<script>
+  let current = 0;
+  const slides = document.querySelectorAll('.slide');
+  const label = document.getElementById('nav-label');
+  const total = slides.length;
+
+  function changeSlide(dir) {
+    slides[current].classList.remove('active');
+    current = (current + dir + total) % total;
+    slides[current].classList.add('active');
+    label.textContent = (current + 1) + ' / ' + total;
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') changeSlide(1);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   changeSlide(-1);
+  });
+</script>
+
+</body>
+</html>
